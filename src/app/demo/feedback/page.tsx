@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { StatusBadge, Pill, Badge } from '@/components/pure/Feedback';
+import { StatusBadge, Pill, Badge } from '@/components/pure/feedback';
 
 // Iconos simples usando SVG inline
 const CheckIcon = () => (
@@ -61,7 +61,7 @@ export default function FeedbackDemoPage() {
           <h2 className="text-2xl font-semibold text-gray-800 mb-6">
             StatusBadge
           </h2>
-          
+
           {/* Variantes */}
           <div className="mb-8">
             <h3 className="text-lg font-medium text-gray-700 mb-4">Variantes</h3>
@@ -151,7 +151,7 @@ export default function FeedbackDemoPage() {
           <h2 className="text-2xl font-semibold text-gray-800 mb-6">
             Pill
           </h2>
-          
+
           {/* Variantes */}
           <div className="mb-8">
             <h3 className="text-lg font-medium text-gray-700 mb-4">Variantes</h3>
