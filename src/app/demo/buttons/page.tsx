@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Button, PrimaryButton, SecondaryButton, SuccessButton, DangerButton, OutlineButton } from '@/components/pure/Button';
+import { Button, PrimaryButton, SecondaryButton, SuccessButton, DangerButton, OutlineButton } from '@/components/pure/button';
 
 export default function ButtonsDemoPage() {
   return (
