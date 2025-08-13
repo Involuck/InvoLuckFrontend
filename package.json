@@ -13,6 +13,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "framer-motion": "^12.23.12",
     "involuck-monorepo": "file:..",
     "next": "15.4.6",
     "postcss": "^8.5.6",

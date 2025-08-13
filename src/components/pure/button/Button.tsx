@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
+import type { ReactNode } from 'react';
 
 interface ButtonProps {
-  children: React.ReactNode;
+  children: ReactNode;
   onClick?: () => void;
   disabled?: boolean;
   size?: 'small' | 'medium' | 'large';
@@ -28,11 +28,11 @@ export default function Button({
   };
   
   const variantClasses = {
-    primary: 'bg-violet-600 hover:bg-violet-700 text-white focus:ring-violet-500',
-    secondary: 'bg-violet-700 hover:bg-violet-800 text-white focus:ring-violet-600',
+    primary: 'bg-brand-600 hover:bg-brand-700 text-white focus:ring-brand-500',
+    secondary: 'bg-brand-700 hover:bg-brand-800 text-white focus:ring-brand-600',
     success: 'bg-emerald-500 hover:bg-emerald-600 text-white focus:ring-emerald-500',
     danger: 'bg-red-500 hover:bg-red-600 text-white focus:ring-red-500',
-    outline: 'border-2 border-violet-600 text-violet-600 hover:bg-violet-600 hover:text-white focus:ring-violet-500'
+    outline: 'border-2 border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-white focus:ring-brand-500'
   };
 
   const classes = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
