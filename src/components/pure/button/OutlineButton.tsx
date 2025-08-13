@@ -1,10 +1,9 @@
 'use client';
 
 import Button from './Button';
-import type { ReactNode } from 'react';
 
 interface OutlineButtonProps {
-  children: ReactNode;
+  children: React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
   size?: 'small' | 'medium' | 'large';
