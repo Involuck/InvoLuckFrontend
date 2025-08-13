@@ -9,6 +9,7 @@ import SuccessMessage from "@/components/pure/feedback/loading/SuccessMessage";
 import PrimaryButton from "@/components/pure/button/PrimaryButton";
 import TextInput from "@/components/pure/form/TextInput";
 import Footer from "@/components/pure/navigation/Footer";
+import Link from "next/link";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -220,7 +221,7 @@ export default function RegisterPage() {
 
           <div className="mt-6 text-center text-xs text-neutral-400">
             <div className="flex items-center justify-center gap-3">
-              <a href="/" className="hover:underline">¿Ya tienes cuenta? Iniciar sesión</a>
+              <Link href="/" className="hover:underline">¿Ya tienes cuenta? Iniciar sesión</Link>
             </div>
           </div>
         </motion.div>

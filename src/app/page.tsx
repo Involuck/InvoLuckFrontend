@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Spinner from "@/components/pure/feedback/loading/Spinner";
 import ErrorMessage from "@/components/pure/feedback/loading/ErrorMessage";

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function NotFound() {
   return (
     <main className="relative min-h-screen w-full overflow-hidden involuck-bg flex items-center justify-center p-6">
@@ -15,12 +17,12 @@ export default function NotFound() {
         </p>
 
         <div className="mt-8 flex items-center justify-center gap-3">
-          <a
+          <Link
             href="/"
             className="inline-flex items-center justify-center rounded-lg bg-brand-600 px-5 py-2.5 font-semibold text-white shadow-md shadow-brand-900/30 transition hover:bg-brand-700"
           >
             Go home
-          </a>
+          </Link>
           <a
             href="/dashboard"
             className="inline-flex items-center justify-center rounded-lg bg-white/10 px-5 py-2.5 font-semibold text-white ring-1 ring-white/30 backdrop-blur transition hover:bg-white/15"
