@@ -23,12 +23,12 @@ export default function NotFound() {
           >
             Go home
           </Link>
-          <a
-            href="/dashboard"
-            className="inline-flex items-center justify-center rounded-lg bg-white/10 px-5 py-2.5 font-semibold text-white ring-1 ring-white/30 backdrop-blur transition hover:bg-white/15"
-          >
-            Open dashboard
-          </a>
+                     <a
+             href="/authenticated/dashboard"
+             className="inline-flex items-center justify-center rounded-lg bg-white/10 px-5 py-2.5 font-semibold text-white ring-1 ring-white/30 backdrop-blur transition hover:bg-white/15"
+           >
+             Open dashboard
+           </a>
         </div>
 
         <p className="mt-6 text-xs text-brand-100/70">

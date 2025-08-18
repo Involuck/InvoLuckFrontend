@@ -60,7 +60,7 @@ export default function RegisterPage() {
     await new Promise((r) => setTimeout(r, 900));
     setSubmitting(false);
     setSuccess("Cuenta creada. Redirigiendo...");
-    setTimeout(() => router.push("/dashboard"), 800);
+    setTimeout(() => router.push("/authenticated/dashboard"), 800);
   };
 
   const Check = ({ ok }: { ok: boolean }) => ok ? (
@@ -221,7 +221,7 @@ export default function RegisterPage() {
 
           <div className="mt-6 text-center text-xs text-neutral-400">
             <div className="flex items-center justify-center gap-3">
-              <Link href="/" className="hover:underline">¿Ya tienes cuenta? Iniciar sesión</Link>
+              <Link href="/auth/login" className="hover:underline">¿Ya tienes cuenta? Iniciar sesión</Link>
             </div>
           </div>
         </motion.div>
@@ -230,4 +230,3 @@ export default function RegisterPage() {
     </main>
   );
 }
-
