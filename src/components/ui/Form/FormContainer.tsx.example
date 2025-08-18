@@ -1,0 +1,13 @@
+import { ReactNode, FormHTMLAttributes } from 'react'
+
+interface FormContainerProps extends FormHTMLAttributes<HTMLFormElement> {
+  children: ReactNode
+}
+
+export const FormContainer = ({ children, className = '', ...props }: FormContainerProps) => {
+  return (
+    <form {...props} className={`space-y-4 ${className}`}>
+      {children}
+    </form>
+  )
+}

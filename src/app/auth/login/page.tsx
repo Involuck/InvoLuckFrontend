@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useMemo, useState } from "react"
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { useRouter } from "next/navigation"
 import Spinner from "@/components/pure/feedback/loading/Spinner"
@@ -164,7 +165,7 @@ export default function LoginPage() {
           <div className="mt-6 text-center text-xs text-neutral-400">
             <p>Dev: {DEV_EMAIL} / {DEV_PASSWORD}</p>
             <div className="mt-2">
-              <a href="/auth/register" className="text-brand-400 hover:text-brand-300 hover:underline">Crear cuenta</a>
+              <Link href="/auth/register" className="text-brand-400 hover:text-brand-300 hover:underline">Crear cuenta</Link>
             </div>
           </div>
         </motion.div>

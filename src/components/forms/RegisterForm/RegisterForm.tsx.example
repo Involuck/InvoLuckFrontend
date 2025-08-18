@@ -1,0 +1,97 @@
+import { useRegisterForm, RegisterFormData } from '@/hooks/forms/useRegisterForm'
+import { FormField } from '@/components/ui/Form/FormField'
+import { FormContainer } from '@/components/ui/Form/FormContainer'
+import { Input } from '@/components/ui/Input'
+import { Button } from '@/components/ui/Button'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { api } from '@/lib/api'
+
+export const RegisterForm = () => {
+  const router = useRouter()
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  
+  const form = useRegisterForm()
+  const { handleSubmit, formState: { errors } } = form
+
+  const onSubmit = async (data: RegisterFormData) => {
+    try {
+      setLoading(true)
+      setError(null)
+      
+      await api.post('/api/auth/register', {
+        name: data.name,
+        email: data.email,
+        password: data.password
+      })
+      
+      router.push('/auth/login?registered=true')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <FormContainer onSubmit={handleSubmit(onSubmit)}>
+      {error && (
+        <div className="p-3 mb-4 text-sm text-red-500 bg-red-50 rounded-md">
+          {error}
+        </div>
+      )}
+      
+      <FormField
+        label="Name"
+        error={errors.name?.message}
+      >
+        <Input
+          placeholder="John Doe"
+          {...form.register('name')}
+        />
+      </FormField>
+
+      <FormField
+        label="Email"
+        error={errors.email?.message}
+      >
+        <Input
+          type="email"
+          placeholder="you@example.com"
+          {...form.register('email')}
+        />
+      </FormField>
+
+      <FormField
+        label="Password"
+        error={errors.password?.message}
+      >
+        <Input
+          type="password"
+          placeholder="••••••••"
+          {...form.register('password')}
+        />
+      </FormField>
+
+      <FormField
+        label="Confirm Password"
+        error={errors.confirmPassword?.message}
+      >
+        <Input
+          type="password"
+          placeholder="••••••••"
+          {...form.register('confirmPassword')}
+        />
+      </FormField>
+
+      <Button
+        type="submit"
+        loading={loading}
+        className="w-full"
+      >
+        Create Account
+      </Button>
+    </FormContainer>
+  )
+}

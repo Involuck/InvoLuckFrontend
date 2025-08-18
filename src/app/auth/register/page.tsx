@@ -209,7 +209,7 @@ export default function RegisterPage() {
                 onChange={(e) => setAccept(e.target.checked)}
                 className="h-4 w-4 rounded border-neutral-300 text-brand-600 focus:ring-brand-500"
               />
-              <span>Acepto las <a className="underline" href="/terms">Condiciones</a> y la <a className="underline" href="/privacy">Política de Privacidad</a></span>
+              <span>Acepto las <Link className="underline" href="/terms">Condiciones</Link> y la <Link className="underline" href="/privacy">Política de Privacidad</Link></span>
             </label>
 
             <motion.div whileHover={{ scale: canSubmit ? 1.01 : 1 }} whileTap={{ scale: canSubmit ? 0.99 : 1 }}>
