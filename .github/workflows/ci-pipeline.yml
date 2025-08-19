@@ -1,4 +1,4 @@
-# Nombre del flujo de trabajo general que aparecerá en la pestaña "Actions"
+# General workflow name that will appear in the "Actions" tab
 name: CI/CD Pipeline
 
 on:
@@ -9,7 +9,7 @@ on:
 jobs:
   # JOB 1: LINTERS
   linters:
-    # El nombre que se mostrará en las verificaciones del Pull Request
+    # The name that will be displayed in the Pull Request checks
     name: CI / Linters
     runs-on: ubuntu-latest
     steps:
@@ -24,12 +24,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Aquí iría tu comando real de linting.
-      # Por ahora, usamos 'exit 0' para que pase siempre (MVP).
+      # Your actual linting command would go here.
+      # For now, we use 'exit 0' to ensure it always passes (MVP).
       - name: Run Lint Check
         run: |
           echo "Running linter checks..."
-          exit 0 # Cambia a 'npm run lint' cuando esté listo
+          exit 0 # Change to 'npm run lint' when ready
 
   # JOB 2: TESTS
   tests:
@@ -47,11 +47,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Aquí iría tu comando de pruebas unitarias.
+      # Your unit test command would go here.
       - name: Run Unit Tests
         run: |
           echo "Running unit tests..."
-          exit 0 # Cambia a 'npm run test' cuando esté listo
+          exit 0 # Change to 'npm run test' when ready
 
   # JOB 3: INTEGRATION TESTS
   integration-tests:
@@ -69,11 +69,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Aquí iría tu comando de pruebas de integración.
+      # Your integration test command would go here.
       - name: Run Integration Tests
         run: |
           echo "Running integration tests..."
-          exit 0 # Cambia a tu comando real
+          exit 0 # Change to your actual command
 
   # JOB 4: SYSTEM TESTS
   system-tests:
@@ -91,8 +91,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Aquí irían tus pruebas de sistema (como Playwright).
+      # Your system tests (like Playwright) would go here.
       - name: Run System Tests
         run: |
           echo "Running system tests..."
-          exit 0 # Cambia a 'npx playwright test' cuando esté listo
+          exit 0 # Change to 'npx playwright test' when ready
