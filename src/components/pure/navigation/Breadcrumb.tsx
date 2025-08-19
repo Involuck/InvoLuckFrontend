@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import Link from 'next/link';
 
 export interface Crumb { label: string; href?: string }
 export interface BreadcrumbProps { items: Crumb[]; separator?: React.ReactNode; className?: string }
@@ -14,9 +15,9 @@ export function Breadcrumb({ items, separator = '/', className = '' }: Breadcrum
           return (
             <li key={idx} className="flex items-center gap-2">
               {item.href && !isLast ? (
-                <a href={item.href} className="hover:text-blue-600 underline-offset-2 hover:underline">
+                <Link href={item.href} className="hover:text-blue-600 underline-offset-2 hover:underline">
                   {item.label}
-                </a>
+                </Link>
               ) : (
                 <span aria-current={isLast ? 'page' : undefined} className={isLast ? 'text-gray-900 font-medium' : ''}>
                   {item.label}

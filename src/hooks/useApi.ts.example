@@ -1,0 +1,36 @@
+import useSWR from 'swr'
+import { api } from '@/lib/api'
+
+export function useApi<T = any>(url: string) {
+  const { data, error, isLoading, mutate } = useSWR<T>(url, async (url) => {
+    const response = await api.get(url)
+    return response.data
+  })
+
+  const create = async (data: any) => {
+    const response = await api.post(url, data)
+    mutate()
+    return response.data
+  }
+
+  const update = async (id: string, data: any) => {
+    const response = await api.put(`${url}/${id}`, data)
+    mutate()
+    return response.data
+  }
+
+  const remove = async (id: string) => {
+    await api.delete(`${url}/${id}`)
+    mutate()
+  }
+
+  return {
+    data,
+    error,
+    isLoading,
+    mutate,
+    create,
+    update,
+    remove
+  }
+}

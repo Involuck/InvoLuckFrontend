@@ -60,7 +60,7 @@ export default function RegisterPage() {
     await new Promise((r) => setTimeout(r, 900));
     setSubmitting(false);
     setSuccess("Cuenta creada. Redirigiendo...");
-    setTimeout(() => router.push("/dashboard"), 800);
+    setTimeout(() => router.push("/authenticated/dashboard"), 800);
   };
 
   const Check = ({ ok }: { ok: boolean }) => ok ? (
@@ -209,7 +209,7 @@ export default function RegisterPage() {
                 onChange={(e) => setAccept(e.target.checked)}
                 className="h-4 w-4 rounded border-neutral-300 text-brand-600 focus:ring-brand-500"
               />
-              <span>Acepto las <a className="underline" href="/terms">Condiciones</a> y la <a className="underline" href="/privacy">Política de Privacidad</a></span>
+              <span>Acepto las <Link className="underline" href="/terms">Condiciones</Link> y la <Link className="underline" href="/privacy">Política de Privacidad</Link></span>
             </label>
 
             <motion.div whileHover={{ scale: canSubmit ? 1.01 : 1 }} whileTap={{ scale: canSubmit ? 0.99 : 1 }}>
@@ -221,7 +221,7 @@ export default function RegisterPage() {
 
           <div className="mt-6 text-center text-xs text-neutral-400">
             <div className="flex items-center justify-center gap-3">
-              <Link href="/" className="hover:underline">¿Ya tienes cuenta? Iniciar sesión</Link>
+              <Link href="/auth/login" className="hover:underline">¿Ya tienes cuenta? Iniciar sesión</Link>
             </div>
           </div>
         </motion.div>
@@ -230,4 +230,3 @@ export default function RegisterPage() {
     </main>
   );
 }
-
