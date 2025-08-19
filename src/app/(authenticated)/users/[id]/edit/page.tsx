@@ -1,15 +1,12 @@
 import EditUserForm from '@/components/forms/UserForm/EditUserForm'
 
-interface PageProps {
+type PageProps = {
   params: {
     id: string
   }
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: Record<string, string | string[] | undefined>
 }
 
-export default async function EditUserPage({ params }: PageProps) {
-  // Aquí podrías hacer fetch de datos del usuario si lo necesitas
-  const userData = await Promise.resolve({ id: params.id })
-  
-  return <EditUserForm userId={userData.id} />
+export default function EditUserPage({ params }: PageProps) {
+  return <EditUserForm userId={params.id} />
 }
