@@ -1,9 +1,9 @@
 'use client'
 
 import React, { useMemo, useState } from "react"
-import Link from "next/link"
 import { motion } from "framer-motion"
 import { useRouter } from "next/navigation"
+import Link from 'next/link'
 import Spinner from "@/components/pure/feedback/loading/Spinner"
 import ErrorMessage from "@/components/pure/feedback/loading/ErrorMessage"
 import SuccessMessage from "@/components/pure/feedback/loading/SuccessMessage"
@@ -41,15 +41,27 @@ export default function LoginPage() {
     e.preventDefault()
     setError(null)
     setSubmitting(true)
-    await new Promise((r) => setTimeout(r, 700))
-    const ok = email === DEV_EMAIL && password === DEV_PASSWORD
-    setSubmitting(false)
-    if (!ok) {
-      setError("Credenciales inválidas. Intenta nuevamente.")
-      return
+
+    try {
+      await new Promise(resolve => setTimeout(resolve, 700))
+      const ok = email === DEV_EMAIL && password === DEV_PASSWORD
+      
+      if (!ok) {
+        throw new Error("Credenciales inválidas. Intenta nuevamente.")
+      }
+
+      document.cookie = 'token=mock-token; path=/'
+      
+      setSuccess("Bienvenido. Redirigiendo al panel...")
+      
+      await new Promise(resolve => setTimeout(resolve, 650))
+      
+      window.location.href = '/authenticated/dashboard'
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error inesperado")
+    } finally {
+      setSubmitting(false)
     }
-    setSuccess("Bienvenido. Redirigiendo al panel...")
-    setTimeout(() => router.push("/authenticated/dashboard"), 650)
   }
 
   return (
@@ -165,7 +177,9 @@ export default function LoginPage() {
           <div className="mt-6 text-center text-xs text-neutral-400">
             <p>Dev: {DEV_EMAIL} / {DEV_PASSWORD}</p>
             <div className="mt-2">
-              <Link href="/auth/register" className="text-brand-400 hover:text-brand-300 hover:underline">Crear cuenta</Link>
+              <Link href="/auth/register" className="text-brand-400 hover:text-brand-300 hover:underline">
+                Crear cuenta
+              </Link>
             </div>
           </div>
         </motion.div>
