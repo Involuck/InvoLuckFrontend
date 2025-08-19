@@ -3,22 +3,23 @@ import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  const isAuthenticated = request.cookies.get('token')?.value === 'mock-token'
 
   if (pathname === '/') {
     return NextResponse.redirect(new URL('/auth/login', request.url))
   }
 
-  // Proteger rutas autenticadas
-  if (pathname.startsWith('/authenticated')) {
-    if (!isAuthenticated) {
-      return NextResponse.redirect(new URL('/auth/login', request.url))
+  if (pathname.startsWith('/auth/login')) {
+    const isAuthenticated = request.cookies.get('token')?.value === 'mock-token'
+    if (isAuthenticated) {
+      return NextResponse.redirect(new URL('/authenticated/dashboard', request.url))
     }
   }
 
-  // Redirigir usuarios autenticados fuera de páginas de auth
-  if (isAuthenticated && pathname.startsWith('/auth')) {
-    return NextResponse.redirect(new URL('/authenticated/dashboard', request.url))
+  if (pathname.startsWith('/authenticated')) {
+    const isAuthenticated = request.cookies.get('token')?.value === 'mock-token'
+    if (!isAuthenticated) {
+      return NextResponse.redirect(new URL('/auth/login', request.url))
+    }
   }
 
   return NextResponse.next()
