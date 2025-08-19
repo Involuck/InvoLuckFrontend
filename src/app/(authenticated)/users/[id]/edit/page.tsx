@@ -1,16 +1,14 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 
-interface PageProps {
+type Props = {
   params: {
     id: string
   }
-  searchParams?: { [key: string]: string | string[] | undefined }
 }
 
-export default function EditUserPage({ params }: PageProps) {
+export default async function EditUserPage({ params }: Props) {
   const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
