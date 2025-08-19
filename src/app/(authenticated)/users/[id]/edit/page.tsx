@@ -1,9 +1,32 @@
-export default function EditUserPage({ params }: { params: { id: string } }) {
+'use client'
+
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+
+interface PageProps {
+  params: {
+    id: string
+  }
+  searchParams?: { [key: string]: string | string[] | undefined }
+}
+
+export default function EditUserPage({ params }: PageProps) {
+  const router = useRouter()
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    router.push('/authenticated/users')
+  }
+
+  const handleCancel = () => {
+    router.back()
+  }
+
   return (
     <div className="p-8">
       <h1 className="text-2xl font-bold mb-6">Edit User {params.id}</h1>
       <div className="bg-white shadow rounded-lg p-6">
-        <form className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">Name</label>
             <input 
@@ -36,6 +59,7 @@ export default function EditUserPage({ params }: { params: { id: string } }) {
             </button>
             <button 
               type="button"
+              onClick={handleCancel}
               className="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700"
             >
               Cancel
