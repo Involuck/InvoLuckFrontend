@@ -31,4 +31,21 @@ jest.mock('next/image', () => ({
     // eslint-disable-next-line @next/next/no-img-element
     return <img {...props} />
   },
-})) 
+}))
+
+// Mock Next.js app router (next/navigation)
+jest.mock('next/navigation', () => {
+  const actual = jest.requireActual('next/navigation');
+  return {
+    ...actual,
+    useRouter: () => ({
+      push: jest.fn(),
+      replace: jest.fn(),
+      refresh: jest.fn(),
+      back: jest.fn(),
+      forward: jest.fn(),
+      prefetch: jest.fn(),
+      pathname: '/',
+    }),
+  };
+});
