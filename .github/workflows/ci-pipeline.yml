@@ -1,0 +1,98 @@
+# Nombre del flujo de trabajo general que aparecerá en la pestaña "Actions"
+name: CI/CD Pipeline
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  # JOB 1: LINTERS
+  linters:
+    # El nombre que se mostrará en las verificaciones del Pull Request
+    name: CI / Linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Aquí iría tu comando real de linting.
+      # Por ahora, usamos 'exit 0' para que pase siempre (MVP).
+      - name: Run Lint Check
+        run: |
+          echo "Running linter checks..."
+          exit 0 # Cambia a 'npm run lint' cuando esté listo
+
+  # JOB 2: TESTS
+  tests:
+    name: CI / Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Aquí iría tu comando de pruebas unitarias.
+      - name: Run Unit Tests
+        run: |
+          echo "Running unit tests..."
+          exit 0 # Cambia a 'npm run test' cuando esté listo
+
+  # JOB 3: INTEGRATION TESTS
+  integration-tests:
+    name: CI / Integration Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Aquí iría tu comando de pruebas de integración.
+      - name: Run Integration Tests
+        run: |
+          echo "Running integration tests..."
+          exit 0 # Cambia a tu comando real
+
+  # JOB 4: SYSTEM TESTS
+  system-tests:
+    name: CI / System Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Aquí irían tus pruebas de sistema (como Playwright).
+      - name: Run System Tests
+        run: |
+          echo "Running system tests..."
+          exit 0 # Cambia a 'npx playwright test' cuando esté listo
