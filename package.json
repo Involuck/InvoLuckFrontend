@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest",
+    "test:integration": "jest --testPathPattern=__tests__/integration"
   },
   "dependencies": {
     "framer-motion": "^12.23.12",
@@ -16,14 +18,20 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.11",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.17",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
+    "jest": "^30.0.5",
+    "jest-environment-jsdom": "^30.0.5",
     "postcss": "^8.4.33",
     "tailwindcss": "^4.1.11",
+    "ts-jest": "^29.4.1",
     "typescript": "^5"
   }
 }

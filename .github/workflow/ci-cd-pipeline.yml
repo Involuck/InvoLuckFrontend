@@ -1,0 +1,101 @@
+# Nombre del workflow. Esto aparecerá en la pestaña "Actions" de GitHub.
+name: CI/CD Pipeline
+
+# Disparadores: Define cuándo se ejecutará este workflow.
+on:
+  # Se ejecuta en cada push a la rama main.
+  push:
+    branches: [ main ]
+  # Se ejecuta cuando se crea o actualiza un Pull Request que apunta a main.
+  pull_request:
+    branches: [ main ]
+
+# Agrupamos todos los trabajos bajo un identificador de concurrencia.
+# Esto asegura que si se hace un nuevo push a un PR, las ejecuciones anteriores se cancelan.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+# Definición de los 4 trabajos que se ejecutarán.
+jobs:
+  # --- 1. JOB: Linters ---
+  linters:
+    # El nombre que se mostrará en la UI de GitHub.
+    name: CI / Linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x' # Asegúrate que coincida con tu versión de proyecto.
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Ejecutar Linter
+        run: npm run lint
+
+  # --- 2. JOB: Tests (Unitarios) ---
+  tests:
+    name: CI / Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Ejecutar Pruebas Unitarias
+        run: npm test # Asumiendo que `npm test` corre Jest para tus pruebas unitarias.
+
+  # --- 3. JOB: Integration Tests ---
+  integration-tests:
+    name: CI / Integration Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      # IMPORTANTE: Debes tener un script llamado "test:integration" en tu package.json.
+      - name: Ejecutar Pruebas de Integración
+        run: npm run test:integration
+
+  # --- 4. JOB: System Tests (Build) ---
+  system-tests:
+    name: CI / System Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Construir el proyecto (Build)
+        run: npm run build
