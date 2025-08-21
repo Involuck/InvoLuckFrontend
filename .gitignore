@@ -12,6 +12,8 @@
 
 # testing
 /coverage
+/test-results/
+/playwright-report/
 
 # next.js
 /.next/
@@ -40,6 +42,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-
 # Keep only root lockfile
-package-lock.json
+# package-lock.json <-- .
