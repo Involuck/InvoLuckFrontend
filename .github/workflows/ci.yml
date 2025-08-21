@@ -19,6 +19,7 @@ jobs:
     outputs:
       cache-hit: ${{ steps.cache.outputs.cache-hit }}
       cache-key: ${{ steps.cache.outputs.cache-primary-key }}
+      artifact-created: ${{ steps.cache.outputs.cache-hit != 'true' }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -48,6 +49,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps
 
+      # Crear artifact con node_modules para jobs que fallen el cache
       - name: Create node_modules artifact
         if: steps.cache.outputs.cache-hit != 'true'
         uses: actions/upload-artifact@v4
@@ -55,6 +57,15 @@ jobs:
           name: node-modules
           path: node_modules/
           retention-days: 1
+
+  # Add output to track if artifact was created
+  setup:
+    name: Setup Dependencies
+    runs-on: ubuntu-latest
+    outputs:
+      cache-hit: ${{ steps.cache.outputs.cache-hit }}
+      cache-key: ${{ steps.cache.outputs.cache-primary-key }}
+      artifact-created: ${{ steps.cache.outputs.cache-hit != 'true' }}
 
   linters:
     name: Linters & Code Quality
@@ -75,11 +86,16 @@ jobs:
           fail-on-cache-miss: false
 
       - name: Download node_modules artifact (fallback)
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cache.outputs.cache-hit != 'true' && needs.setup.outputs.artifact-created == 'true'
         uses: actions/download-artifact@v4
         with:
           name: node-modules
           path: node_modules/
+
+      - name: Install dependencies (emergency fallback)
+        if: steps.cache.outputs.cache-hit != 'true' && needs.setup.outputs.artifact-created != 'true'
+        run: |
+          npm ci
 
       - name: Set up Node.js (only if cache miss)
         if: steps.cache.outputs.cache-hit != 'true'
@@ -115,11 +131,15 @@ jobs:
           fail-on-cache-miss: false
 
       - name: Download node_modules artifact (fallback)
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cache.outputs.cache-hit != 'true' && needs.setup.outputs.artifact-created == 'true'
         uses: actions/download-artifact@v4
         with:
           name: node-modules
           path: node_modules/
+
+      - name: Install dependencies (emergency fallback)
+        if: steps.cache.outputs.cache-hit != 'true' && needs.setup.outputs.artifact-created != 'true'
+        run: npm ci
 
       - name: Set up Node.js (only if cache miss)
         if: steps.cache.outputs.cache-hit != 'true'
@@ -162,11 +182,15 @@ jobs:
           fail-on-cache-miss: false
 
       - name: Download node_modules artifact (fallback)
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cache.outputs.cache-hit != 'true' && needs.setup.outputs.artifact-created == 'true'
         uses: actions/download-artifact@v4
         with:
           name: node-modules
           path: node_modules/
+
+      - name: Install dependencies (emergency fallback)
+        if: steps.cache.outputs.cache-hit != 'true' && needs.setup.outputs.artifact-created != 'true'
+        run: npm ci
 
       - name: Set up Node.js (only if cache miss)
         if: steps.cache.outputs.cache-hit != 'true'
@@ -196,11 +220,15 @@ jobs:
           fail-on-cache-miss: false
 
       - name: Download node_modules artifact (fallback)
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cache.outputs.cache-hit != 'true' && needs.setup.outputs.artifact-created == 'true'
         uses: actions/download-artifact@v4
         with:
           name: node-modules
           path: node_modules/
+
+      - name: Install dependencies (emergency fallback)
+        if: steps.cache.outputs.cache-hit != 'true' && needs.setup.outputs.artifact-created != 'true'
+        run: npm ci
 
       - name: Set up Node.js (only if cache miss)
         if: steps.cache.outputs.cache-hit != 'true'
