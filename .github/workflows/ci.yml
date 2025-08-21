@@ -211,6 +211,12 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
       - name: Restore from cache
         uses: actions/cache/restore@v3
         id: cache
@@ -236,19 +242,54 @@ jobs:
           needs.setup.outputs.artifact-created != 'true'
         run: npm ci
 
-      - name: Set up Node.js (only if cache miss)
-        if: steps.cache.outputs.cache-hit != 'true'
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Debug environment before build
+        run: |
+          echo "Node version: $(node --version)"
+          echo "NPM version: $(npm --version)"
+          echo "Current directory: $(pwd)"
+          echo "Package.json scripts:"
+          cat package.json | grep -A 10 '"scripts"' || echo "No scripts section found"
+          echo "Directory contents:"
+          ls -la
 
       - name: Build Next.js app
-        run: npm run build
+        run: |
+          echo "Starting build process..."
+          npm run build
+          BUILD_EXIT_CODE=$?
+          echo "Build exit code: $BUILD_EXIT_CODE"
+
+          if [ $BUILD_EXIT_CODE -ne 0 ]; then
+            echo "❌ Build failed with exit code $BUILD_EXIT_CODE"
+            exit $BUILD_EXIT_CODE
+          fi
+
+          echo "✅ Build completed successfully"
 
       - name: Verify build artifacts
         run: |
+          echo "Verifying build output..."
+
+          if [ ! -d ".next" ]; then
+            echo "❌ Error: .next directory not found"
+            echo "Current directory contents:"
+            ls -la
+            echo "Searching for any build output..."
+            find . -name "*.js" -o -name "dist" -o -name "build" -type d 2>/dev/null || echo "No common build directories found"
+            exit 1
+          fi
+
+          echo "✅ .next directory found"
           echo "Contents of .next directory:"
-          ls -la .next
+          ls -la .next/ || echo "Cannot list .next contents"
+
+          # Check if .next has the expected structure
+          if [ -d ".next/static" ] || [ -d ".next/server" ]; then
+            echo "✅ Build artifacts structure looks correct"
+          else
+            echo "⚠️ Warning: Unexpected .next structure"
+            echo "Expected directories like 'static' or 'server' not found"
+          fi
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
