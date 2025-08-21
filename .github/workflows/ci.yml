@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       cache-hit: ${{ steps.cache.outputs.cache-hit }}
+      cache-key: ${{ steps.cache.outputs.cache-primary-key }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -36,6 +37,8 @@ jobs:
             node_modules
             ~/.cache/ms-playwright
           key: v1-${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            v1-${{ runner.os }}-node-
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
@@ -45,6 +48,14 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps
 
+      - name: Create node_modules artifact
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: node-modules
+          path: node_modules/
+          retention-days: 1
+
   linters:
     name: Linters & Code Quality
     runs-on: ubuntu-latest
@@ -53,23 +64,28 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: Restore dependencies
-        uses: actions/cache@v3
+      - name: Restore from cache
+        uses: actions/cache/restore@v3
+        id: cache
         with:
           path: |
             node_modules
             ~/.cache/ms-playwright
-          key: v1-${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          key: ${{ needs.setup.outputs.cache-key }}
+          fail-on-cache-miss: false
 
-      - name: Install dependencies (fallback)
-        if: needs.setup.outputs.cache-hit != 'true'
-        run: npm ci
+      - name: Download node_modules artifact (fallback)
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: node-modules
+          path: node_modules/
+
+      - name: Set up Node.js (only if cache miss)
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
       - name: Run ESLint
         run: npm run lint
@@ -88,23 +104,28 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: Restore dependencies
-        uses: actions/cache@v3
+      - name: Restore from cache
+        uses: actions/cache/restore@v3
+        id: cache
         with:
           path: |
             node_modules
             ~/.cache/ms-playwright
-          key: v1-${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          key: ${{ needs.setup.outputs.cache-key }}
+          fail-on-cache-miss: false
 
-      - name: Install dependencies (fallback)
-        if: needs.setup.outputs.cache-hit != 'true'
-        run: npm ci
+      - name: Download node_modules artifact (fallback)
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: node-modules
+          path: node_modules/
+
+      - name: Set up Node.js (only if cache miss)
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
       - name: Run unit tests with coverage
         run: npm run test:unit
@@ -130,23 +151,28 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: Restore dependencies
-        uses: actions/cache@v3
+      - name: Restore from cache
+        uses: actions/cache/restore@v3
+        id: cache
         with:
           path: |
             node_modules
             ~/.cache/ms-playwright
-          key: v1-${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          key: ${{ needs.setup.outputs.cache-key }}
+          fail-on-cache-miss: false
 
-      - name: Install dependencies (fallback)
-        if: needs.setup.outputs.cache-hit != 'true'
-        run: npm ci
+      - name: Download node_modules artifact (fallback)
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: node-modules
+          path: node_modules/
+
+      - name: Set up Node.js (only if cache miss)
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
       - name: Run integration tests
         run: npm run test:integration
@@ -159,32 +185,38 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: Restore dependencies
-        uses: actions/cache@v3
+      - name: Restore from cache
+        uses: actions/cache/restore@v3
+        id: cache
         with:
           path: |
             node_modules
             ~/.cache/ms-playwright
-          key: v1-${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          key: ${{ needs.setup.outputs.cache-key }}
+          fail-on-cache-miss: false
 
-      - name: Install dependencies (fallback)
-        if: needs.setup.outputs.cache-hit != 'true'
-        run: npm ci
+      - name: Download node_modules artifact (fallback)
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: node-modules
+          path: node_modules/
+
+      - name: Set up Node.js (only if cache miss)
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
       - name: Build Next.js app
         run: npm run build
 
-      - name: Cache build artifacts
-        uses: actions/cache@v3
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
         with:
-          path: .next
-          key: v1-build-${{ github.sha }}
+          name: build-files
+          path: .next/
+          retention-days: 1
 
   system_tests:
     name: System Tests (E2E)
@@ -199,32 +231,37 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: Restore dependencies
-        uses: actions/cache@v3
+      - name: Restore from cache
+        uses: actions/cache/restore@v3
+        id: cache
         with:
           path: |
             node_modules
             ~/.cache/ms-playwright
-          key: v1-${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          key: ${{ needs.setup.outputs.cache-key }}
+          fail-on-cache-miss: false
 
-      - name: Restore build artifacts
-        uses: actions/cache@v3
+      - name: Download node_modules artifact (fallback)
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/download-artifact@v4
         with:
-          path: .next
-          key: v1-build-${{ github.sha }}
+          name: node-modules
+          path: node_modules/
 
-      - name: Install dependencies (fallback)
-        if: needs.setup.outputs.cache-hit != 'true'
-        run: npm ci
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: .next/
+
+      - name: Set up Node.js (only if cache miss)
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
       - name: Install Playwright browsers (fallback)
-        if: needs.setup.outputs.cache-hit != 'true'
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps
 
       - name: Start Next.js app
@@ -254,23 +291,28 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: Restore dependencies
-        uses: actions/cache@v3
+      - name: Restore from cache
+        uses: actions/cache/restore@v3
+        id: cache
         with:
           path: |
             node_modules
             ~/.cache/ms-playwright
-          key: v1-${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          key: ${{ needs.setup.outputs.cache-key }}
+          fail-on-cache-miss: false
 
-      - name: Install dependencies (fallback)
-        if: needs.setup.outputs.cache-hit != 'true'
-        run: npm ci
+      - name: Download node_modules artifact (fallback)
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: node-modules
+          path: node_modules/
+
+      - name: Set up Node.js (only if cache miss)
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
       - name: Run npm audit
         run: |
@@ -301,29 +343,34 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: Restore dependencies
-        uses: actions/cache@v3
+      - name: Restore from cache
+        uses: actions/cache/restore@v3
+        id: cache
         with:
           path: |
             node_modules
             ~/.cache/ms-playwright
-          key: v1-${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          key: ${{ needs.setup.outputs.cache-key }}
+          fail-on-cache-miss: false
 
-      - name: Restore build artifacts
-        uses: actions/cache@v3
+      - name: Download node_modules artifact (fallback)
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/download-artifact@v4
         with:
-          path: .next
-          key: v1-build-${{ github.sha }}
+          name: node-modules
+          path: node_modules/
 
-      - name: Install dependencies (fallback)
-        if: needs.setup.outputs.cache-hit != 'true'
-        run: npm ci
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: .next/
+
+      - name: Set up Node.js (only if cache miss)
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
       - name: Bundle size analysis
         run: |
