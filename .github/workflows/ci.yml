@@ -110,16 +110,15 @@ jobs:
         run: npm run test:unit
 
       - name: Upload coverage to GitHub
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: coverage/
           retention-days: 7
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/lcov.info
           fail_ci_if_error: false
 
@@ -237,7 +236,7 @@ jobs:
         run: npm run test:e2e -- --shard=${{ matrix.shard }}/2
 
       - name: Upload test artifacts on failure
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: system-test-artifacts-${{ matrix.shard }}
@@ -279,7 +278,7 @@ jobs:
           cat audit-results.json
 
       - name: Run Snyk security scan
-        uses: snyk/actions/node@master
+        uses: snyk/actions/node@0.4.0
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
@@ -287,7 +286,7 @@ jobs:
           args: --severity-threshold=high
 
       - name: Upload audit results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: security-audit
           path: audit-results.json
