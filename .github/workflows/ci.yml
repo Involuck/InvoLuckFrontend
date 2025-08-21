@@ -226,16 +226,6 @@ jobs:
           needs.setup.outputs.artifact-created != 'true'
         run: npm ci
 
-      - name: Debug environment before build
-        run: |
-          echo "Node version: $(node --version)"
-          echo "NPM version: $(npm --version)"
-          echo "Current directory: $(pwd)"
-          echo "Package.json scripts:"
-          cat package.json | grep -A 10 '"scripts"' || echo "No scripts section found"
-          echo "Directory contents:"
-          ls -la
-
       - name: Build Next.js app
         run: |
           echo "Starting build process..."
@@ -258,28 +248,26 @@ jobs:
             echo "❌ Error: .next directory not found"
             echo "Current directory contents:"
             ls -la
-            echo "Searching for any build output..."
-            find . -name "*.js" -o -name "dist" -o -name "build" -type d 2>/dev/null || echo "No common build directories found"
             exit 1
           fi
 
           echo "✅ .next directory found"
           echo "Contents of .next directory:"
-          ls -la .next/ || echo "Cannot list .next contents"
+          ls -la .next/
 
           # Check if .next has the expected structure
-          if [ -d ".next/static" ] || [ -d ".next/server" ]; then
+          if [ -d ".next/static" ] && [ -d ".next/server" ]; then
             echo "✅ Build artifacts structure looks correct"
           else
             echo "⚠️ Warning: Unexpected .next structure"
-            echo "Expected directories like 'static' or 'server' not found"
           fi
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: build-files
-          path: .next
+          path: |
+            .next/**
           if-no-files-found: error
           retention-days: 1
 
