@@ -18,17 +18,17 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       cache-hit: ${{ steps.cache.outputs.cache-hit }}
-      cache-key: ${{ steps.cache.outputs.cache-primary-key }}
+      cache-key: ${{ steps.generate-key.outputs.key }}
       artifact-created: ${{ steps.cache.outputs.cache-hit != 'true' }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
+      - name: Generate cache key
+        id: generate-key
+        run:
+          echo "key=v1-${{ runner.os }}-node-${{ hashFiles('package-lock.json')
+          }}" >> $GITHUB_OUTPUT
 
       - name: Cache dependencies
         id: cache
@@ -37,25 +37,9 @@ jobs:
           path: |
             node_modules
             ~/.cache/ms-playwright
-          key: v1-${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          key: ${{ steps.generate-key.outputs.key }}
           restore-keys: |
             v1-${{ runner.os }}-node-
-
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
-
-      - name: Install Playwright browsers
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps
-
-      - name: Create node_modules artifact
-        if: steps.cache.outputs.cache-hit != 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: node-modules
-          path: node_modules/
-          retention-days: 1
 
   linters:
     name: Linters & Code Quality
@@ -295,7 +279,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-files
-          path: .next/
+          path: .next
           if-no-files-found: error
           retention-days: 1
 
@@ -469,7 +453,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-files
-          path: .next/
+          path: .next
 
       - name: Set up Node.js (only if cache miss)
         if: steps.cache.outputs.cache-hit != 'true'
