@@ -43,4 +43,4 @@ yarn-error.log*
 next-env.d.ts
 
 # Keep only root lockfile
-# package-lock.json <-- ¡IMPORTANTE! Lee la nota de abajo.
+# package-lock.json <-- .
