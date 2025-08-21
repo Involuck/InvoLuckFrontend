@@ -1,8 +1,12 @@
 # InvoLuck
 
-**InvoLuck** is a modern invoicing platform designed specifically for freelancers, small businesses medium companies and big companies, and independent professionals who need a simple, fast, and reliable way to create and manage invoices.
+**InvoLuck** is a modern invoicing platform designed specifically for
+freelancers, small businesses medium companies and big companies, and
+independent professionals who need a simple, fast, and reliable way to create
+and manage invoices.
 
-> 🚀 **1-Week MVP** - Focused on core functionality without complex authentication
+> 🚀 **1-Week MVP** - Focused on core functionality without complex
+> authentication
 
 ---
 
@@ -10,7 +14,10 @@
 
 ### What is InvoLuck?
 
-InvoLuck is a comprehensive invoicing and business management platform designed to scale from freelancers to enterprise-level companies. We provide a modern, intuitive solution that grows with your business, from simple invoicing to complex financial management.
+InvoLuck is a comprehensive invoicing and business management platform designed
+to scale from freelancers to enterprise-level companies. We provide a modern,
+intuitive solution that grows with your business, from simple invoicing to
+complex financial management.
 
 ### Target Market
 
@@ -22,7 +29,8 @@ InvoLuck is a comprehensive invoicing and business management platform designed 
 ### Problem We Solve
 
 - Manual invoice creation is time-consuming and error-prone
-- Existing enterprise solutions are too complex and expensive for growing businesses
+- Existing enterprise solutions are too complex and expensive for growing
+  businesses
 - Lack of scalable tools that grow with business needs
 - Need for professional invoicing that can handle enterprise-level complexity
 - Difficulty managing multiple locations, departments, and currencies
@@ -129,15 +137,14 @@ A scalable, enterprise-ready platform that allows businesses to:
     cd InvoLuck
     ```
 
-3.  **Install all dependencies (frontend & backend):**
-    This single command will install everything needed for the entire project.
+3.  **Install all dependencies (frontend & backend):** This single command will
+    install everything needed for the entire project.
 
     ```bash
     npm install
     ```
 
 4.  **Set up environment variables:**
-
     - In the `backend` folder, create a new file named `.env`.
     - Add your database connection string and a secret key for authentication:
       ```env
@@ -145,8 +152,8 @@ A scalable, enterprise-ready platform that allows businesses to:
       JWT_SECRET=<your-super-secure-jwt-secret>
       ```
 
-5.  **Run the development servers:**
-    This single command will start both the frontend and backend servers concurrently.
+5.  **Run the development servers:** This single command will start both the
+    frontend and backend servers concurrently.
     ```bash
     npm run dev
     ```
@@ -215,7 +222,8 @@ npm run build
 
 ### Automated Pipeline
 
-Our project includes a comprehensive CI/CD pipeline that ensures code quality and reliability:
+Our project includes a comprehensive CI/CD pipeline that ensures code quality
+and reliability:
 
 #### GitHub Actions Workflow
 
@@ -228,7 +236,8 @@ Our project includes a comprehensive CI/CD pipeline that ensures code quality an
 
 - **Code Formatting:** Prettier ensures consistent code style
 - **Security Checks:** Automated npm audit for vulnerability detection
-- **Note:** Pre-commit hooks disabled locally - CI/CD runs on GitHub Actions only
+- **Note:** Pre-commit hooks disabled locally - CI/CD runs on GitHub Actions
+  only
 
 #### Test Coverage
 
@@ -253,9 +262,12 @@ Every pull request must pass:
 ### Enterprise-Focused Pricing Strategy
 
 - **Starter Tier ($29/month):** Up to 100 invoices, basic features
-- **Professional Tier ($99/month):** Up to 1000 invoices, advanced features, multi-user
-- **Business Tier ($299/month):** Unlimited invoices, multi-location, advanced reporting
-- **Enterprise Tier (Custom):** Custom integrations, dedicated support, SLA guarantees
+- **Professional Tier ($99/month):** Up to 1000 invoices, advanced features,
+  multi-user
+- **Business Tier ($299/month):** Unlimited invoices, multi-location, advanced
+  reporting
+- **Enterprise Tier (Custom):** Custom integrations, dedicated support, SLA
+  guarantees
 
 ### Revenue Streams
 
@@ -296,7 +308,8 @@ Every pull request must pass:
 
 ## 💡 Why This MVP?
 
-This 1-week MVP focuses on **core value delivery** while building a solid MERN stack foundation for enterprise scalability:
+This 1-week MVP focuses on **core value delivery** while building a solid MERN
+stack foundation for enterprise scalability:
 
 - **Full-stack MERN** - MongoDB, Express.js, React, Node.js for scalability
 - **JWT authentication** - Secure user management from day one
@@ -304,7 +317,8 @@ This 1-week MVP focuses on **core value delivery** while building a solid MERN s
 - **API-first approach** - RESTful APIs ready for mobile and integrations
 - **Modern UI** - Clean, functional interface that can scale to enterprise needs
 
-The goal is to validate the concept quickly while building a robust foundation that can grow from MVP to enterprise-level platform.
+The goal is to validate the concept quickly while building a robust foundation
+that can grow from MVP to enterprise-level platform.
 
 ---
 

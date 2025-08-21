@@ -11,4 +11,4 @@
     "src/**/*.test.tsx",
     "jest.setup.js"
   ]
-} 
+}
