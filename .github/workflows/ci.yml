@@ -245,11 +245,17 @@ jobs:
       - name: Build Next.js app
         run: npm run build
 
+      - name: Verify build artifacts
+        run: |
+          echo "Contents of .next directory:"
+          ls -la .next
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: build-files
           path: .next/
+          if-no-files-found: error
           retention-days: 1
 
   system_tests:
