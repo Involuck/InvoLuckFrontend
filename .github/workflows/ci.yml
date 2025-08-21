@@ -341,7 +341,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-files
-          path: .next/
+          path: .next
 
       - name: Set up Node.js (only if cache miss)
         if: steps.cache.outputs.cache-hit != 'true'
