@@ -262,14 +262,27 @@ jobs:
             echo "⚠️ Warning: Unexpected .next structure"
           fi
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-files
-          path: |
-            .next/**
-          if-no-files-found: error
-          retention-days: 1
+      - name: Verify build artifacts
+        run: |
+          echo "Verifying build output..."
+
+          if [ ! -d ".next" ]; then
+            echo "❌ Error: .next directory not found"
+            echo "Current directory contents:"
+            ls -la
+            exit 1
+          fi
+
+          echo "✅ .next directory found"
+          echo "Contents of .next directory:"
+          ls -la .next/
+
+          # Check if .next has the expected structure
+          if [ -d ".next/static" ] && [ -d ".next/server" ]; then
+            echo "✅ Build artifacts structure looks correct"
+          else
+            echo "⚠️ Warning: Unexpected .next structure"
+          fi
 
   system_tests:
     name: System Tests (E2E)
