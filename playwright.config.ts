@@ -4,8 +4,6 @@ export default defineConfig({
   testDir: './src/__tests__/e2e',
   timeout: 15000,
   expect: { timeout: 5000  },
-  workers: process.env.CI ? 2 : 1,
-  retries: process.env.CI ? 1 : 0,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
     headless: true,
