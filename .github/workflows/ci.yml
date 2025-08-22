@@ -265,9 +265,13 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: build
-          path: .next/
-          retention-days: 7
+          name: build-files
+          path: |
+            .next/static
+            .next/server
+            .next/*.json
+            .next/BUILD_ID
+          retention-days: 1
 
   system_tests:
     name: System Tests (E2E)
