@@ -1,16 +1,9 @@
-'use client'
-
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
+'use client';
 
 export default function AuthenticatedLayout({
-  children,
+  children
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  return (
-    <div className="min-h-screen bg-gray-100">
-      {children}
-    </div>
-  )
+  return <div className="min-h-screen bg-gray-100">{children}</div>;
 }

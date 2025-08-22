@@ -2,14 +2,22 @@
 
 import * as React from 'react';
 
-export interface SwitchProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'> {
+export interface SwitchProps
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'> {
   checked?: boolean;
   onChange?: (checked: boolean) => void;
   size?: 'sm' | 'md';
   disabled?: boolean;
 }
 
-export function Switch({ checked: checkedProp, onChange, size = 'md', disabled = false, className = '', ...props }: SwitchProps) {
+export function Switch({
+  checked: checkedProp,
+  onChange,
+  size = 'md',
+  disabled = false,
+  className = '',
+  ...props
+}: SwitchProps) {
   const [internal, setInternal] = React.useState(false);
   const isControlled = typeof checkedProp === 'boolean';
   const checked = isControlled ? checkedProp : internal;
@@ -22,8 +30,16 @@ export function Switch({ checked: checkedProp, onChange, size = 'md', disabled =
   };
 
   const sizes = {
-    sm: { track: 'w-9 h-5', knob: 'w-4 h-4 translate-x-0.5', knobChecked: 'translate-x-4' },
-    md: { track: 'w-11 h-6', knob: 'w-5 h-5 translate-x-0.5', knobChecked: 'translate-x-5' },
+    sm: {
+      track: 'w-9 h-5',
+      knob: 'w-4 h-4 translate-x-0.5',
+      knobChecked: 'translate-x-4'
+    },
+    md: {
+      track: 'w-11 h-6',
+      knob: 'w-5 h-5 translate-x-0.5',
+      knobChecked: 'translate-x-5'
+    }
   } as const;
 
   const s = sizes[size];
@@ -46,5 +62,3 @@ export function Switch({ checked: checkedProp, onChange, size = 'md', disabled =
 }
 
 export default Switch;
-
-
