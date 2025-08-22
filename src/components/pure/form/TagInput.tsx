@@ -9,7 +9,12 @@ export interface TagInputProps {
   disabled?: boolean;
 }
 
-export function TagInput({ value, onChange, placeholder = 'Add tag and press Enter', disabled = false }: TagInputProps) {
+export function TagInput({
+  value,
+  onChange,
+  placeholder = 'Add tag and press Enter',
+  disabled = false
+}: TagInputProps) {
   const [internal, setInternal] = React.useState<string[]>(value ?? []);
   const [input, setInput] = React.useState('');
   const isControlled = Array.isArray(value);
@@ -37,10 +42,15 @@ export function TagInput({ value, onChange, placeholder = 'Add tag and press Ent
   };
 
   return (
-    <div className={`w-full rounded-md border border-gray-300 bg-white px-2 py-1 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 ${disabled ? 'opacity-60 cursor-not-allowed' : ''}`}>
+    <div
+      className={`w-full rounded-md border border-gray-300 bg-white px-2 py-1 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 ${disabled ? 'opacity-60 cursor-not-allowed' : ''}`}
+    >
       <div className="flex flex-wrap items-center gap-2">
         {tags.map((t, i) => (
-          <span key={`${t}-${i}`} className="inline-flex items-center gap-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200 px-2 py-0.5 text-sm">
+          <span
+            key={`${t}-${i}`}
+            className="inline-flex items-center gap-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200 px-2 py-0.5 text-sm"
+          >
             {t}
             <button
               type="button"
@@ -68,5 +78,3 @@ export function TagInput({ value, onChange, placeholder = 'Add tag and press Ent
 }
 
 export default TagInput;
-
-

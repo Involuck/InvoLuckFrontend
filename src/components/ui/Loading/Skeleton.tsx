@@ -9,11 +9,11 @@ interface SkeletonProps {
   rounded?: boolean;
 }
 
-export default function Skeleton({ 
-  width = '100%', 
-  height = '1rem', 
+export default function Skeleton({
+  width = '100%',
+  height = '1rem',
   className = '',
-  rounded = true 
+  rounded = true
 }: SkeletonProps) {
   const baseClasses = 'bg-blue-100 animate-pulse';
   const roundedClasses = rounded ? 'rounded' : '';
