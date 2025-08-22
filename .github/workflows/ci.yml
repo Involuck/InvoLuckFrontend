@@ -83,7 +83,7 @@ jobs:
   unit_tests:
     name: Unit Tests
     runs-on: ubuntu-latest
-    needs: [setup, linters]
+    needs: [setup]
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -125,7 +125,7 @@ jobs:
   integration_tests:
     name: Integration Tests
     runs-on: ubuntu-latest
-    needs: [setup, linters]
+    needs: [setup]
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -336,42 +336,3 @@ jobs:
           npm run start &
           sleep 30
           lhci autorun --config=.lighthouserc.json || echo "Lighthouse analysis completed"
-
-  deployment_check:
-    name: Deployment Check
-    runs-on: ubuntu-latest
-    needs:
-      [
-        unit_tests,
-        integration_tests,
-        system_tests,
-        security_scan,
-        performance_check
-      ]
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - name: Check all jobs status
-        run: |
-          echo "Unit Tests: ${{ needs.unit_tests.result }}"
-          echo "Integration Tests: ${{ needs.integration_tests.result }}"
-          echo "System Tests: ${{ needs.system_tests.result }}"
-          echo "Security Scan: ${{ needs.security_scan.result }}"
-          echo "Performance Check: ${{ needs.performance_check.result }}"
-
-      - name: All checks passed
-        if: >
-          needs.unit_tests.result == 'success' && needs.integration_tests.result
-          == 'success' && needs.system_tests.result == 'success'
-        run: |
-          echo "✅ All critical CI checks passed successfully!"
-          echo "🚀 Ready for deployment"
-          echo "::notice title=CI Success::All tests and checks completed successfully"
-
-      - name: Some checks failed
-        if: >
-          needs.unit_tests.result != 'success' || needs.integration_tests.result
-          != 'success' || needs.system_tests.result != 'success'
-        run: |
-          echo "❌ Some critical tests failed"
-          echo "::error title=CI Failed::Critical tests failed - check logs"
-          exit 1
