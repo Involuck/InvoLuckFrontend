@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   /* Brand (violet) */
@@ -70,21 +70,9 @@
 .involuck-bg {
   background-color: var(--color-brand-950);
   background-image:
-    radial-gradient(
-      60% 80% at 10% -10%,
-      color-mix(in oklch, var(--color-brand-700), white 10%) 0%,
-      transparent 60%
-    ),
-    radial-gradient(
-      50% 70% at 90% 0%,
-      color-mix(in oklch, var(--color-brand-500), white 10%) 0%,
-      transparent 55%
-    ),
-    radial-gradient(
-      80% 60% at 50% 110%,
-      color-mix(in oklch, var(--color-brand-800), black 5%) 0%,
-      transparent 60%
-    ),
+    radial-gradient(60% 80% at 10% -10%, color-mix(in oklch, var(--color-brand-700), white 10%) 0%, transparent 60%),
+    radial-gradient(50% 70% at 90% 0%, color-mix(in oklch, var(--color-brand-500), white 10%) 0%, transparent 55%),
+    radial-gradient(80% 60% at 50% 110%, color-mix(in oklch, var(--color-brand-800), black 5%) 0%, transparent 60%),
     linear-gradient(180deg, var(--color-brand-900), var(--color-brand-950));
 }
 
@@ -92,11 +80,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    rgba(255, 255, 255, 0.12) 1px,
-    transparent 0
-  );
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.12) 1px, transparent 0);
   background-size: 28px 28px;
   opacity: 0.25;
 }

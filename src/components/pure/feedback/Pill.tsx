@@ -10,21 +10,16 @@ export interface PillProps {
 }
 
 const variantStyles = {
-  neutral:
-    'bg-gray-100 text-gray-800 border-gray-200 hover:bg-gray-200 focus:bg-gray-200',
-  primary:
-    'bg-blue-100 text-blue-800 border-blue-200 hover:bg-blue-200 focus:bg-blue-200',
-  success:
-    'bg-green-100 text-green-800 border-green-200 hover:bg-green-200 focus:bg-green-200',
-  warning:
-    'bg-yellow-100 text-yellow-800 border-yellow-200 hover:bg-yellow-200 focus:bg-yellow-200',
-  danger:
-    'bg-red-100 text-red-800 border-red-200 hover:bg-red-200 focus:bg-red-200'
+  neutral: 'bg-gray-100 text-gray-800 border-gray-200 hover:bg-gray-200 focus:bg-gray-200',
+  primary: 'bg-blue-100 text-blue-800 border-blue-200 hover:bg-blue-200 focus:bg-blue-200',
+  success: 'bg-green-100 text-green-800 border-green-200 hover:bg-green-200 focus:bg-green-200',
+  warning: 'bg-yellow-100 text-yellow-800 border-yellow-200 hover:bg-yellow-200 focus:bg-yellow-200',
+  danger: 'bg-red-100 text-red-800 border-red-200 hover:bg-red-200 focus:bg-red-200',
 };
 
 const sizeStyles = {
   sm: 'px-2 py-1 text-xs',
-  md: 'px-3 py-1.5 text-sm'
+  md: 'px-3 py-1.5 text-sm',
 };
 
 const removeButtonStyles = {
@@ -32,7 +27,7 @@ const removeButtonStyles = {
   primary: 'hover:bg-blue-300 focus:bg-blue-300 focus:ring-blue-500',
   success: 'hover:bg-green-300 focus:bg-green-300 focus:ring-green-500',
   warning: 'hover:bg-yellow-300 focus:bg-yellow-300 focus:ring-yellow-500',
-  danger: 'hover:bg-red-300 focus:bg-red-300 focus:ring-red-500'
+  danger: 'hover:bg-red-300 focus:bg-red-300 focus:ring-red-500',
 };
 
 export const Pill: React.FC<PillProps> = ({
@@ -41,7 +36,7 @@ export const Pill: React.FC<PillProps> = ({
   size = 'md',
   iconStart,
   iconEnd,
-  onRemove
+  onRemove,
 }) => {
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter' || event.key === ' ') {

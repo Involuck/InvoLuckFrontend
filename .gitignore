@@ -12,13 +12,12 @@
 
 # testing
 /coverage
+/test-results/
+/playwright-report/
 
 # next.js
 /.next/
 /out/
-
-# vscode 
-/.vscode
 
 # production
 /build
@@ -43,14 +42,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-
 # Keep only root lockfile
-package-lock.json
-
-# test results
-/test-results
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-
-.swc
+# package-lock.json <-- .

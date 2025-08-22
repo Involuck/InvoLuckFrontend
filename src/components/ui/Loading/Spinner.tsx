@@ -7,9 +7,9 @@ interface SpinnerProps {
   className?: string;
 }
 
-export default function Spinner({
-  size = 'medium',
-  className = ''
+export default function Spinner({ 
+  size = 'medium', 
+  className = '' 
 }: SpinnerProps) {
   const sizeClasses = {
     small: 'w-4 h-4 border-2',
@@ -17,9 +17,16 @@ export default function Spinner({
     large: 'w-12 h-12 border-4'
   };
 
-  const baseClasses =
-    'border-blue-200 border-t-[#2563EB] rounded-full animate-spin';
+  const baseClasses = 'border-blue-200 border-t-[#2563EB] rounded-full animate-spin';
   const classes = `${sizeClasses[size]} ${baseClasses} ${className}`;
 
-  return <div className={classes} role="status" aria-label="Loading" />;
+  return (
+    <div
+      className={classes}
+      role="status"
+      aria-label="Loading"
+    />
+  );
 }
+
+

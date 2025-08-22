@@ -5,10 +5,7 @@ interface UseTypedTextOptions {
   startDelayMs?: number;
 }
 
-export function useTypedText(
-  fullText: string,
-  options: UseTypedTextOptions = {}
-) {
+export function useTypedText(fullText: string, options: UseTypedTextOptions = {}) {
   const { speedMs = 22, startDelayMs = 200 } = options;
   const [text, setText] = useState('');
 
@@ -37,3 +34,4 @@ export function useTypedText(
 }
 
 export default useTypedText;
+

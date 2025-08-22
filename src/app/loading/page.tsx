@@ -1,18 +1,11 @@
 'use client';
 
 import React from 'react';
-import {
-  Spinner,
-  Skeleton,
-  ErrorMessage,
-  EmptyState
-} from '@/components/ui/Loading';
+import { Spinner, Skeleton, ErrorMessage, EmptyState } from '@/components/ui/Loading';
 
 export default function LoadingDemoPage() {
   const handleRetry = () => {
-    // Add your retry logic here
-    // Example: Redirect to a different page
-    window.location.href = '/';
+    console.log('Retry clicked');
   };
 
   return (
@@ -24,9 +17,7 @@ export default function LoadingDemoPage() {
 
         {/* Spinner Section */}
         <section className="bg-white rounded-lg shadow-sm p-6 mb-8">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">
-            Spinner Components
-          </h2>
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Spinner Components</h2>
           <div className="flex items-center gap-8">
             <div className="flex flex-col items-center gap-2">
               <Spinner size="small" />
@@ -45,9 +36,7 @@ export default function LoadingDemoPage() {
 
         {/* Skeleton Section */}
         <section className="bg-white rounded-lg shadow-sm p-6 mb-8">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">
-            Skeleton Components
-          </h2>
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Skeleton Components</h2>
           <div className="space-y-4">
             <div className="flex items-center gap-4">
               <Skeleton width="40px" height="40px" rounded={true} />
@@ -66,23 +55,16 @@ export default function LoadingDemoPage() {
 
         {/* Error Message Section */}
         <section className="bg-white rounded-lg shadow-sm p-6 mb-8">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">
-            Error Message Components
-          </h2>
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Error Message Components</h2>
           <div className="space-y-4">
-            <ErrorMessage
-              message="Failed to load invoices"
-              onRetry={handleRetry}
-            />
+            <ErrorMessage message="Failed to load invoices" onRetry={handleRetry} />
             <ErrorMessage message="Network connection error. Please check your internet connection." />
           </div>
         </section>
 
         {/* Empty State Section */}
         <section className="bg-white rounded-lg shadow-sm p-6 mb-8">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">
-            Empty State Components
-          </h2>
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Empty State Components</h2>
           <div className="space-y-6">
             <EmptyState message="No invoices yet" />
             <EmptyState message="No data available">
@@ -95,12 +77,10 @@ export default function LoadingDemoPage() {
 
         {/* Usage Examples */}
         <section className="bg-white rounded-lg shadow-sm p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">
-            Usage Examples
-          </h2>
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Usage Examples</h2>
           <div className="bg-gray-50 rounded-lg p-4 font-mono text-sm">
             <pre className="text-gray-700">
-              {`// Spinner usage
+{`// Spinner usage
 <Spinner size="medium" />
 
 // Skeleton usage

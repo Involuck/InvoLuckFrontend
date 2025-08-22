@@ -19,9 +19,7 @@ export default function OverlayDemoPage() {
         </button>
 
         <Modal open={open} onClose={() => setOpen(false)} title="Example modal">
-          <p className="text-gray-700">
-            This is a minimal headless modal component.
-          </p>
+          <p className="text-gray-700">This is a minimal headless modal component.</p>
           <div className="mt-4 flex justify-end gap-2">
             <button
               onClick={() => setOpen(false)}

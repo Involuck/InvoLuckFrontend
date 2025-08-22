@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function NotFound() {
   return (
@@ -7,9 +7,7 @@ export default function NotFound() {
       <div className="involuck-noise -z-10" />
       <div className="w-full max-w-2xl text-center">
         <div className="inline-flex items-center justify-center rounded-2xl bg-brand-700/90 px-4 py-2 text-white shadow-xl shadow-brand-900/40">
-          <span className="text-sm font-semibold tracking-wide">
-            404 · Not Found
-          </span>
+          <span className="text-sm font-semibold tracking-wide">404 · Not Found</span>
         </div>
         <h1 className="mt-6 text-4xl md:text-5xl font-extrabold tracking-tight text-white drop-shadow">
           Hey, you found a blank space, baby…
@@ -25,12 +23,12 @@ export default function NotFound() {
           >
             Go home
           </Link>
-          <a
-            href="/authenticated/dashboard"
-            className="inline-flex items-center justify-center rounded-lg bg-white/10 px-5 py-2.5 font-semibold text-white ring-1 ring-white/30 backdrop-blur transition hover:bg-white/15"
-          >
-            Open dashboard
-          </a>
+                     <a
+             href="/authenticated/dashboard"
+             className="inline-flex items-center justify-center rounded-lg bg-white/10 px-5 py-2.5 font-semibold text-white ring-1 ring-white/30 backdrop-blur transition hover:bg-white/15"
+           >
+             Open dashboard
+           </a>
         </div>
 
         <p className="mt-6 text-xs text-brand-100/70">
@@ -40,3 +38,4 @@ export default function NotFound() {
     </main>
   );
 }
+
