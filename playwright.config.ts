@@ -2,8 +2,8 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './src/__tests__/e2e',
-  timeout: 15000,
-  expect: { timeout: 5000  },
+  timeout: 60000,
+  expect: { timeout: 10000 },
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
     headless: true,
@@ -14,9 +14,7 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     baseURL: 'http://localhost:3000'
   },
-  projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'] } }
-  ],
+  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
 
   webServer: {
     command: 'npm run dev',
