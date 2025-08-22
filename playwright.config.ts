@@ -2,8 +2,10 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './src/__tests__/e2e',
-  timeout: 60000,
-  expect: { timeout: 10000 },
+  timeout: 15000,
+  expect: { timeout: 5000  },
+  workers: process.env.CI ? 2 : 1,
+  retries: process.env.CI ? 1 : 0,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
     headless: true,
@@ -14,7 +16,9 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     baseURL: 'http://localhost:3000'
   },
-  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } }
+  ],
 
   webServer: {
     command: 'npm run dev',
