@@ -1,20 +1,20 @@
-const nextJest = require('next/jest')
+import nextJest from 'next/jest.js';
 
-const createJestConfig = nextJest({
-  dir: './',
-})
+const createJestConfig = nextJest({ dir: './' });
 
 const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
+    '^@/(.*)$': '<rootDir>/src/$1'
   },
-  testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
-  collectCoverageFrom: [
-    'src/**/*.{js,jsx,ts,tsx}',
-    '!src/**/*.d.ts',
-  ],
-}
+  collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
+  testPathIgnorePatterns: ['/node_modules/', '/src/__tests__/e2e/'],
 
-module.exports = createJestConfig(customJestConfig) 
+  testMatch: [
+    '<rootDir>/src/__tests__/unit/**/*.test.{ts,tsx}',
+    '<rootDir>/src/__tests__/integration/**/*.test.{ts,tsx}'
+  ]
+};
+
+export default createJestConfig(customJestConfig);
