@@ -17,10 +17,12 @@
     "check": "npm run format && npm run lint && npm run lint:fix && npm run test"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "framer-motion": "^12.23.12",
     "next": "^14.2.32",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "recharts": "^3.1.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
@@ -30,6 +32,7 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
+    "@types/next": "^9.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
