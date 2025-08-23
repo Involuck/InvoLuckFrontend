@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  PlusIcon, 
-  UserPlusIcon, 
-  ChartBarIcon, 
+import {
+  PlusIcon,
+  UserPlusIcon,
+  ChartBarIcon,
   ArrowDownTrayIcon,
   DocumentTextIcon
 } from '@heroicons/react/24/outline';
@@ -60,7 +60,9 @@ export const QuickActions: React.FC = () => {
       className="bg-white rounded-2xl border-2 border-gray-100 p-6 shadow-lg"
     >
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold text-gray-900">Acciones Rápidas</h3>
+        <h3 className="text-lg font-semibold text-gray-900">
+          Acciones Rápidas
+        </h3>
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
@@ -75,8 +77,8 @@ export const QuickActions: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1 * index }}
-            whileHover={{ 
-              scale: 1.05, 
+            whileHover={{
+              scale: 1.05,
               y: -2,
               boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)'
             }}
@@ -90,18 +92,15 @@ export const QuickActions: React.FC = () => {
             `}
           >
             <div className="flex items-center justify-center space-x-2">
-              <motion.div
-                whileHover={{ rotate: 5 }}
-                className="flex-shrink-0"
-              >
+              <motion.div whileHover={{ rotate: 5 }} className="flex-shrink-0">
                 {action.icon}
               </motion.div>
               <span className="text-sm font-medium">{action.label}</span>
             </div>
-            
+
             {/* Hover effect overlay */}
             <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            
+
             {/* Shine effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
           </motion.button>

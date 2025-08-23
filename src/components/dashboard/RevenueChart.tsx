@@ -19,8 +19,8 @@ const data = [
 ];
 
 export const RevenueChart: React.FC = () => {
-  const maxRevenue = Math.max(...data.map(d => d.revenue));
-  const _maxInvoices = Math.max(...data.map(d => d.invoices));
+  const maxRevenue = Math.max(...data.map((d) => d.revenue));
+  const _maxInvoices = Math.max(...data.map((d) => d.invoices));
 
   return (
     <motion.div
@@ -31,8 +31,12 @@ export const RevenueChart: React.FC = () => {
     >
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900">Tendencia de Ingresos</h3>
-          <p className="text-sm text-gray-600">Ingresos mensuales de los últimos 12 meses</p>
+          <h3 className="text-lg font-semibold text-gray-900">
+            Tendencia de Ingresos
+          </h3>
+          <p className="text-sm text-gray-600">
+            Ingresos mensuales de los últimos 12 meses
+          </p>
         </div>
         <div className="flex space-x-2">
           <motion.button
@@ -77,7 +81,7 @@ export const RevenueChart: React.FC = () => {
                   ${item.revenue.toLocaleString()}
                 </div>
               </div>
-              
+
               {/* Month label */}
               <div className="text-xs text-gray-500 mt-2 font-medium">
                 {item.month}

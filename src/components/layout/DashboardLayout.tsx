@@ -6,20 +6,50 @@ import { Sidebar } from './Sidebar';
 
 // Iconos para el header
 const BellIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+    />
   </svg>
 );
 
 const MenuIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M4 6h16M4 12h16M4 18h16"
+    />
   </svg>
 );
 
 const SearchIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+    />
   </svg>
 );
 
@@ -28,9 +58,9 @@ interface DashboardLayoutProps {
   title?: string;
 }
 
-export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ 
-  children, 
-  title = "Dashboard" 
+export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
+  children,
+  title = 'Dashboard'
 }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -38,7 +68,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <Sidebar 
+      <Sidebar
         isCollapsed={sidebarCollapsed}
         _onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
       />
@@ -55,10 +85,12 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
       )}
 
       {/* Main content */}
-      <div className={`
+      <div
+        className={`
         transition-all duration-300 ease-in-out
         ${sidebarCollapsed ? 'lg:ml-16' : 'lg:ml-64'}
-      `}>
+      `}
+      >
         {/* Header */}
         <motion.header
           initial={{ y: -20, opacity: 0 }}
@@ -90,11 +122,11 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
                 <p className="text-sm text-gray-600">
-                  {new Date().toLocaleDateString('es-ES', { 
-                    weekday: 'long', 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
+                  {new Date().toLocaleDateString('es-ES', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
                   })}
                 </p>
               </div>

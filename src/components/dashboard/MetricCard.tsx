@@ -107,12 +107,10 @@ export const MetricCard: React.FC<MetricCardProps> = ({
             flex h-12 w-12 items-center justify-center rounded-xl ${styles.iconBg}
           `}
         >
-          <div className={`h-6 w-6 ${styles.iconColor}`}>
-            {icon}
-          </div>
+          <div className={`h-6 w-6 ${styles.iconColor}`}>{icon}</div>
         </motion.div>
       </div>
-      
+
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
     </motion.div>

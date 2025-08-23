@@ -4,9 +4,9 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (pathname === '/') {
+  /*   if (pathname === '/') {
     return NextResponse.redirect(new URL('/auth/login', request.url));
-  }
+  } */
 
   if (pathname.startsWith('/auth/login')) {
     const isAuthenticated =

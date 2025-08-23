@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
+import {
   BuildingOfficeIcon,
   ChevronRightIcon,
   StarIcon
@@ -64,7 +64,11 @@ const topClients: Client[] = [
 ];
 
 const getInitials = (name: string) => {
-  return name.split(' ').map(n => n[0]).join('').toUpperCase();
+  return name
+    .split(' ')
+    .map((n) => n[0])
+    .join('')
+    .toUpperCase();
 };
 
 const StarRating: React.FC<{ rating: number }> = ({ rating }) => {
@@ -97,7 +101,9 @@ export const ClientPreview: React.FC = () => {
     >
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900">Principales Clientes</h3>
+          <h3 className="text-lg font-semibold text-gray-900">
+            Principales Clientes
+          </h3>
           <p className="text-sm text-gray-600">Tus clientes más valiosos</p>
         </div>
         <motion.button
@@ -117,8 +123,8 @@ export const ClientPreview: React.FC = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 * index }}
-            whileHover={{ 
-              x: 4, 
+            whileHover={{
+              x: 4,
               backgroundColor: 'rgba(147, 51, 234, 0.02)',
               scale: 1.01
             }}
@@ -132,10 +138,12 @@ export const ClientPreview: React.FC = () => {
               <div className="h-12 w-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
                 {getInitials(client.name)}
               </div>
-              <div className={`
+              <div
+                className={`
                 absolute -bottom-1 -right-1 h-4 w-4 rounded-full border-2 border-white
                 ${client.status === 'active' ? 'bg-green-500' : 'bg-gray-400'}
-              `} />
+              `}
+              />
             </motion.div>
 
             {/* Client info */}
@@ -148,12 +156,14 @@ export const ClientPreview: React.FC = () => {
                   ${client.totalRevenue.toLocaleString()}
                 </span>
               </div>
-              
+
               <div className="flex items-center space-x-2 mb-2">
                 <BuildingOfficeIcon className="h-4 w-4 text-gray-400" />
-                <span className="text-sm text-gray-600 truncate">{client.company}</span>
+                <span className="text-sm text-gray-600 truncate">
+                  {client.company}
+                </span>
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <StarRating rating={client.rating} />
