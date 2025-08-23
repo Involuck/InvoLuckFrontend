@@ -20,8 +20,12 @@ export const InvoiceStatusChart: React.FC = () => {
     >
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900">Estado de Facturas</h3>
-          <p className="text-sm text-gray-600">Distribución actual de tus facturas</p>
+          <h3 className="text-lg font-semibold text-gray-900">
+            Estado de Facturas
+          </h3>
+          <p className="text-sm text-gray-600">
+            Distribución actual de tus facturas
+          </p>
         </div>
         <motion.div
           animate={{ rotate: 360 }}
@@ -35,13 +39,20 @@ export const InvoiceStatusChart: React.FC = () => {
         <div className="relative w-48 h-48">
           {/* Donut Chart using CSS */}
           <div className="absolute inset-0 rounded-full border-8 border-gray-200"></div>
-          
+
           {data.map((item, index) => {
             const circumference = 2 * Math.PI * 60; // radius = 60
             const strokeDasharray = (item.value / 100) * circumference;
-            const strokeDashoffset = index === 0 ? 0 : 
-              data.slice(0, index).reduce((acc, curr) => acc + (curr.value / 100) * circumference, 0);
-            
+            const strokeDashoffset =
+              index === 0
+                ? 0
+                : data
+                    .slice(0, index)
+                    .reduce(
+                      (acc, curr) => acc + (curr.value / 100) * circumference,
+                      0
+                    );
+
             return (
               <motion.div
                 key={item.name}
@@ -70,7 +81,7 @@ export const InvoiceStatusChart: React.FC = () => {
               </motion.div>
             );
           })}
-          
+
           {/* Center content */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
@@ -91,14 +102,18 @@ export const InvoiceStatusChart: React.FC = () => {
             transition={{ delay: 0.2 + index * 0.1 }}
             className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
           >
-            <div 
+            <div
               className="w-4 h-4 rounded-full"
               style={{ backgroundColor: item.color }}
             />
             <div className="flex-1">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-900">{item.name}</span>
-                <span className="text-sm font-bold text-gray-900">{item.count}</span>
+                <span className="text-sm font-medium text-gray-900">
+                  {item.name}
+                </span>
+                <span className="text-sm font-bold text-gray-900">
+                  {item.count}
+                </span>
               </div>
               <div className="text-xs text-gray-500">{item.value}%</div>
             </div>

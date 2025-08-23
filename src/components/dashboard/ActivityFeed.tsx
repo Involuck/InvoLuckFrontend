@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  DocumentTextIcon, 
-  CreditCardIcon, 
+import {
+  DocumentTextIcon,
+  CreditCardIcon,
   UserPlusIcon,
   ClockIcon,
   ExclamationTriangleIcon
@@ -13,7 +13,11 @@ import { StatusBadge } from '@/components/pure/feedback/StatusBadge';
 
 interface Activity {
   id: string;
-  type: 'invoice_created' | 'payment_received' | 'client_added' | 'invoice_overdue';
+  type:
+    | 'invoice_created'
+    | 'payment_received'
+    | 'client_added'
+    | 'invoice_overdue';
   title: string;
   description: string;
   timestamp: string;
@@ -60,8 +64,8 @@ const activities: Activity[] = [
 ];
 
 const getActivityIcon = (type: Activity['type']) => {
-  const iconClass = "h-5 w-5";
-  
+  const iconClass = 'h-5 w-5';
+
   switch (type) {
     case 'invoice_created':
       return <DocumentTextIcon className={iconClass} />;
@@ -98,7 +102,9 @@ export const ActivityFeed: React.FC = () => {
       className="bg-white rounded-2xl border-2 border-gray-100 p-6 shadow-lg"
     >
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold text-gray-900">Actividad Reciente</h3>
+        <h3 className="text-lg font-semibold text-gray-900">
+          Actividad Reciente
+        </h3>
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -150,15 +156,23 @@ export const ActivityFeed: React.FC = () => {
                     </span>
                   )}
                   <StatusBadge
-                    label={activity.status === 'success' ? 'Completado' : 
-                           activity.status === 'warning' ? 'Pendiente' :
-                           activity.status === 'danger' ? 'Vencido' : 'Nuevo'}
+                    label={
+                      activity.status === 'success'
+                        ? 'Completado'
+                        : activity.status === 'warning'
+                          ? 'Pendiente'
+                          : activity.status === 'danger'
+                            ? 'Vencido'
+                            : 'Nuevo'
+                    }
                     variant={getStatusVariant(activity.status)}
                     size="sm"
                   />
                 </div>
               </div>
-              <p className="text-sm text-gray-600 mb-1">{activity.description}</p>
+              <p className="text-sm text-gray-600 mb-1">
+                {activity.description}
+              </p>
               <p className="text-xs text-gray-500">{activity.timestamp}</p>
             </div>
           </motion.div>

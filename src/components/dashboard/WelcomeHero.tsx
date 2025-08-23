@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  SunIcon, 
+import {
+  SunIcon,
   MoonIcon,
   CloudIcon,
   SparklesIcon
@@ -15,8 +15,10 @@ interface WelcomeHeroProps {
 
 const getGreeting = () => {
   const hour = new Date().getHours();
-  if (hour < 12) return { text: 'Buenos días', icon: <SunIcon className="h-6 w-6" /> };
-  if (hour < 18) return { text: 'Buenas tardes', icon: <CloudIcon className="h-6 w-6" /> };
+  if (hour < 12)
+    return { text: 'Buenos días', icon: <SunIcon className="h-6 w-6" /> };
+  if (hour < 18)
+    return { text: 'Buenas tardes', icon: <CloudIcon className="h-6 w-6" /> };
   return { text: 'Buenas noches', icon: <MoonIcon className="h-6 w-6" /> };
 };
 
@@ -28,8 +30,8 @@ const businessHealthStatus = {
   message: 'Tu negocio está funcionando perfectamente'
 };
 
-export const WelcomeHero: React.FC<WelcomeHeroProps> = ({ 
-  userName = 'Usuario' 
+export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
+  userName = 'Usuario'
 }) => {
   const [mounted, setMounted] = useState(false);
   const greeting = getGreeting();
@@ -57,13 +59,13 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
       <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
       <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-32 translate-x-32" />
       <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-24 -translate-x-24" />
-      
+
       {/* Floating particles */}
       {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}
           initial={{ opacity: 0, y: 20 }}
-          animate={{ 
+          animate={{
             opacity: [0, 1, 0],
             y: [20, -20, 20],
             x: [0, Math.random() * 20 - 10, 0]
@@ -123,12 +125,18 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
               <SparklesIcon className="h-5 w-5 text-yellow-300" />
               <div>
                 <p className="text-sm font-semibold">Salud del Negocio</p>
-                <p className="text-xs text-purple-100">{businessHealthStatus.message}</p>
+                <p className="text-xs text-purple-100">
+                  {businessHealthStatus.message}
+                </p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-2xl font-bold text-green-300">{businessHealthStatus.score}%</p>
-              <p className="text-xs text-green-200">{businessHealthStatus.status}</p>
+              <p className="text-2xl font-bold text-green-300">
+                {businessHealthStatus.score}%
+              </p>
+              <p className="text-xs text-green-200">
+                {businessHealthStatus.status}
+              </p>
             </div>
           </motion.div>
         </div>
@@ -156,7 +164,9 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
             >
               <p className="text-purple-100 text-xs mb-1">{stat.label}</p>
               <p className="text-xl md:text-2xl font-bold mb-1">{stat.value}</p>
-              <p className="text-green-300 text-xs font-medium">{stat.change}</p>
+              <p className="text-green-300 text-xs font-medium">
+                {stat.change}
+              </p>
             </motion.div>
           ))}
         </motion.div>
@@ -169,7 +179,10 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
           className="mt-6 flex flex-col sm:flex-row gap-3"
         >
           <motion.button
-            whileHover={{ scale: 1.05, boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)' }}
+            whileHover={{
+              scale: 1.05,
+              boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)'
+            }}
             whileTap={{ scale: 0.98 }}
             className="bg-white text-purple-700 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
           >
