@@ -147,6 +147,7 @@ const plans = [
   {
     name: "Starter",
     price: "$29",
+    currency: "USD",
     period: "mes",
     description: "Perfecto para freelancers y pequeños negocios",
     popular: false,
@@ -165,6 +166,7 @@ const plans = [
   {
     name: "Professional",
     price: "$99",
+    currency: "USD",
     period: "mes",
     description: "Ideal para medianas empresas en crecimiento",
     popular: true,
@@ -185,6 +187,7 @@ const plans = [
   {
     name: "Business",
     price: "$299",
+    currency: "USD",
     period: "mes",
     description: "Para empresas con necesidades avanzadas",
     popular: false,
@@ -607,9 +610,6 @@ export default function HomePage() {
                         {plan.currency}
                       </span>
                     </div>
-                    <p className="text-gray-600 text-sm">
-                      {plan.description2}
-                    </p>
                   </div>
 
                   <ul className="list-disc list-inside text-gray-600 mb-8">
