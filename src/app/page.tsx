@@ -284,7 +284,6 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              {/* Badge superior */}
               <motion.div
                 className="inline-flex items-center space-x-2 bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium mb-6"
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -298,7 +297,6 @@ export default function HomePage() {
                 </span>
               </motion.div>
 
-              {/* Título principal */}
               <motion.h1
                 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 leading-tight"
                 initial={{ opacity: 0, y: 20 }}
@@ -312,7 +310,6 @@ export default function HomePage() {
                 <span className="text-gray-900">que Impulsa tu Negocio</span>
               </motion.h1>
 
-              {/* Subtítulo */}
               <motion.p
                 className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed px-4"
                 initial={{ opacity: 0, y: 20 }}
@@ -328,7 +325,6 @@ export default function HomePage() {
                 escala sin límites.
               </motion.p>
 
-              {/* Botones */}
               <motion.div
                 className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 px-4"
                 initial={{ opacity: 0, y: 20 }}
@@ -355,7 +351,6 @@ export default function HomePage() {
               </motion.div>
             </motion.div>
 
-            {/* Stats */}
             <motion.div
               className="mt-16 sm:mt-24 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8"
               initial={{ opacity: 0, y: 40 }}

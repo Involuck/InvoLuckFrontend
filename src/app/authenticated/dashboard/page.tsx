@@ -84,7 +84,6 @@ export default function DashboardPage() {
   return (
     <DashboardLayout title="Dashboard">
       <div className="space-y-8">
-        {/* Welcome Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -92,7 +91,6 @@ export default function DashboardPage() {
           <WelcomeHero userName="Usuario" />
         </motion.div>
 
-        {/* Metrics Cards */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -129,22 +127,18 @@ export default function DashboardPage() {
           />
         </motion.div>
 
-        {/* Main Dashboard Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column - Charts */}
           <div className="lg:col-span-2 space-y-8">
             <RevenueChart />
             <QuickActions />
           </div>
 
-          {/* Right Column - Status & Activity */}
           <div className="space-y-8">
             <InvoiceStatusChart />
             <ActivityFeed />
           </div>
         </div>
 
-        {/* Bottom Section - Clients */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

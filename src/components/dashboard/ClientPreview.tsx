@@ -130,7 +130,6 @@ export const ClientPreview: React.FC = () => {
             }}
             className="flex items-center space-x-4 p-3 rounded-xl transition-all duration-300 cursor-pointer group"
           >
-            {/* Avatar */}
             <motion.div
               whileHover={{ scale: 1.1 }}
               className="relative flex-shrink-0"
@@ -146,7 +145,6 @@ export const ClientPreview: React.FC = () => {
               />
             </motion.div>
 
-            {/* Client info */}
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between mb-1">
                 <h4 className="text-sm font-semibold text-gray-900 group-hover:text-purple-600 transition-colors truncate">
@@ -180,7 +178,6 @@ export const ClientPreview: React.FC = () => {
         ))}
       </div>
 
-      {/* Summary stats */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}

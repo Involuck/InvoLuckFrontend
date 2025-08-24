@@ -124,7 +124,6 @@ export const ActivityFeed: React.FC = () => {
             whileHover={{ x: 4, backgroundColor: 'rgba(147, 51, 234, 0.02)' }}
             className="flex items-start space-x-4 p-3 rounded-xl transition-all duration-300 cursor-pointer group"
           >
-            {/* Timeline dot and line */}
             <div className="relative flex-shrink-0">
               <motion.div
                 whileHover={{ scale: 1.2 }}
@@ -143,7 +142,6 @@ export const ActivityFeed: React.FC = () => {
               )}
             </div>
 
-            {/* Content */}
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between mb-1">
                 <h4 className="text-sm font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">
@@ -179,7 +177,6 @@ export const ActivityFeed: React.FC = () => {
         ))}
       </div>
 
-      {/* View all button */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

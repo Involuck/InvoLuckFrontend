@@ -56,7 +56,6 @@ export const RevenueChart: React.FC = () => {
         </div>
       </div>
 
-      {/* Simplified Bar Chart */}
       <div className="h-80">
         <div className="flex items-end justify-between h-full space-x-1">
           {data.map((item, index) => (
@@ -67,7 +66,6 @@ export const RevenueChart: React.FC = () => {
               transition={{ delay: 0.1 * index, duration: 0.5 }}
               className="flex-1 flex flex-col items-center"
             >
-              {/* Revenue Bar */}
               <div className="relative w-full">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
@@ -76,13 +74,11 @@ export const RevenueChart: React.FC = () => {
                     height: `${(item.revenue / maxRevenue) * 200}px`
                   }}
                 />
-                {/* Hover tooltip */}
                 <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
                   ${item.revenue.toLocaleString()}
                 </div>
               </div>
 
-              {/* Month label */}
               <div className="text-xs text-gray-500 mt-2 font-medium">
                 {item.month}
               </div>
@@ -91,7 +87,6 @@ export const RevenueChart: React.FC = () => {
         </div>
       </div>
 
-      {/* Summary stats */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}

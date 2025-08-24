@@ -111,7 +111,6 @@ export const MetricCard: React.FC<MetricCardProps> = ({
         </motion.div>
       </div>
 
-      {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
     </motion.div>
   );
