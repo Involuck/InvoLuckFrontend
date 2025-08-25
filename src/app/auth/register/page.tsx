@@ -6,7 +6,6 @@ import Link from 'next/link';
 import Spinner from '@/components/pure/feedback/loading/Spinner';
 import ErrorMessage from '@/components/pure/feedback/loading/ErrorMessage';
 import SuccessMessage from '@/components/pure/feedback/loading/SuccessMessage';
-import Footer from '@/components/pure/navigation/Footer';
 import PrimaryButton from '@/components/pure/button/PrimaryButton';
 import TextInput from '@/components/pure/form/TextInput';
 
@@ -41,7 +40,7 @@ export default function RegisterPage() {
   const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
   const isValidPassword =
-    hasMinLength && hasUpperCase && hasLowerCase && hasNumber;
+    hasMinLength && hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar;
   const passwordsMatch =
     password === confirmPassword && confirmPassword.length > 0;
 
@@ -78,11 +77,12 @@ export default function RegisterPage() {
     { label: '8+ caracteres', met: hasMinLength },
     { label: 'Mayúscula', met: hasUpperCase },
     { label: 'Minúscula', met: hasLowerCase },
-    { label: 'Número', met: hasNumber }
+    { label: 'Número', met: hasNumber },
+    { label: 'Carácter especial', met: hasSpecialChar }
   ];
 
   const metRequirements = passwordRequirements.filter((req) => req.met).length;
-  const passwordStrength = (metRequirements / 4) * 100;
+  const passwordStrength = (metRequirements / 5) * 100;
 
   const canSubmit =
     isValidName &&
@@ -693,13 +693,12 @@ export default function RegisterPage() {
                             {passwordRequirements.map((req, index) => (
                               <div
                                 key={index}
-                                className={`flex items-center gap-1 ${
-                                  req.met
+                                className={`flex items-center gap-1 ${req.met
                                     ? 'text-green-600'
                                     : showPasswordError
                                       ? 'text-red-600'
                                       : 'text-neutral-500'
-                                }`}
+                                  }`}
                               >
                                 <svg
                                   className="w-3 h-3"
@@ -727,13 +726,12 @@ export default function RegisterPage() {
                                 Fuerza:
                               </span>
                               <span
-                                className={`text-xs font-medium ${
-                                  passwordStrength <= 50
+                                className={`text-xs font-medium ${passwordStrength <= 50
                                     ? 'text-red-600'
                                     : passwordStrength <= 75
                                       ? 'text-yellow-600'
                                       : 'text-green-600'
-                                }`}
+                                  }`}
                               >
                                 {passwordStrength <= 50
                                   ? 'Débil'
@@ -752,15 +750,14 @@ export default function RegisterPage() {
                                       level <= passwordStrength / 25 ? 1 : 0
                                   }}
                                   transition={{ delay: level * 0.1 }}
-                                  className={`h-1.5 flex-1 rounded-full ${
-                                    level <= passwordStrength / 25
+                                  className={`h-1.5 flex-1 rounded-full ${level <= passwordStrength / 25
                                       ? passwordStrength <= 50
                                         ? 'bg-red-500'
                                         : passwordStrength <= 75
                                           ? 'bg-yellow-500'
                                           : 'bg-green-500'
                                       : 'bg-neutral-200'
-                                  }`}
+                                    }`}
                                 />
                               ))}
                             </div>
@@ -1002,11 +999,10 @@ export default function RegisterPage() {
                   >
                     <PrimaryButton
                       disabled={!canSubmit}
-                      className={`w-full h-12 flex items-center justify-center gap-2 text-sm font-semibold rounded-xl transition-all duration-300 transform ${
-                        canSubmit
+                      className={`w-full h-12 flex items-center justify-center gap-2 text-sm font-semibold rounded-xl transition-all duration-300 transform ${canSubmit
                           ? 'bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 shadow-lg hover:shadow-xl hover:shadow-brand-500/25 text-white'
                           : 'bg-neutral-300 cursor-not-allowed text-neutral-600'
-                      }`}
+                        }`}
                     >
                       {submitting ? (
                         <>

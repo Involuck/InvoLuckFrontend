@@ -97,54 +97,6 @@ const SettingsIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const LogoutIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-    />
-  </svg>
-);
-
-const MenuIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M4 6h16M4 12h16M4 18h16"
-    />
-  </svg>
-);
-
-const CloseIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M6 18L18 6M6 6l12 12"
-    />
-  </svg>
-);
-
 interface MenuItem {
   id: string;
   label: string;
@@ -196,7 +148,8 @@ export interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({
   isCollapsed = false,
-  _onToggle
+  isMobileOpen = false,
+  onClose
 }) => {
   const router = useRouter();
   const pathname = usePathname();
@@ -215,23 +168,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, [onClose]);
-
-  const handleLogout = () => {
-    document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
-    router.push('/auth/login');
-  };
-
-  const handleToggle = () => {
-    if (onToggle) {
-      onToggle();
-    }
-  };
-
-  const handleClose = () => {
-    if (onClose) {
-      onClose();
-    }
-  };
 
   return (
     <>
