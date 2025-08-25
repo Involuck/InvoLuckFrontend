@@ -43,7 +43,6 @@ export default function DashboardPage() {
               estadísticas y gestionar tu cuenta.
             </p>
 
-            {/* Grid de estadísticas */}
             <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               <div className="bg-brand-50 overflow-hidden shadow rounded-lg">
                 <div className="p-5">

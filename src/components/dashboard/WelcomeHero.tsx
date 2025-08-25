@@ -55,12 +55,10 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className="relative overflow-hidden bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 rounded-2xl p-8 text-white shadow-2xl"
     >
-      {/* Background decorations */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
       <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-32 translate-x-32" />
       <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-24 -translate-x-24" />
 
-      {/* Floating particles */}
       {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}
@@ -113,8 +111,6 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
               </motion.p>
             </div>
           </div>
-
-          {/* Business health indicator */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -141,7 +137,6 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
           </motion.div>
         </div>
 
-        {/* Quick stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -171,7 +166,6 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
           ))}
         </motion.div>
 
-        {/* Call to action */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

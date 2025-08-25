@@ -146,7 +146,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-3">
             <Link href="/auth/login">
               <motion.button
-                className="flex items-center space-x-2 text-gray-700 hover:text-purple-800 transition-colors duration-200 font-medium px-4 py-2 rounded-md hover:bg-purple-50"
+                className="flex items-center space-x-2 text-gray-700 hover:text-purple-800 transition-colors duration-200 font-medium px-4 py-2 rounded-md hover:bg-purple-50 cursor-pointer"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 25 }}
@@ -157,7 +157,7 @@ export default function Navbar() {
             </Link>
 
             <motion.button
-              className="flex items-center space-x-2 bg-purple-800  text-white px-5 py-2 rounded-md hover:from-purple-900 hover:to-purple-950 transition-all duration-200 font-medium shadow-md hover:shadow-lg"
+              className="flex items-center space-x-2 bg-purple-800  text-white px-5 py-2 rounded-md hover:from-purple-900 hover:to-purple-950 transition-all duration-200 font-medium shadow-md hover:shadow-lg cursor-pointer"
               whileHover={{ scale: 1.02, y: -1 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}

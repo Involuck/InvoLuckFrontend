@@ -6,10 +6,8 @@ import Link from 'next/link';
 import Spinner from '@/components/pure/feedback/loading/Spinner';
 import ErrorMessage from '@/components/pure/feedback/loading/ErrorMessage';
 import SuccessMessage from '@/components/pure/feedback/loading/SuccessMessage';
-import Footer from '@/components/pure/navigation/Footer';
 import PrimaryButton from '@/components/pure/button/PrimaryButton';
 import TextInput from '@/components/pure/form/TextInput';
-import useTypedText from '@/hooks/useTypedText';
 
 const DEV_EMAIL = 'dev@involuck.com';
 const DEV_PASSWORD = 'Involuck123';
@@ -22,15 +20,7 @@ export default function LoginPage() {
   const [success, setSuccess] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const [loginAttempts, setLoginAttempts] = useState(0);
 
-  const slogan = useTypedText(
-    'Automatización sin límite, con resultados de excelencia',
-    {
-      speedMs: 24,
-      startDelayMs: 250
-    }
-  );
   const [touchedEmail, setTouchedEmail] = useState(false);
   const [touchedPassword, setTouchedPassword] = useState(false);
 
@@ -63,7 +53,6 @@ export default function LoginPage() {
       const ok = email === DEV_EMAIL && password === DEV_PASSWORD;
 
       if (!ok) {
-        setLoginAttempts((prev) => prev + 1);
         throw new Error('Credenciales inválidas. Intenta nuevamente.');
       }
 
@@ -93,9 +82,9 @@ export default function LoginPage() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="relative z-10 w-full p-4 md:p-6"
+        className="relative z-10 w-full px-4 py-3 md:px-6 md:py-4"
       >
-        <div className="flex items-center justify-between max-w-6xl mx-auto">
+        <div className="flex items-center justify-between max-w-7xl mx-auto">
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/"
@@ -118,7 +107,7 @@ export default function LoginPage() {
                     d="M15 19l-7-7 7-7"
                   />
                 </svg>
-                <span className="font-medium text-sm">Regresar</span>
+                <span className="font-medium text-sm">Regresar al inicio</span>
               </motion.div>
             </Link>
           </motion.div>
@@ -148,8 +137,8 @@ export default function LoginPage() {
         </div>
       </motion.nav>
 
-      <div className="flex-1 max-w-6xl mx-auto px-4 py-6 md:px-6 md:pb-8">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[calc(100vh-160px)]">
+      <div className="flex-1 max-w-6xl mx-auto px-4 py-6 md:px-6 md:pb-0">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[calc(100vh-130px)]">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -199,11 +188,12 @@ export default function LoginPage() {
                 className="space-y-3"
               >
                 <p className="text-lg text-brand-100 font-medium leading-relaxed">
-                  {slogan || ' '}
+                  Plataforma moderna de facturación para freelancers y empresas
+                  de todos los tamaños.
                 </p>
                 <p className="text-base text-brand-200/80 leading-relaxed">
-                  Plataforma integral para la gestión automatizada de procesos
-                  empresariales.
+                  Crea facturas, gestiona clientes y genera PDFs de manera
+                  rápida y confiable.
                 </p>
               </motion.div>
             </div>
@@ -221,18 +211,21 @@ export default function LoginPage() {
                 {[
                   {
                     icon: 'M13 10V3L4 14h7v7l9-11h-7z',
-                    title: 'Automatización Inteligente',
-                    description: 'Procesos optimizados con IA'
+                    title: 'Facturación Ágil',
+                    description:
+                      'Crea y envía facturas en minutos con cálculo automático de totales.'
                   },
                   {
                     icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
-                    title: 'Resultados Garantizados',
-                    description: 'Excelencia comprobada'
+                    title: 'Gestión de Clientes',
+                    description:
+                      'Almacena y organiza información de tus clientes fácilmente.'
                   },
                   {
                     icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
-                    title: 'Soporte 24/7',
-                    description: 'Acompañamiento constante'
+                    title: 'Dashboard Inteligente',
+                    description:
+                      'Visualiza totales, seguimiento de pagos y estado de tus facturas.'
                   }
                 ].map((feature, index) => (
                   <motion.div
@@ -275,7 +268,7 @@ export default function LoginPage() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-            className="w-full max-w-sm mx-auto lg:max-w-md lg:mx-0"
+            className="w-full max-w-sm mx-auto lg:max-w-md"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -310,33 +303,6 @@ export default function LoginPage() {
                   Accede a tu panel de control
                 </p>
               </div>
-
-              {loginAttempts > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="mb-4 p-2.5 bg-orange-50 border border-orange-200 rounded-lg"
-                >
-                  <div className="flex items-center gap-2 text-orange-700">
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"
-                      />
-                    </svg>
-                    <span className="text-sm font-medium">
-                      Intento {loginAttempts} de 3
-                    </span>
-                  </div>
-                </motion.div>
-              )}
 
               <AnimatePresence mode="wait">
                 {error && (
@@ -709,8 +675,6 @@ export default function LoginPage() {
           </motion.div>
         </div>
       </div>
-
-      <Footer />
     </main>
   );
 }

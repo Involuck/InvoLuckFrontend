@@ -34,14 +34,12 @@ export const InvoiceStatusChart: React.FC = () => {
         />
       </div>
 
-      {/* Simplified Chart */}
       <div className="h-64 flex items-center justify-center">
         <div className="relative w-48 h-48">
-          {/* Donut Chart using CSS */}
           <div className="absolute inset-0 rounded-full border-8 border-gray-200"></div>
 
           {data.map((item, index) => {
-            const circumference = 2 * Math.PI * 60; // radius = 60
+            const circumference = 2 * Math.PI * 60;
             const strokeDasharray = (item.value / 100) * circumference;
             const strokeDashoffset =
               index === 0
@@ -82,7 +80,6 @@ export const InvoiceStatusChart: React.FC = () => {
             );
           })}
 
-          {/* Center content */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
               <div className="text-2xl font-bold text-gray-900">78</div>
@@ -92,7 +89,6 @@ export const InvoiceStatusChart: React.FC = () => {
         </div>
       </div>
 
-      {/* Legend */}
       <div className="mt-6 grid grid-cols-2 gap-3">
         {data.map((item, index) => (
           <motion.div
@@ -121,7 +117,6 @@ export const InvoiceStatusChart: React.FC = () => {
         ))}
       </div>
 
-      {/* Summary */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}

@@ -72,13 +72,11 @@ export default function FeedbackDemoPage() {
           </p>
         </div>
 
-        {/* StatusBadge Demo */}
         <section className="mb-12">
           <h2 className="text-2xl font-semibold text-gray-800 mb-6">
             StatusBadge
           </h2>
 
-          {/* Variantes */}
           <div className="mb-8">
             <h3 className="text-lg font-medium text-gray-700 mb-4">
               Variantes
@@ -94,7 +92,6 @@ export default function FeedbackDemoPage() {
             </div>
           </div>
 
-          {/* Tamaños */}
           <div className="mb-8">
             <h3 className="text-lg font-medium text-gray-700 mb-4">Tamaños</h3>
             <div className="flex flex-wrap gap-3 items-center">
@@ -103,7 +100,6 @@ export default function FeedbackDemoPage() {
             </div>
           </div>
 
-          {/* Con iconos */}
           <div className="mb-8">
             <h3 className="text-lg font-medium text-gray-700 mb-4">
               Con iconos
@@ -128,11 +124,9 @@ export default function FeedbackDemoPage() {
           </div>
         </section>
 
-        {/* Badge Demo */}
         <section className="mb-12">
           <h2 className="text-2xl font-semibold text-gray-800 mb-6">Badge</h2>
 
-          {/* Variantes */}
           <div className="mb-8">
             <h3 className="text-lg font-medium text-gray-700 mb-4">
               Variantes
@@ -148,7 +142,6 @@ export default function FeedbackDemoPage() {
             </div>
           </div>
 
-          {/* Tamaños */}
           <div className="mb-8">
             <h3 className="text-lg font-medium text-gray-700 mb-4">Tamaños</h3>
             <div className="flex flex-wrap gap-3 items-center">
@@ -157,7 +150,6 @@ export default function FeedbackDemoPage() {
             </div>
           </div>
 
-          {/* Con icono */}
           <div className="mb-2">
             <h3 className="text-lg font-medium text-gray-700 mb-4">
               Con icono
@@ -178,11 +170,9 @@ export default function FeedbackDemoPage() {
           </div>
         </section>
 
-        {/* Pill Demo */}
         <section className="mb-12">
           <h2 className="text-2xl font-semibold text-gray-800 mb-6">Pill</h2>
 
-          {/* Variantes */}
           <div className="mb-8">
             <h3 className="text-lg font-medium text-gray-700 mb-4">
               Variantes
@@ -198,7 +188,6 @@ export default function FeedbackDemoPage() {
             </div>
           </div>
 
-          {/* Tamaños */}
           <div className="mb-8">
             <h3 className="text-lg font-medium text-gray-700 mb-4">Tamaños</h3>
             <div className="flex flex-wrap gap-3 items-center">
@@ -207,7 +196,6 @@ export default function FeedbackDemoPage() {
             </div>
           </div>
 
-          {/* Con iconos */}
           <div className="mb-8">
             <h3 className="text-lg font-medium text-gray-700 mb-4">
               Con iconos
@@ -224,7 +212,6 @@ export default function FeedbackDemoPage() {
             </div>
           </div>
 
-          {/* Con botón de eliminar */}
           <div className="mb-8">
             <h3 className="text-lg font-medium text-gray-700 mb-4">
               Con botón de eliminar ({removablePills.length} restantes)
@@ -247,7 +234,6 @@ export default function FeedbackDemoPage() {
           </div>
         </section>
 
-        {/* Información de accesibilidad */}
         <section className="bg-white rounded-lg p-6 shadow-sm border">
           <h2 className="text-xl font-semibold text-gray-800 mb-4">
             Características de Accesibilidad

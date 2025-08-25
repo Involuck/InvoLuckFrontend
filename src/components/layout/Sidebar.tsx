@@ -1,11 +1,10 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 
-// Iconos SVG simples
 const DashboardIcon = ({ className }: { className?: string }) => (
   <svg
     className={className}
@@ -98,22 +97,6 @@ const SettingsIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const LogoutIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-    />
-  </svg>
-);
-
 interface MenuItem {
   id: string;
   label: string;
@@ -156,148 +139,153 @@ const menuItems: MenuItem[] = [
   }
 ];
 
-interface SidebarProps {
+export interface SidebarProps {
   isCollapsed?: boolean;
-  _onToggle?: () => void;
+  isMobileOpen?: boolean;
+  onToggle?: () => void;
+  onClose?: () => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
   isCollapsed = false,
-  _onToggle
+  isMobileOpen = false,
+  onClose
 }) => {
   const router = useRouter();
   const pathname = usePathname();
+  const [isMobile, setIsMobile] = useState(false);
 
-  const handleLogout = () => {
-    document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
-    router.push('/auth/login');
-  };
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      if (!mobile && onClose) {
+        onClose();
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, [onClose]);
 
   return (
-    <motion.div
-      initial={{ x: -300 }}
-      animate={{ x: 0 }}
-      className={`
-        fixed left-0 top-0 h-full bg-white border-r border-gray-200 shadow-lg z-30
-        transition-all duration-300 ease-in-out
-        ${isCollapsed ? 'w-16' : 'w-64'}
-      `}
-    >
-      {/* Logo */}
-      <div className="flex items-center justify-center h-16 border-b border-gray-200">
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          className="flex items-center space-x-3"
-        >
-          <div className="h-10 w-10 bg-gradient-to-br from-purple-600 to-purple-700 rounded-xl flex items-center justify-center">
-            <span className="text-white font-bold text-lg">IL</span>
-          </div>
-          {!isCollapsed && (
-            <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
-              InvoLuck
-            </span>
-          )}
-        </motion.div>
-      </div>
-
-      {/* Navigation */}
-      <nav className="flex-1 px-4 py-6 space-y-2">
-        {menuItems.map((item, index) => {
-          const isActive = pathname === item.href;
-          const Icon = item.icon;
-
-          return (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <Link href={item.href}>
-                <motion.div
-                  whileHover={{
-                    x: 4,
-                    backgroundColor: 'rgba(147, 51, 234, 0.05)'
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`
-                    flex items-center px-3 py-3 rounded-xl transition-all duration-200 cursor-pointer group
-                    ${
-                      isActive
-                        ? 'bg-purple-100 text-purple-700 shadow-sm'
-                        : 'text-gray-600 hover:text-purple-600'
-                    }
-                  `}
+    <>
+      <motion.div
+        initial={false}
+        animate={{
+          x: isMobile && !isMobileOpen ? -320 : 0,
+          width: isMobile ? 320 : isCollapsed ? 64 : 256
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: 300,
+          damping: 30,
+          width: { duration: isMobile ? 0.3 : 0.2 }
+        }}
+        className="fixed left-0 top-0 h-screen bg-white border-r border-gray-200 shadow-lg z-30 overflow-hidden"
+      >
+        <div className="h-16 flex items-center px-3 border-b border-gray-200 flex-shrink-0">
+          <div className={`flex items-center justify-start w-full`}>
+            <div className="h-10 w-10 bg-gradient-to-br from-purple-600 to-purple-700 rounded-xl flex items-center justify-center flex-shrink-0">
+              <span className="text-white font-bold text-lg">IL</span>
+            </div>
+            <AnimatePresence>
+              {(!isCollapsed || isMobile) && (
+                <motion.span
+                  initial={{ opacity: 0, width: 0, marginLeft: 0 }}
+                  animate={{ opacity: 1, width: 120, marginLeft: 12 }}
+                  exit={{ opacity: 0, width: 0, marginLeft: 0 }}
+                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  className="text-xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent whitespace-nowrap overflow-hidden"
                 >
-                  <Icon
-                    className={`h-5 w-5 ${isActive ? 'text-purple-600' : 'text-gray-500 group-hover:text-purple-500'}`}
-                  />
+                  InvoLuck
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
 
-                  {!isCollapsed && (
-                    <>
-                      <span className="ml-3 font-medium">{item.label}</span>
-                      {item.badge && (
-                        <motion.span
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          className="ml-auto bg-purple-100 text-purple-600 text-xs font-semibold px-2 py-1 rounded-full"
-                        >
-                          {item.badge}
-                        </motion.span>
+        <div className="flex flex-col h-[calc(100vh-4rem)] overflow-hidden">
+          <nav className="flex-1 px-2 py-4 space-y-1 overflow-y-auto overflow-x-hidden">
+            {menuItems.map((item, index) => {
+              const isActive = pathname === item.href;
+              const Icon = item.icon;
+
+              return (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="overflow-hidden"
+                >
+                  <Link href={item.href} onClick={onClose}>
+                    <motion.div
+                      whileHover={{
+                        x: isCollapsed && !isMobile ? 0 : 4,
+                        backgroundColor: 'rgba(147, 51, 234, 0.05)'
+                      }}
+                      whileTap={{ scale: 0.98 }}
+                      className={`relative flex items-center h-12 rounded-xl transition-all duration-200 cursor-pointer group ${isActive ? 'bg-purple-100 text-purple-700 shadow-sm' : 'text-gray-600 hover:text-purple-600'} justify-start px-3`}
+                    >
+                      <Icon
+                        className={`h-5 w-5 flex-shrink-0 ${isActive ? 'text-purple-600' : 'text-gray-500 group-hover:text-purple-500'}`}
+                      />
+
+                      <AnimatePresence>
+                        {(!isCollapsed || isMobile) && (
+                          <motion.div
+                            initial={{ opacity: 0, width: 0, marginLeft: 0 }}
+                            animate={{
+                              opacity: 1,
+                              width: 'auto',
+                              marginLeft: 12
+                            }}
+                            exit={{ opacity: 0, width: 0, marginLeft: 0 }}
+                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+                            className="flex items-center justify-between min-w-0 flex-1"
+                          >
+                            <span className="font-medium whitespace-nowrap">
+                              {item.label}
+                            </span>
+                            {item.badge && (
+                              <motion.span
+                                initial={{ opacity: 0, scale: 0 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0 }}
+                                transition={{ delay: 0.1 }}
+                                className="bg-purple-100 text-purple-600 text-xs font-semibold px-2 py-1 rounded-full flex-shrink-0 ml-2"
+                              >
+                                {item.badge}
+                              </motion.span>
+                            )}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      {isCollapsed && !isMobile && (
+                        <div className="absolute left-full ml-2 px-2 py-1 bg-gray-900 text-white text-sm rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+                          {item.label}
+                          {item.badge && (
+                            <span className="ml-2 bg-purple-600 text-white text-xs px-1.5 py-0.5 rounded-full">
+                              {item.badge}
+                            </span>
+                          )}
+                        </div>
                       )}
-                    </>
-                  )}
+                    </motion.div>
+                  </Link>
                 </motion.div>
-              </Link>
-            </motion.div>
-          );
-        })}
-      </nav>
-
-      {/* User section */}
-      <div className="border-t border-gray-200 p-4">
-        {/* User info */}
-        {!isCollapsed && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="flex items-center space-x-3 mb-4 p-3 bg-gray-50 rounded-xl"
-          >
-            <div className="h-10 w-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
-              U
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-gray-900 truncate">
-                Usuario
-              </p>
-              <p className="text-xs text-gray-500 truncate">
-                usuario@involuck.com
-              </p>
-            </div>
-          </motion.div>
-        )}
-
-        {/* Logout button */}
-        <motion.button
-          whileHover={{
-            scale: 1.02,
-            backgroundColor: 'rgba(239, 68, 68, 0.05)'
-          }}
-          whileTap={{ scale: 0.98 }}
-          onClick={handleLogout}
-          className={`
-            w-full flex items-center px-3 py-3 text-red-600 hover:text-red-700 
-            rounded-xl transition-all duration-200 group
-            ${isCollapsed ? 'justify-center' : 'justify-start'}
-          `}
-        >
-          <LogoutIcon className="h-5 w-5" />
-          {!isCollapsed && (
-            <span className="ml-3 font-medium">Cerrar Sesión</span>
-          )}
-        </motion.button>
-      </div>
-    </motion.div>
+              );
+            })}
+          </nav>
+        </div>
+      </motion.div>
+      <div
+        className={`hidden md:block transition-all duration-300 ${isCollapsed ? 'w-16' : 'w-64'}`}
+        style={{ flexShrink: 0 }}
+      />
+    </>
   );
 };

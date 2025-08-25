@@ -22,7 +22,6 @@ export default function LoadingDemoPage() {
           Loading & Error State Components Demo
         </h1>
 
-        {/* Spinner Section */}
         <section className="bg-white rounded-lg shadow-sm p-6 mb-8">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">
             Spinner Components
@@ -43,7 +42,6 @@ export default function LoadingDemoPage() {
           </div>
         </section>
 
-        {/* Skeleton Section */}
         <section className="bg-white rounded-lg shadow-sm p-6 mb-8">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">
             Skeleton Components
@@ -64,7 +62,6 @@ export default function LoadingDemoPage() {
           </div>
         </section>
 
-        {/* Error Message Section */}
         <section className="bg-white rounded-lg shadow-sm p-6 mb-8">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">
             Error Message Components
@@ -78,7 +75,6 @@ export default function LoadingDemoPage() {
           </div>
         </section>
 
-        {/* Empty State Section */}
         <section className="bg-white rounded-lg shadow-sm p-6 mb-8">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">
             Empty State Components
@@ -93,7 +89,6 @@ export default function LoadingDemoPage() {
           </div>
         </section>
 
-        {/* Usage Examples */}
         <section className="bg-white rounded-lg shadow-sm p-6">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">
             Usage Examples
