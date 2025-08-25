@@ -196,9 +196,7 @@ export interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({
   isCollapsed = false,
-  isMobileOpen = false,
-  onToggle,
-  onClose
+  _onToggle
 }) => {
   const router = useRouter();
   const pathname = usePathname();

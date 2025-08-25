@@ -62,6 +62,7 @@ export default function LoginPage() {
       const ok = email === DEV_EMAIL && password === DEV_PASSWORD;
 
       if (!ok) {
+        setLoginAttempts((prev) => prev + 1);
         throw new Error('Credenciales inválidas. Intenta nuevamente.');
       }
 
