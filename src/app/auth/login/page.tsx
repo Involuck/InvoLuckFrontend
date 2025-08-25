@@ -604,10 +604,11 @@ export default function LoginPage() {
                 >
                   <PrimaryButton
                     disabled={!canSubmit}
-                    className={`w-full h-10 flex items-center justify-center gap-2 text-sm font-semibold rounded-lg transition-all duration-300 transform ${canSubmit
+                    className={`w-full h-10 flex items-center justify-center gap-2 text-sm font-semibold rounded-lg transition-all duration-300 transform ${
+                      canSubmit
                         ? 'bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 shadow-lg hover:shadow-xl hover:shadow-brand-500/25'
                         : 'bg-neutral-300 cursor-not-allowed'
-                      }`}
+                    }`}
                   >
                     {submitting ? (
                       <>
