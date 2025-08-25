@@ -43,10 +43,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-
-# Keep only root lockfile
-package-lock.json
-
 # test results
 /test-results
 /playwright-report/
