@@ -63,8 +63,6 @@ describe('LoginPage', () => {
     );
 
     // wait for the redirect
-    await waitFor(() =>
-      expect(pushMock).toHaveBeenCalledWith('/dashboard')
-    );
+    await waitFor(() => expect(pushMock).toHaveBeenCalledWith('/dashboard'));
   });
 });
