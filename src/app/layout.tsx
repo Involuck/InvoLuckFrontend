@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { ToastProvider } from '@/components/pure/feedback/toast'; // Make sure the import is correct
+import { AuthProvider } from '@/context/AuthContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -12,8 +13,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* Correct: The provider wraps the {children} */}
         <ToastProvider>{children}</ToastProvider>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

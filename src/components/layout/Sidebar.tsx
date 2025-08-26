@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 const DashboardIcon = ({ className }: { className?: string }) => (
@@ -186,11 +187,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
       >
         <div className="h-28 flex items-center px-5 border-b border-gray-200 flex-shrink-0">
           <div className={`flex items-center justify-start w-full`}>
-            <img
-              src="/api/logo"
-              alt="InvoLuck logo"
-              className="h-24 lg:h-28 w-auto object-contain flex-shrink-0"
-            />
+            <div className="relative h-24 lg:h-28 w-auto flex-shrink-0">
+              <Image
+                src="/api/logo"
+                alt="InvoLuck logo"
+                width={112}
+                height={112}
+                className="h-full w-auto object-contain"
+                priority
+              />
+            </div>
             <AnimatePresence>
               {(!isCollapsed || isMobile) && (
                 <motion.span

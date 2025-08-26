@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import {
   Bars3Icon,
   XMarkIcon,
@@ -104,11 +105,16 @@ export default function Navbar() {
             className="flex items-center space-x-3 z-50 cursor-pointer"
             onClick={(e) => scrollToSection('#inicio', e)}
           >
-            <img
-              src="/api/logo"
-              alt="InvoLuck logo"
-              className="h-24 md:h-28 lg:h-32 w-auto object-contain"
-            />
+            <div className="relative h-24 md:h-28 lg:h-32 w-auto">
+              <Image
+                src="/api/logo"
+                alt="InvoLuck logo"
+                width={128}
+                height={128}
+                className="h-full w-auto object-contain"
+                priority
+              />
+            </div>
             <motion.span
               whileHover={{ scale: 1.01 }}
               transition={{ type: 'spring', stiffness: 500, damping: 25 }}
