@@ -195,7 +195,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
       />
 
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="sticky top-0 z-50 flex items-center justify-between h-16 border-b border-gray-200 bg-white px-4 lg:p-8">
+        <header className="sticky top-0 z-50 flex items-center justify-between h-28 md:h-32 border-b border-gray-200 bg-white px-4 lg:px-8">
           <div className="flex items-center space-x-4">
             <motion.button
               initial={{ opacity: 0, x: -10 }}
@@ -232,11 +232,16 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
               transition={{ delay: 0.1, duration: 0.3 }}
               className={`flex items-center space-x-3`}
             >
+              <img
+                src="/api/logo"
+                alt="InvoLuck logo"
+                className="h-12 md:h-16 lg:h-20 w-auto object-contain mr-2"
+              />
               <div className="flex flex-col">
-                <h1 className="text-xl font-bold text-gray-900 truncate max-w-xs sm:max-w-none">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 truncate max-w-xs sm:max-w-none">
                   {title}
                 </h1>
-                <p className="text-sm text-gray-600 hidden sm:block">
+                <p className="text-sm md:text-base text-gray-600 hidden sm:block">
                   {new Date().toLocaleDateString('es-ES', {
                     weekday: 'long',
                     year: 'numeric',

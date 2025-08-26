@@ -152,24 +152,12 @@ export default function LoginPage() {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="flex items-center gap-3"
               >
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  className="flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-600 to-brand-800 shadow-xl shadow-brand-900/50 ring-2 ring-white/20"
-                >
-                  <motion.span
-                    className="text-xl font-black"
-                    animate={{
-                      textShadow: [
-                        '0 0 0px rgba(255,255,255,0.5)',
-                        '0 0 20px rgba(255,255,255,0.8)',
-                        '0 0 0px rgba(255,255,255,0.5)'
-                      ]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    IL
-                  </motion.span>
-                </motion.div>
+                <motion.img
+                  src="/api/logo"
+                  alt="InvoLuck logo"
+                  className="h-20 lg:h-24 xl:h-28 w-auto object-contain"
+                  whileHover={{ scale: 1.05, rotate: 2 }}
+                />
                 <div>
                   <h1 className="text-3xl lg:text-4xl font-black tracking-tight drop-shadow-lg">
                     InvoLuck
@@ -277,9 +265,11 @@ export default function LoginPage() {
               className="lg:hidden text-center mb-6"
             >
               <div className="flex items-center justify-center gap-3 mb-3">
-                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-brand-600 to-brand-800 shadow-lg">
-                  <span className="text-lg font-black text-white">IL</span>
-                </div>
+                <img
+                  src="/api/logo"
+                  alt="InvoLuck logo"
+                  className="h-16 sm:h-20 w-auto object-contain"
+                />
                 <h1 className="text-2xl font-black text-white tracking-tight">
                   InvoLuck
                 </h1>

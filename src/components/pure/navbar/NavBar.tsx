@@ -99,18 +99,20 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
+        <div className="flex justify-between h-32 md:h-36 items-center">
           <motion.div
             className="flex items-center space-x-3 z-50 cursor-pointer"
             onClick={(e) => scrollToSection('#inicio', e)}
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-800 to-purple-950 rounded-xl flex items-center justify-center shadow-md">
-              <div className="w-6 h-6 bg-white rounded-sm transform rotate-45"></div>
-            </div>
+            <img
+              src="/api/logo"
+              alt="InvoLuck logo"
+              className="h-24 md:h-28 lg:h-32 w-auto object-contain"
+            />
             <motion.span
               whileHover={{ scale: 1.01 }}
               transition={{ type: 'spring', stiffness: 500, damping: 25 }}
-              className="text-2xl font-bold bg-gradient-to-r from-purple-800 to-purple-950 bg-clip-text text-transparent"
+              className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-800 to-purple-950 bg-clip-text text-transparent"
             >
               InvoLuck
             </motion.span>

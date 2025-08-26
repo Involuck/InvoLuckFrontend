@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 const DashboardIcon = ({ className }: { className?: string }) => (
   <svg
@@ -151,7 +151,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
   isMobileOpen = false,
   onClose
 }) => {
-  const router = useRouter();
   const pathname = usePathname();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -185,11 +184,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
         }}
         className="fixed left-0 top-0 h-screen bg-white border-r border-gray-200 shadow-lg z-30 overflow-hidden"
       >
-        <div className="h-16 flex items-center px-3 border-b border-gray-200 flex-shrink-0">
+        <div className="h-28 flex items-center px-5 border-b border-gray-200 flex-shrink-0">
           <div className={`flex items-center justify-start w-full`}>
-            <div className="h-10 w-10 bg-gradient-to-br from-purple-600 to-purple-700 rounded-xl flex items-center justify-center flex-shrink-0">
-              <span className="text-white font-bold text-lg">IL</span>
-            </div>
+            <img
+              src="/api/logo"
+              alt="InvoLuck logo"
+              className="h-24 lg:h-28 w-auto object-contain flex-shrink-0"
+            />
             <AnimatePresence>
               {(!isCollapsed || isMobile) && (
                 <motion.span
@@ -197,7 +198,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   animate={{ opacity: 1, width: 120, marginLeft: 12 }}
                   exit={{ opacity: 0, width: 0, marginLeft: 0 }}
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  className="text-xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent whitespace-nowrap overflow-hidden"
+                  className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent whitespace-nowrap overflow-hidden"
                 >
                   InvoLuck
                 </motion.span>
@@ -206,7 +207,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
         </div>
 
-        <div className="flex flex-col h-[calc(100vh-4rem)] overflow-hidden">
+        <div className="flex flex-col h-[calc(100vh-7rem)] overflow-hidden">
           <nav className="flex-1 px-2 py-4 space-y-1 overflow-y-auto overflow-x-hidden">
             {menuItems.map((item, index) => {
               const isActive = pathname === item.href;
