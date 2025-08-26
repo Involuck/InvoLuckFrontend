@@ -15,7 +15,7 @@ export const useRegister = () => {
     setTouchedRegisterPassword,
     setTouchedConfirmPassword,
     setAttemptedSubmit,
-    handleRegister,
+    handleRegister
   } = useAuth();
 
   return {
@@ -67,6 +67,6 @@ export const useRegister = () => {
     setTouchedPassword: setTouchedRegisterPassword,
     setTouchedConfirmPassword,
     setAttemptedSubmit,
-    onSubmit: handleRegister,
+    onSubmit: handleRegister
   };
 };

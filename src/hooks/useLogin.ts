@@ -9,7 +9,7 @@ export const useLogin = () => {
     setRememberMe,
     setTouchedLoginEmail,
     setTouchedLoginPassword,
-    handleLogin,
+    handleLogin
   } = useAuth();
 
   return {
@@ -36,6 +36,6 @@ export const useLogin = () => {
     setRememberMe,
     setTouchedEmail: setTouchedLoginEmail,
     setTouchedPassword: setTouchedLoginPassword,
-    onSubmit: handleLogin,
+    onSubmit: handleLogin
   };
 };

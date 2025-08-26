@@ -21,16 +21,12 @@ export default function RegisterPage() {
     showConfirmPassword,
     submitting,
     error,
-    success,
+    success: _success,
     attemptedSubmit,
     touchedName,
     touchedEmail,
     touchedPassword,
     touchedConfirmPassword,
-    isValidName,
-    isValidEmail,
-    isValidPassword,
-    passwordsMatch,
     passwordRequirements,
     passwordStrength,
     nameState,
@@ -42,7 +38,6 @@ export default function RegisterPage() {
     showEmailError,
     showPasswordError,
     showConfirmPasswordError,
-    metRequirements,
     setName,
     setEmail,
     setPassword,
@@ -54,9 +49,9 @@ export default function RegisterPage() {
     setTouchedEmail,
     setTouchedPassword,
     setTouchedConfirmPassword,
-    setAttemptedSubmit,
-    onSubmit,
-  } = useRegister();
+    setAttemptedSubmit: _setAttemptedSubmit,
+    onSubmit
+  } = useRegister()
 
   return (
     <main className="relative min-h-screen w-full overflow-hidden involuck-bg">
@@ -287,14 +282,14 @@ export default function RegisterPage() {
                       <ErrorMessage message={error} />
                     </motion.div>
                   )}
-                  {success && (
+                  {_success && (
                     <motion.div
                       initial={{ y: -10, opacity: 0, scale: 0.9 }}
                       animate={{ y: 0, opacity: 1, scale: 1 }}
                       exit={{ y: -10, opacity: 0, scale: 0.9 }}
                       className="mb-5"
                     >
-                      <SuccessMessage message={success} />
+                      <SuccessMessage message={_success} />
                     </motion.div>
                   )}
                 </AnimatePresence>

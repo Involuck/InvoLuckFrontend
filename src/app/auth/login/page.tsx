@@ -22,7 +22,6 @@ export default function LoginPage() {
     touchedEmail,
     touchedPassword,
     isValidEmail,
-    isValidPassword,
     emailState,
     passwordState,
     canSubmit,
@@ -32,8 +31,8 @@ export default function LoginPage() {
     setRememberMe,
     setTouchedEmail,
     setTouchedPassword,
-    onSubmit,
-  } = useLogin();
+    onSubmit
+  } = useLogin()
 
   return (
     <main className="relative min-h-screen w-full overflow-hidden involuck-bg">

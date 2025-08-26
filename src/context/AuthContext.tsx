@@ -15,8 +15,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     isAuthenticated: false,
     isLoading: true,
     error: null,
-    success: null,
-  });
+    success: null
+  })
 
   // Login State
   const [loginState, setLoginState] = useState<LoginState>({
@@ -33,8 +33,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     isValidPassword: false,
     emailState: 'default',
     passwordState: 'default',
-    canSubmit: false,
-  });
+    canSubmit: false
+  })
 
   // Register State
   const [registerState, setRegisterState] = useState<RegisterState>({
@@ -63,8 +63,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     emailState: 'default',
     passwordState: 'default',
     confirmPasswordState: 'default',
-    canSubmit: false,
-  });
+    canSubmit: false
+  })
 
   // Email validation
   const validateEmail = useCallback((email: string): boolean => {
@@ -90,7 +90,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       { label: 'Mayúscula', met: hasUpperCase },
       { label: 'Minúscula', met: hasLowerCase },
       { label: 'Número', met: hasNumber },
-      { label: 'Carácter especial', met: hasSpecialChar },
+      { label: 'Carácter especial', met: hasSpecialChar }
     ];
 
     const metRequirements = requirements.filter(req => req.met).length;
@@ -112,7 +112,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setLoginState(prev => ({
       ...prev,
       isValidEmail: isValid,
-      emailState,
+      emailState
     }));
   }, [loginState.email, loginState.touchedEmail, validateEmail]);
 
@@ -128,7 +128,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setLoginState(prev => ({
       ...prev,
       isValidPassword: isValid,
-      passwordState,
+      passwordState
     }));
   }, [loginState.password, loginState.touchedPassword, validateLoginPassword]);
 
@@ -151,7 +151,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setRegisterState(prev => ({
       ...prev,
       isValidName: isValid,
-      nameState,
+      nameState
     }));
   }, [registerState.name, registerState.touchedName, registerState.attemptedSubmit]);
 
@@ -168,7 +168,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setRegisterState(prev => ({
       ...prev,
       isValidEmail: isValid,
-      emailState,
+      emailState
     }));
   }, [registerState.email, registerState.touchedEmail, registerState.attemptedSubmit, validateEmail]);
 
@@ -184,10 +184,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     setRegisterState(prev => ({
       ...prev,
-      isValidPassword: isValid,
       passwordRequirements: requirements,
       passwordStrength: strength,
-      passwordState,
+      isValidPassword: isValid,
+      passwordState
     }));
   }, [registerState.password, registerState.touchedPassword, registerState.attemptedSubmit, validateRegisterPassword]);
 
@@ -204,7 +204,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setRegisterState(prev => ({
       ...prev,
       passwordsMatch,
-      confirmPasswordState,
+      confirmPasswordState
     }));
   }, [registerState.password, registerState.confirmPassword, registerState.touchedConfirmPassword, registerState.attemptedSubmit]);
 
@@ -216,7 +216,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       registerState.passwordsMatch &&
       registerState.acceptTerms &&
       !registerState.submitting;
-
     setRegisterState(prev => ({ ...prev, canSubmit }));
   }, [
     registerState.isValidName,
@@ -238,48 +237,55 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setAuth(prev => ({
         ...prev,
         isAuthenticated: true,
-        user: {
-          id: '1',
-          name: 'Usuario Demo',
-          email: DEV_EMAIL,
-          role: 'admin',
+        user: { 
+          id: '1', 
+          email: loginState.email, 
+          name: 'Usuario', 
+          role: 'user' 
         },
-        isLoading: false,
+        success: 'Inicio de sesión exitoso',
+        error: null
+      }));
+
+      setLoginState(prev => ({
+        ...prev,
+        submitting: false,
+        success: 'Inicio de sesión exitoso',
+        error: null
       }));
     } else {
       setAuth(prev => ({
         ...prev,
         isAuthenticated: false,
-        user: null,
-        isLoading: false,
+        isLoading: false
       }));
     }
   }, []);
 
   // Login Actions
   const setLoginEmail = useCallback((email: string) => {
-    setLoginState(prev => ({ ...prev, email }));
-  }, []);
+    setLoginState(prev => ({ ...prev, email }))
+  }, [])
 
   const setLoginPassword = useCallback((password: string) => {
-    setLoginState(prev => ({ ...prev, password }));
-  }, []);
+    setLoginState(prev => ({ ...prev, password }))
+  }, [])
 
   const setShowLoginPassword = useCallback((show: boolean) => {
-    setLoginState(prev => ({ ...prev, showPassword: show }));
-  }, []);
+    setLoginState(prev => ({ ...prev, showPassword: show }))
+  }, [])
 
   const setRememberMe = useCallback((remember: boolean) => {
-    setLoginState(prev => ({ ...prev, rememberMe: remember }));
-  }, []);
+    setLoginState(prev => ({ ...prev, rememberMe: remember }))
+  }, [])
 
   const setTouchedLoginEmail = useCallback((touched: boolean) => {
-    setLoginState(prev => ({ ...prev, touchedEmail: touched }));
-  }, []);
+    setLoginState(prev => ({ ...prev, touchedEmail: touched }))
+  }, [])
 
   const setTouchedLoginPassword = useCallback((touched: boolean) => {
-    setLoginState(prev => ({ ...prev, touchedPassword: touched }));
-  }, []);
+    setLoginState(prev => ({ ...prev, touchedPassword: touched }))
+  }, [])
 
   const handleLogin = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
@@ -307,9 +313,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           id: '1',
           name: 'Usuario Demo',
           email: DEV_EMAIL,
-          role: 'admin',
-        },
-      }));
+          role: 'admin'
+        }
+      }))
 
       await new Promise((resolve) => setTimeout(resolve, 650));
       window.location.href = '/dashboard';
@@ -325,52 +331,52 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // Register Actions
   const setRegisterName = useCallback((name: string) => {
-    setRegisterState(prev => ({ ...prev, name }));
-  }, []);
+    setRegisterState(prev => ({ ...prev, name }))
+  }, [])
 
   const setRegisterEmail = useCallback((email: string) => {
-    setRegisterState(prev => ({ ...prev, email }));
-  }, []);
+    setRegisterState(prev => ({ ...prev, email }))
+  }, [])
 
   const setRegisterPassword = useCallback((password: string) => {
-    setRegisterState(prev => ({ ...prev, password }));
-  }, []);
+    setRegisterState(prev => ({ ...prev, password }))
+  }, [])
 
   const setConfirmPassword = useCallback((password: string) => {
-    setRegisterState(prev => ({ ...prev, confirmPassword: password }));
-  }, []);
+    setRegisterState(prev => ({ ...prev, confirmPassword: password }))
+  }, [])
 
   const setAcceptTerms = useCallback((accept: boolean) => {
-    setRegisterState(prev => ({ ...prev, acceptTerms: accept }));
-  }, []);
+    setRegisterState(prev => ({ ...prev, acceptTerms: accept }))
+  }, [])
 
   const setShowRegisterPassword = useCallback((show: boolean) => {
-    setRegisterState(prev => ({ ...prev, showPassword: show }));
-  }, []);
+    setRegisterState(prev => ({ ...prev, showPassword: show }))
+  }, [])
 
   const setShowConfirmPassword = useCallback((show: boolean) => {
-    setRegisterState(prev => ({ ...prev, showConfirmPassword: show }));
-  }, []);
+    setRegisterState(prev => ({ ...prev, showConfirmPassword: show }))
+  }, [])
 
   const setTouchedRegisterName = useCallback((touched: boolean) => {
-    setRegisterState(prev => ({ ...prev, touchedName: touched }));
-  }, []);
+    setRegisterState(prev => ({ ...prev, touchedName: touched }))
+  }, [])
 
   const setTouchedRegisterEmail = useCallback((touched: boolean) => {
-    setRegisterState(prev => ({ ...prev, touchedEmail: touched }));
-  }, []);
+    setRegisterState(prev => ({ ...prev, touchedEmail: touched }))
+  }, [])
 
   const setTouchedRegisterPassword = useCallback((touched: boolean) => {
-    setRegisterState(prev => ({ ...prev, touchedPassword: touched }));
-  }, []);
+    setRegisterState(prev => ({ ...prev, touchedPassword: touched }))
+  }, [])
 
   const setTouchedConfirmPassword = useCallback((touched: boolean) => {
-    setRegisterState(prev => ({ ...prev, touchedConfirmPassword: touched }));
-  }, []);
+    setRegisterState(prev => ({ ...prev, touchedConfirmPassword: touched }))
+  }, [])
 
   const setAttemptedSubmit = useCallback((attempted: boolean) => {
-    setRegisterState(prev => ({ ...prev, attemptedSubmit: attempted }));
-  }, []);
+    setRegisterState(prev => ({ ...prev, attemptedSubmit: attempted }))
+  }, [])
 
   const handleRegister = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
@@ -381,8 +387,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       touchedName: true,
       touchedEmail: true,
       touchedPassword: true,
-      touchedConfirmPassword: true,
-    }));
+      touchedConfirmPassword: true
+    }))
 
     if (!registerState.canSubmit) return;
 
@@ -399,36 +405,35 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           id: '2',
           name: registerState.name,
           email: registerState.email,
-          role: 'user',
-        },
+          role: 'user'
+        }
       }));
 
       document.cookie = 'token=mock-token; path=/';
 
       await new Promise((resolve) => setTimeout(resolve, 800));
       window.location.href = '/dashboard';
-    } catch (err) {
+    } catch {
       setRegisterState(prev => ({
         ...prev,
         error: 'Error al crear la cuenta. Intenta nuevamente.'
-      }));
+      }))
     } finally {
       setRegisterState(prev => ({ ...prev, submitting: false }));
     }
-  }, [registerState.canSubmit, registerState.name, registerState.email]);
+  }, [registerState.canSubmit, registerState.name, registerState.email])
 
   // General Actions
   const logout = useCallback(() => {
-    document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
-    document.cookie = 'remember=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     
-    setAuth({
-      user: null,
+    setAuth(prev => ({
+      ...prev,
       isAuthenticated: false,
-      isLoading: false,
+      user: null,
       error: null,
-      success: null,
-    });
+      success: null
+    }));
 
     window.location.href = '/auth/login';
   }, []);
@@ -454,9 +459,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         id: '1',
         name: 'Usuario Demo',
         email: DEV_EMAIL,
-        role: 'admin',
-      } : null,
-    }));
+        role: 'admin'
+      } : null
+    }))
 
     return isAuthenticated;
   }, []);
@@ -487,7 +492,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     handleRegister,
     logout,
     clearErrors,
-    checkAuthStatus,
+    checkAuthStatus
   }), [
     auth,
     loginState,
@@ -514,8 +519,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     handleRegister,
     logout,
     clearErrors,
-    checkAuthStatus,
-  ]);
+    checkAuthStatus
+  ])
 
   return (
     <AuthContext.Provider value={contextValue}>
