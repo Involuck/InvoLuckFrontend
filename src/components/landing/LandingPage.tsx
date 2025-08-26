@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -27,13 +29,230 @@ import {
 import { HeartIcon } from '@heroicons/react/24/solid';
 import Navbar from '@/components/pure/navbar/NavBar';
 
-export const metadata: Metadata = {
-  title: 'InvoLuck: Smart Invoicing Platform',
-  description:
-    'The most complete invoicing platform for freelancers, SMBs, and enterprises.'
-};
+const features = [
+  {
+    icon: DocumentTextIcon,
+    title: 'Intelligent Invoicing',
+    description:
+      'Create professional invoices in under 2 minutes with automatic calculation of totals, taxes, and high-quality PDF export.',
+    benefits: [
+      'Customizable templates',
+      'Automatic calculations',
+      'Instant export'
+    ]
+  },
+  {
+    icon: UsersIcon,
+    title: 'Client Management',
+    description:
+      'Integrated CRM to manage all your client information, payment history, and centralized communication.',
+    benefits: [
+      'Centralized database',
+      'Complete history',
+      'Automated communication'
+    ]
+  },
+  {
+    icon: ChartBarIcon,
+    title: 'Intuitive Dashboard',
+    description:
+      'Real-time financial analysis with key metrics, interactive charts, and custom reports.',
+    benefits: ['Real-time metrics', 'Automatic reports', 'Predictive analysis']
+  },
+  {
+    icon: ShieldCheckIcon,
+    title: 'Enterprise Security',
+    description:
+      'Bank-level data protection with SSL encryption, automatic backups, and GDPR compliance.',
+    benefits: [
+      '256-bit SSL encryption',
+      'Automatic backups',
+      'Regulatory compliance'
+    ]
+  },
+  {
+    icon: GlobeAltIcon,
+    title: 'Multi-location',
+    description:
+      'Support for multiple countries, currencies, and languages. Automatic international tax compliance.',
+    benefits: ['50+ currencies', 'Multiple languages', 'Tax compliance']
+  },
+  {
+    icon: BoltIcon,
+    title: 'Advanced Automation',
+    description:
+      'Intelligent workflows, automatic reminders, and integration with your existing tech stack.',
+    benefits: ['Custom workflows', 'Smart notifications', 'API integrations']
+  }
+];
 
-export default function HomePage() {
+const stats = [
+  {
+    label: 'Invoices Processed',
+    value: '2.5M+',
+    icon: DocumentTextIcon,
+    color: 'text-blue-600'
+  },
+  {
+    label: 'Active Companies',
+    value: '15,000+',
+    icon: BuildingOfficeIcon,
+    color: 'text-green-600'
+  },
+  {
+    label: 'Countries Supported',
+    value: '120+',
+    icon: GlobeAltIcon,
+    color: 'text-purple-800'
+  },
+  {
+    label: 'Time Saved',
+    value: '85%',
+    icon: ClockIcon,
+    color: 'text-orange-600'
+  },
+  {
+    label: 'Fiscal Accuracy',
+    value: '99.9%',
+    icon: CheckCircleIcon,
+    color: 'text-emerald-600'
+  },
+  {
+    label: 'Uptime SLA',
+    value: '99.99%',
+    icon: CloudIcon,
+    color: 'text-indigo-600'
+  }
+];
+
+const testimonials = [
+  {
+    name: 'Emily Carter',
+    role: 'CEO, Design Studio',
+    company: 'Freelancer',
+    content:
+      'InvoLuck completely transformed my invoicing process. What used to take hours, I now do in minutes.',
+    avatar: 'EC',
+    rating: 5
+  },
+  {
+    name: 'Michael Chen',
+    role: 'CFO, TechCorp',
+    company: 'Medium Business',
+    content:
+      'The automation and reports have helped us optimize our cash flow and reduce errors by 90%.',
+    avatar: 'MC',
+    rating: 5
+  },
+  {
+    name: 'Sophia Rodriguez',
+    role: 'Controller, GlobalTrade',
+    company: 'Large Enterprise',
+    content:
+      'The multi-currency support and international compliance allowed us to expand to 12 countries without complications.',
+    avatar: 'SR',
+    rating: 5
+  }
+];
+
+const plans = [
+  {
+    name: 'Starter',
+    price: '$29',
+    currency: 'USD',
+    period: 'month',
+    description: 'Perfect for freelancers and small businesses',
+    popular: false,
+    features: [
+      'Up to 100 invoices/month',
+      'Basic client management',
+      'Professional PDF export',
+      'Basic dashboard',
+      'Email support',
+      '1 user included',
+      'Basic templates',
+      'Standard reports'
+    ],
+    cta: 'Start for free'
+  },
+  {
+    name: 'Professional',
+    price: '$99',
+    currency: 'USD',
+    period: 'month',
+    description: 'Ideal for growing medium-sized businesses',
+    popular: true,
+    features: [
+      'Up to 1,000 invoices/month',
+      'Multi-user (up to 5 users)',
+      'Advanced client management',
+      'Detailed reports & analytics',
+      'Priority support',
+      'Basic integrations',
+      'Workflow automation',
+      'Basic custom branding',
+      'Third-party API',
+      'Recurring invoicing'
+    ],
+    cta: '14-day free trial'
+  },
+  {
+    name: 'Business',
+    price: '$299',
+    currency: 'USD',
+    period: 'month',
+    description: 'For companies with advanced needs',
+    popular: false,
+    features: [
+      'Unlimited invoices',
+      'Unlimited users',
+      'Full multi-location support',
+      'Advanced integrations',
+      'Full custom branding',
+      '24/7 dedicated support',
+      'Full API access',
+      'Account manager',
+      'Automatic tax compliance',
+      'White-label available',
+      'Guaranteed SLA',
+      'Consulting included'
+    ],
+    cta: 'Contact sales'
+  }
+];
+
+const processSteps = [
+  {
+    step: '01',
+    title: 'Quick Signup',
+    description:
+      'Create your account in less than 2 minutes. No credit card required.',
+    icon: UserIcon
+  },
+  {
+    step: '02',
+    title: 'Set Up Your Company',
+    description:
+      'Import your data or complete your business profile with our smart assistant.',
+    icon: CogIcon
+  },
+  {
+    step: '03',
+    title: 'Create Your First Invoice',
+    description:
+      'Use our professional templates or design your own. Automatic email delivery.',
+    icon: DocumentCheckIcon
+  },
+  {
+    step: '04',
+    title: 'Analyze and Optimize',
+    description:
+      'Visualize your metrics, automate processes, and scale your business with smart insights.',
+    icon: PresentationChartLineIcon
+  }
+];
+
+export default function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <header>
@@ -42,7 +261,7 @@ export default function HomePage() {
 
       <main className="flex-grow">
         <section
-          id="inicio"
+          id="home"
           className="pt-24 pb-20 px-4 bg-gradient-to-br from-purple-50 via-white to-blue-50 relative overflow-hidden"
         >
           <div
@@ -66,8 +285,7 @@ export default function HomePage() {
               >
                 <StarIcon className="w-4 h-4" />
                 <span>
-                  Líder en facturación digital • +15,000 empresas confían en
-                  nosotros
+                  Leader in digital invoicing • +15,000 companies trust us
                 </span>
               </motion.div>
 
@@ -78,10 +296,10 @@ export default function HomePage() {
                 transition={{ duration: 0.8, delay: 0.1 }}
               >
                 <span className="bg-gradient-to-r from-purple-800 to-purple-950 bg-clip-text text-transparent">
-                  Facturación
+                  Invoicing
                 </span>
                 <br />
-                <span className="text-gray-900">que Impulsa tu Negocio</span>
+                <span className="text-gray-900">that Powers Your Business</span>
               </motion.h1>
 
               <motion.p
@@ -90,13 +308,13 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                La plataforma de facturación más completa para{' '}
+                The most complete invoicing platform for{' '}
                 <strong className="text-purple-800">freelancers</strong>,{' '}
-                <strong className="text-purple-800">PyMEs</strong> y{' '}
-                <strong className="text-purple-800">empresas</strong>.
+                <strong className="text-purple-800">SMBs</strong>, and{' '}
+                <strong className="text-purple-800">enterprises</strong>.
                 <br className="hidden sm:block" />
-                Automatiza tu proceso, cumple normativas internacionales y
-                escala sin límites.
+                Automate your process, comply with international regulations,
+                and scale without limits.
               </motion.p>
 
               <motion.div
@@ -110,7 +328,7 @@ export default function HomePage() {
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <span>Comenzar Gratis</span>
+                  <span>Get Started Free</span>
                   <ArrowRightIcon className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
                 </motion.button>
 
@@ -120,7 +338,7 @@ export default function HomePage() {
                   whileTap={{ scale: 0.98 }}
                 >
                   <PlayIcon className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform" />
-                  <span>Ver Demo Interactiva</span>
+                  <span>Watch Interactive Demo</span>
                 </motion.button>
               </motion.div>
             </motion.div>
@@ -162,7 +380,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="funcionalidades" className="py-24 px-4 bg-white">
+        <section id="features" className="py-24 px-4 bg-white">
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="text-center mb-20"
@@ -172,11 +390,11 @@ export default function HomePage() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-5xl font-bold mb-6 text-gray-900">
-                Funcionalidades que Marcan la Diferencia
+                Features that Make a Difference
               </h2>
               <p className="text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Herramientas profesionales diseñadas para optimizar cada aspecto
-                de tu proceso de facturación y crecimiento empresarial.
+                Professional tools designed to optimize every aspect of your
+                invoicing process and business growth.
               </p>
             </motion.div>
 
@@ -224,7 +442,7 @@ export default function HomePage() {
         </section>
 
         <section
-          id="como-funciona"
+          id="how-it-works"
           className="py-24 px-4 bg-gradient-to-br from-purple-50 to-blue-50"
         >
           <div className="max-w-7xl mx-auto">
@@ -236,10 +454,10 @@ export default function HomePage() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-5xl font-bold mb-6 text-gray-900">
-                Comienza en 4 Pasos Simples
+                Get Started in 4 Simple Steps
               </h2>
               <p className="text-2xl text-gray-600 max-w-3xl mx-auto">
-                De cero a facturación profesional en menos de 10 minutos
+                From zero to professional invoicing in under 10 minutes.
               </p>
             </motion.div>
 
@@ -277,7 +495,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="testimonios" className="py-24 px-4 bg-white">
+        <section id="testimonials" className="py-24 px-4 bg-white">
           <div className="max-w-7xl mx-auto">
             <motion.div
               className="text-center mb-20"
@@ -287,10 +505,11 @@ export default function HomePage() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-5xl font-bold mb-6 text-gray-900">
-                Lo que Dicen Nuestros Clientes
+                What Our Clients Say
               </h2>
               <p className="text-2xl text-gray-600 max-w-3xl mx-auto">
-                Miles de empresas ya confían en InvoLuck para su facturación
+                Thousands of companies already trust InvoLuck for their
+                invoicing.
               </p>
             </motion.div>
 
@@ -341,7 +560,7 @@ export default function HomePage() {
         </section>
 
         <section
-          id="precios"
+          id="pricing"
           className="py-24 px-4 bg-gradient-to-br from-gray-50 to-purple-50"
         >
           <div className="max-w-7xl mx-auto">
@@ -353,11 +572,11 @@ export default function HomePage() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-5xl font-bold mb-6 text-gray-900">
-                Precios Transparentes para Cada Etapa
+                Transparent Pricing for Every Stage
               </h2>
               <p className="text-2xl text-gray-600 max-w-3xl mx-auto">
-                Comienza gratis y escala cuando lo necesites. Sin sorpresas, sin
-                compromisos largos.
+                Start for free and scale when you need to. No surprises, no
+                long-term commitments.
               </p>
             </motion.div>
 
@@ -380,7 +599,7 @@ export default function HomePage() {
                     <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
                       <span className="bg-purple-800 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg flex items-center space-x-2">
                         <StarIcon className="w-4 h-4" />
-                        <span>Más Popular</span>
+                        <span>Most Popular</span>
                       </span>
                     </div>
                   )}
@@ -401,7 +620,7 @@ export default function HomePage() {
                       </span>
                     </div>
                     <span className="text-gray-500 text-lg">
-                      por {plan.period}
+                      per {plan.period}
                     </span>
                   </div>
 
@@ -432,7 +651,7 @@ export default function HomePage() {
         </section>
 
         <section
-          id="contacto"
+          id="contact"
           className="py-20 sm:py-24 px-4 bg-gradient-to-br from-gray-50 via-white to-purple-50 relative overflow-hidden"
         >
           <div className="absolute inset-0 opacity-30">
@@ -459,19 +678,19 @@ export default function HomePage() {
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <ChatBubbleBottomCenterTextIcon className="w-4 h-4" />
-                <span>¿Tienes preguntas?</span>
+                <span>Have questions?</span>
               </motion.div>
 
               <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-gray-900 leading-tight">
-                Estamos aquí para
+                We&apos;re here to
                 <span className="bg-gradient-to-r from-purple-800 to-purple-950 bg-clip-text text-transparent">
                   {' '}
-                  ayudarte
+                  help
                 </span>
               </h2>
               <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Nuestro equipo de expertos está listo para resolver todas tus
-                dudas y acompañarte en tu proceso de digitalización.
+                Our team of experts is ready to answer all your questions and
+                guide you through your digital transformation process.
               </p>
             </motion.div>
 
@@ -492,11 +711,9 @@ export default function HomePage() {
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
                   Email
                 </h3>
-                <p className="text-gray-600 mb-4">
-                  Respuesta en menos de 2 horas
-                </p>
+                <p className="text-gray-600 mb-4">Response in under 2 hours</p>
                 <p className="text-purple-800 font-medium">
-                  soporte@facturacion.com
+                  support@involuck.com
                 </p>
               </motion.div>
 
@@ -508,11 +725,11 @@ export default function HomePage() {
                   <ChatBubbleBottomCenterTextIcon className="w-8 h-8 text-purple-800" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Chat en vivo
+                  Live Chat
                 </h3>
-                <p className="text-gray-600 mb-4">Disponible 24/7</p>
+                <p className="text-gray-600 mb-4">Available 24/7</p>
                 <p className="text-purple-800 font-medium">
-                  Iniciá conversación
+                  Start a conversation
                 </p>
               </motion.div>
 
@@ -524,10 +741,10 @@ export default function HomePage() {
                   <PhoneIcon className="w-8 h-8 text-purple-800" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Teléfono
+                  Phone
                 </h3>
-                <p className="text-gray-600 mb-4">Lunes a viernes 8:00-18:00</p>
-                <p className="text-purple-800 font-medium">+57 (1) 234-5678</p>
+                <p className="text-gray-600 mb-4">Mon-Fri 8:00 AM - 6:00 PM</p>
+                <p className="text-purple-800 font-medium">+1 (555) 123-4567</p>
               </motion.div>
             </motion.div>
 
@@ -544,7 +761,7 @@ export default function HomePage() {
                 whileTap={{ scale: 0.95 }}
               >
                 <EnvelopeIcon className="w-5 h-5" />
-                <span>Enviar Mensaje</span>
+                <span>Send Message</span>
                 <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
 
@@ -554,7 +771,7 @@ export default function HomePage() {
                 whileTap={{ scale: 0.95 }}
               >
                 <CalendarDaysIcon className="w-5 h-5" />
-                <span>Agendar Demo</span>
+                <span>Schedule Demo</span>
               </motion.button>
             </motion.div>
           </div>
@@ -571,83 +788,45 @@ export default function HomePage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12">
                 <div className="sm:col-span-2 lg:col-span-1">
                   <div className="flex items-center space-x-3 mb-4 sm:mb-6">
-                    <div className="relative h-16 sm:h-20 lg:h-24 w-auto">
-                      <Image
-                        src="/api/logo"
-                        alt="InvoLuck logo"
-                        width={96}
-                        height={96}
-                        className="h-full w-auto object-contain"
-                        priority
-                      />
-                    </div>
+                    <Image
+                      src="/api/logo"
+                      alt="InvoLuck logo"
+                      width={200}
+                      height={96}
+                      className="h-16 sm:h-20 lg:h-24 w-auto object-contain"
+                    />
                     <span className="text-xl sm:text-2xl font-bold text-white">
                       InvoLuck
                     </span>
                   </div>
                   <p className="text-gray-300 text-sm leading-relaxed mb-4 sm:mb-6">
-                    La plataforma de facturación más completa para impulsar tu
-                    negocio hacia el éxito digital.
+                    The most complete invoicing platform to boost your business
+                    towards digital success.
                   </p>
                   <div className="flex space-x-3 sm:space-x-4">
-                    <a
-                      href="#"
-                      className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-700 hover:bg-purple-800 rounded-lg flex items-center justify-center transition-colors duration-300 group"
-                    >
-                      <svg
-                        className="w-4 h-4 sm:w-5 sm:h-5 text-gray-300 group-hover:text-white"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-                      </svg>
-                    </a>
-                    <a
-                      href="#"
-                      className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-700 hover:bg-purple-800 rounded-lg flex items-center justify-center transition-colors duration-300 group"
-                    >
-                      <svg
-                        className="w-4 h-4 sm:w-5 sm:h-5 text-gray-300 group-hover:text-white"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" />
-                      </svg>
-                    </a>
-                    <a
-                      href="#"
-                      className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-700 hover:bg-purple-800 rounded-lg flex items-center justify-center transition-colors duration-300 group"
-                    >
-                      <svg
-                        className="w-4 h-4 sm:w-5 sm:h-5 text-gray-300 group-hover:text-white"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                      </svg>
-                    </a>
+                    {/* Social media icons */}
                   </div>
                 </div>
 
                 <div>
                   <h3 className="text-white font-semibold text-base sm:text-lg mb-4 sm:mb-6">
-                    Producto
+                    Product
                   </h3>
                   <ul className="space-y-2 sm:space-y-3">
                     <li>
                       <a
-                        href="#funcionalidades"
+                        href="#features"
                         className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base"
                       >
-                        Funcionalidades
+                        Features
                       </a>
                     </li>
                     <li>
                       <a
-                        href="#precios"
+                        href="#pricing"
                         className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base"
                       >
-                        Planes y Precios
+                        Plans & Pricing
                       </a>
                     </li>
                     <li>
@@ -663,7 +842,7 @@ export default function HomePage() {
                         href="#"
                         className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base"
                       >
-                        Seguridad
+                        Security
                       </a>
                     </li>
                   </ul>
@@ -671,7 +850,7 @@ export default function HomePage() {
 
                 <div>
                   <h3 className="text-white font-semibold text-base sm:text-lg mb-4 sm:mb-6">
-                    Soporte
+                    Support
                   </h3>
                   <ul className="space-y-2 sm:space-y-3">
                     <li>
@@ -679,7 +858,7 @@ export default function HomePage() {
                         href="#"
                         className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base"
                       >
-                        Centro de Ayuda
+                        Help Center
                       </a>
                     </li>
                     <li>
@@ -687,23 +866,15 @@ export default function HomePage() {
                         href="#"
                         className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base"
                       >
-                        Documentación
+                        Documentation
                       </a>
                     </li>
                     <li>
                       <a
-                        href="#contacto"
+                        href="#contact"
                         className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base"
                       >
-                        Contacto
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base"
-                      >
-                        Estado del Sistema
+                        Contact
                       </a>
                     </li>
                     <li>
@@ -711,7 +882,15 @@ export default function HomePage() {
                         href="#"
                         className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base"
                       >
-                        Comunidad
+                        System Status
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base"
+                      >
+                        Community
                       </a>
                     </li>
                   </ul>
@@ -722,21 +901,20 @@ export default function HomePage() {
                     Newsletter
                   </h3>
                   <p className="text-gray-300 text-sm mb-3 sm:mb-4">
-                    Recibe las últimas novedades y consejos para hacer crecer tu
-                    negocio.
+                    Get the latest news and tips to grow your business.
                   </p>
                   <div className="flex flex-col space-y-2 sm:space-y-3">
                     <input
                       type="email"
-                      placeholder="tu@email.com"
+                      placeholder="you@email.com"
                       className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-800 focus:border-transparent text-sm sm:text-base"
                     />
                     <button className="w-full px-4 py-2 sm:px-6 sm:py-3 bg-purple-800 text-white rounded-lg hover:bg-purple-900 transition-all duration-300 font-medium text-sm sm:text-base">
-                      Suscribir
+                      Subscribe
                     </button>
                   </div>
                   <p className="text-xs text-gray-400 mt-2 sm:mt-3">
-                    No enviamos spam. Cancela en cualquier momento.
+                    No spam. Unsubscribe at any time.
                   </p>
                 </div>
               </div>
@@ -748,21 +926,21 @@ export default function HomePage() {
               <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                 <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
                   <p className="text-sm text-gray-400">
-                    &copy; 2025 InvoLuck. Todos los derechos reservados.
+                    &copy; 2025 InvoLuck. All rights reserved.
                   </p>
                   <div className="flex items-center space-x-4 text-xs text-gray-500">
                     <a
                       href="#"
                       className="hover:text-gray-300 transition-colors"
                     >
-                      Términos
+                      Terms
                     </a>
                     <span>•</span>
                     <a
                       href="#"
                       className="hover:text-gray-300 transition-colors"
                     >
-                      Privacidad
+                      Privacy
                     </a>
                     <span>•</span>
                     <a
@@ -775,9 +953,9 @@ export default function HomePage() {
                 </div>
 
                 <div className="flex items-center space-x-2 text-sm text-gray-400">
-                  <span>Hecho con</span>
+                  <span>Made with</span>
                   <HeartIcon className="w-4 h-4 text-red-400" />
-                  <span>en Colombia</span>
+                  <span>in Colombia</span>
                 </div>
               </div>
             </div>
