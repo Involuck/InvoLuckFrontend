@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import DashboardPage from '@/app/(authenticated)/dashboard/page';
 import { useRouter, usePathname } from 'next/navigation';
 
@@ -7,42 +7,59 @@ jest.mock('next/navigation', () => ({
   usePathname: jest.fn()
 }));
 
+// Mock Framer Motion with proper types
+interface MotionDivProps extends React.HTMLAttributes<HTMLDivElement> {
+  children?: React.ReactNode;
+  [key: string]: unknown;
+}
+
 jest.mock('framer-motion', () => ({
   motion: {
-    div: ({ children, ...props }: any) => <div {...props}>{children}</div>
+    div: ({ children, ...props }: MotionDivProps) => <div {...props}>{children}</div>
   }
 }));
 
 // Mock all dashboard components
-jest.mock('@/components/layout/DashboardLayout', () => {
-  return {
-    DashboardLayout: ({ children, title }: any) => (
-      <div data-testid="dashboard-layout">
-        <h1>{title}</h1>
-        {children}
-      </div>
-    )
-  };
-});
+// Mock DashboardLayout with proper props interface
+interface DashboardLayoutProps {
+  children: React.ReactNode;
+  title?: string;
+}
 
-jest.mock('@/components/dashboard/WelcomeHero', () => {
-  return {
-    WelcomeHero: ({ userName }: any) => (
-      <div data-testid="welcome-hero">Bienvenido {userName}</div>
-    )
-  };
-});
+jest.mock('@/components/layout/DashboardLayout', () => ({
+  DashboardLayout: ({ children, title }: DashboardLayoutProps) => (
+    <div data-testid="dashboard-layout">
+      <h1>{title}</h1>
+      {children}
+    </div>
+  )
+}));
 
-jest.mock('@/components/dashboard/MetricCard', () => {
-  return {
-    MetricCard: ({ title, value }: any) => (
-      <div data-testid="metric-card">
-        <span>{title}</span>
-        <span>{value}</span>
-      </div>
-    )
-  };
-});
+// Mock WelcomeHero with proper props interface
+interface WelcomeHeroProps {
+  userName: string;
+}
+
+jest.mock('@/components/dashboard/WelcomeHero', () => ({
+  WelcomeHero: ({ userName }: WelcomeHeroProps) => (
+    <div data-testid="welcome-hero">Bienvenido {userName}</div>
+  )
+}));
+
+// Mock MetricCard with proper props interface
+interface MetricCardProps {
+  title: string;
+  value: string | number;
+}
+
+jest.mock('@/components/dashboard/MetricCard', () => ({
+  MetricCard: ({ title, value }: MetricCardProps) => (
+    <div data-testid="metric-card">
+      <span>{title}</span>
+      <span>{value}</span>
+    </div>
+  )
+}));
 
 jest.mock('@/components/dashboard/QuickActions', () => {
   return {

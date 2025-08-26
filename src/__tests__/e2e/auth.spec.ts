@@ -2,20 +2,8 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Authentication', () => {
   test.beforeEach(async ({ page }) => {
-    page.on('request', (request) =>
-      console.log('>>', request.method(), request.url())
-    );
-    page.on('response', (response) =>
-      console.log('<<', response.status(), response.url())
-    );
-
     await page.goto('/auth/login');
-
     await page.waitForLoadState('networkidle');
-
-    await page.screenshot({ path: 'login-page.png' });
-
-    console.log('Page content:', await page.content());
   });
 
   test('should display login form', async ({ page }) => {
@@ -208,9 +196,6 @@ test.describe('Authentication', () => {
     }
 
     if (!signupElement) {
-      console.log(
-        'Signup link not found, navigating directly to /auth/register'
-      );
       await page.goto('/auth/register');
     } else {
       await signupElement.click();

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import {
   DocumentTextIcon,
   UsersIcon,
@@ -797,11 +798,16 @@ export default function HomePage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12">
                 <div className="sm:col-span-2 lg:col-span-1">
                   <div className="flex items-center space-x-3 mb-4 sm:mb-6">
-                    <img
-                      src="/api/logo"
-                      alt="InvoLuck logo"
-                      className="h-16 sm:h-20 lg:h-24 w-auto object-contain"
-                    />
+                    <div className="relative h-16 sm:h-20 lg:h-24 w-auto">
+                      <Image
+                        src="/api/logo"
+                        alt="InvoLuck logo"
+                        width={96}
+                        height={96}
+                        className="h-full w-auto object-contain"
+                        priority
+                      />
+                    </div>
                     <span className="text-xl sm:text-2xl font-bold text-white">
                       InvoLuck
                     </span>

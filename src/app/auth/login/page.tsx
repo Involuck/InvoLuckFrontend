@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import Spinner from '@/components/pure/feedback/loading/Spinner';
 import ErrorMessage from '@/components/pure/feedback/loading/ErrorMessage';
 import SuccessMessage from '@/components/pure/feedback/loading/SuccessMessage';
@@ -226,11 +227,16 @@ export default function LoginPage() {
               className="lg:hidden text-center mb-6"
             >
               <div className="flex items-center justify-center gap-3 mb-3">
-                <img
-                  src="/api/logo"
-                  alt="InvoLuck logo"
-                  className="h-16 sm:h-20 w-auto object-contain"
-                />
+                <div className="relative h-16 w-full sm:h-20">
+                  <Image
+                    src="/api/logo"
+                    alt="InvoLuck logo"
+                    fill
+                    sizes="(max-width: 640px) 4rem, 5rem"
+                    className="object-contain"
+                    priority
+                  />
+                </div>
                 <h1 className="text-2xl font-black text-white tracking-tight">
                   InvoLuck
                 </h1>

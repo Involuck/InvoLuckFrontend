@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { Sidebar } from './Sidebar';
 
 const BellIcon = ({ className }: { className?: string }) => (
@@ -232,11 +233,16 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
               transition={{ delay: 0.1, duration: 0.3 }}
               className={`flex items-center space-x-3`}
             >
-              <img
-                src="/api/logo"
-                alt="InvoLuck logo"
-                className="h-12 md:h-16 lg:h-20 w-auto object-contain mr-2"
-              />
+              <div className="relative h-12 md:h-16 lg:h-20 w-auto mr-2">
+                <Image
+                  src="/api/logo"
+                  alt="InvoLuck logo"
+                  width={80}
+                  height={80}
+                  className="h-full w-auto object-contain"
+                  priority
+                />
+              </div>
               <div className="flex flex-col">
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 truncate max-w-xs sm:max-w-none">
                   {title}

@@ -315,7 +315,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         isLoading: false
       }));
     }
-  }, []);
+  }, [loginState.email]);
 
   // Login Actions
   const setLoginEmail = useCallback((email: string) => {

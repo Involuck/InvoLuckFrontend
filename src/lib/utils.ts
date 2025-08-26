@@ -1,4 +1,4 @@
-import { type ClassValue, clsx } from 'clsx';
+// Utility functions for the application
 
 /**
  * Formats a date to a localized string
@@ -52,7 +52,7 @@ export function truncateText(text: string, maxLength: number): string {
  * @param wait - The number of milliseconds to delay
  * @returns A debounced function
  */
-export function debounce<T extends (...args: any[]) => any>(
+export function debounce<T extends (...args: unknown[]) => unknown>(
   func: T,
   wait: number
 ): (...args: Parameters<T>) => void {
@@ -83,7 +83,7 @@ export function generateId(): string {
  * @param value - The value to check
  * @returns True if the value is empty, false otherwise
  */
-export function isEmpty(value: any): boolean {
+export function isEmpty(value: unknown): boolean {
   if (value === null || value === undefined) return true;
   if (typeof value === 'string') return value.trim().length === 0;
   if (Array.isArray(value)) return value.length === 0;

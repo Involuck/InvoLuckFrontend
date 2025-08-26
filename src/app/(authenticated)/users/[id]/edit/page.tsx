@@ -1,12 +1,13 @@
-import EditUserForm from '@/components/forms/UserForm/EditUserForm';
+import { Metadata } from 'next';
+import EditUserWrapper from './EditUserWrapper';
 
-type PageProps = {
-  params: {
-    id: string;
-  };
-  searchParams: Record<string, string | string[] | undefined>;
+export const metadata: Metadata = {
+  title: 'Edit User',
+  description: 'Edit user details'
 };
 
-export default function EditUserPage({ params }: PageProps) {
-  return <EditUserForm userId={params.id} />;
+export default function EditUserPage() {
+  return <EditUserWrapper />;
 }
+
+export const dynamic = 'force-dynamic';
