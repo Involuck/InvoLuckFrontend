@@ -3,7 +3,11 @@ import { test, expect } from '@playwright/test';
 test.describe('Authentication', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/auth/login');
-    await page.waitForLoadState('networkidle');
+    // Wait for either the login form or navigation to complete
+    await Promise.race([
+      page.waitForSelector('form', { state: 'attached' }),
+      page.waitForURL('**/auth/login')
+    ]);
   });
 
   test('should display login form', async ({ page }) => {
