@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Spinner from '@/components/pure/feedback/loading/Spinner';
@@ -8,70 +8,32 @@ import ErrorMessage from '@/components/pure/feedback/loading/ErrorMessage';
 import SuccessMessage from '@/components/pure/feedback/loading/SuccessMessage';
 import PrimaryButton from '@/components/pure/button/PrimaryButton';
 import TextInput from '@/components/pure/form/TextInput';
-
-const DEV_EMAIL = 'dev@involuck.com';
-const DEV_PASSWORD = 'Involuck123';
+import { useLogin } from '@/hooks/useLogin';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState(DEV_EMAIL);
-  const [password, setPassword] = useState(DEV_PASSWORD);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
-  const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
-
-  const [touchedEmail, setTouchedEmail] = useState(false);
-  const [touchedPassword, setTouchedPassword] = useState(false);
-
-  const isValidEmail = useMemo(() => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-  }, [email]);
-
-  const isValidPassword = password.length >= 6;
-
-  const emailState: 'default' | 'error' | 'success' = !touchedEmail
-    ? 'default'
-    : isValidEmail
-      ? 'success'
-      : 'error';
-  const passwordState: 'default' | 'error' | 'success' = !touchedPassword
-    ? 'default'
-    : isValidPassword
-      ? 'success'
-      : 'error';
-  const canSubmit = isValidEmail && isValidPassword && !submitting;
-
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    setSubmitting(true);
-
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 700));
-      const ok = email === DEV_EMAIL && password === DEV_PASSWORD;
-
-      if (!ok) {
-        throw new Error('Credenciales inválidas. Intenta nuevamente.');
-      }
-
-      document.cookie = 'token=mock-token; path=/';
-      if (rememberMe) {
-        document.cookie = 'remember=true; path=/; max-age=2592000';
-      }
-
-      setSuccess('¡Bienvenido! Redirigiendo al panel...');
-
-      await new Promise((resolve) => setTimeout(resolve, 650));
-
-      window.location.href = '/dashboard';
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error inesperado');
-    } finally {
-      setSubmitting(false);
-    }
-  };
+  const {
+    email,
+    password,
+    showPassword,
+    rememberMe,
+    submitting,
+    error,
+    success,
+    touchedEmail,
+    touchedPassword,
+    isValidEmail,
+    isValidPassword,
+    emailState,
+    passwordState,
+    canSubmit,
+    setEmail,
+    setPassword,
+    setShowPassword,
+    setRememberMe,
+    setTouchedEmail,
+    setTouchedPassword,
+    onSubmit,
+  } = useLogin();
 
   return (
     <main className="relative min-h-screen w-full overflow-hidden involuck-bg">
