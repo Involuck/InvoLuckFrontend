@@ -2,22 +2,31 @@ import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <main className="relative min-h-screen w-full overflow-hidden involuck-bg flex items-center justify-center p-6">
+    <main className="relative flex min-h-screen w-full items-center justify-center overflow-hidden involuck-bg p-6">
+      {/* Background elements (no changes) */}
       <div className="involuck-grid -z-10" />
       <div className="involuck-noise -z-10" />
+
       <div className="w-full max-w-2xl text-center">
-        <div className="inline-flex items-center justify-center rounded-2xl bg-brand-700/90 px-4 py-2 text-white shadow-xl shadow-brand-900/40">
-          <span className="text-sm font-semibold tracking-wide">
+        {/* --- CHANGES HERE --- */}
+        {/* 1. 404 container: Increased padding to make it larger */}
+        <div className="inline-flex items-center justify-center rounded-2xl bg-brand-700/90 px-6 py-3 text-white shadow-xl shadow-brand-900/40">
+          {/* 2. 404 text: Increased font size */}
+          <span className="text-lg font-semibold tracking-wide">
             404 · Not Found
           </span>
         </div>
-        <h1 className="mt-6 text-4xl md:text-5xl font-extrabold tracking-tight text-white drop-shadow">
+
+        {/* 3. Main title: Increased top margin for better spacing */}
+        <h1 className="mt-8 text-4xl font-extrabold tracking-tight text-white drop-shadow md:text-5xl">
           Hey, you found a blank space, baby…
         </h1>
-        <p className="mt-3 text-base md:text-lg text-brand-100/90">
+        
+        <p className="mt-3 text-base text-brand-100/90 md:text-lg">
           The page you are looking for doesn’t exist or has been moved.
         </p>
 
+        {/* Action buttons (no changes) */}
         <div className="mt-8 flex items-center justify-center gap-3">
           <Link
             href="/"

@@ -1,21 +1,22 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { ToastProvider } from '@/components/pure/feedback/toast'; // Make sure the import is correct
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata = {
-  title: 'InvoLuck - Gestión Inteligente',
-  description: 'Plataforma de gestión inteligente para tu negocio'
-};
-
 export default function RootLayout({
   children
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="es" suppressHydrationWarning>
-      <body className={inter.className}>{children}</body>
+    <html lang="en">
+      <body className={inter.className}>
+        {/* Correct: The provider wraps the {children} */}
+        <ToastProvider>
+          {children}
+        </ToastProvider>
+      </body>
     </html>
   );
 }

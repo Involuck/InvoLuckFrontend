@@ -3,7 +3,11 @@
 import React, { useState } from 'react';
 import { StatusBadge, Pill, Badge } from '@/components/pure/feedback';
 
-// Iconos simples usando SVG inline
+// --- 1. IMPORTA LO NECESARIO PARA LOS TOASTS ---
+import { useToast } from '@/components/pure/feedback/toast';
+import { Button } from '@/components/pure/button'; // Assuming you have a generic Button component
+
+// Icon definitions remain the same
 const CheckIcon = () => (
   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
     <path
@@ -13,7 +17,6 @@ const CheckIcon = () => (
     />
   </svg>
 );
-
 const AlertIcon = () => (
   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
     <path
@@ -23,7 +26,6 @@ const AlertIcon = () => (
     />
   </svg>
 );
-
 const InfoIcon = () => (
   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
     <path
@@ -33,7 +35,6 @@ const InfoIcon = () => (
     />
   </svg>
 );
-
 const TagIcon = () => (
   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
     <path
@@ -45,11 +46,14 @@ const TagIcon = () => (
 );
 
 export default function FeedbackDemoPage() {
+  // --- 2. INICIALIZA EL HOOK DEL TOAST ---
+  const { showToast } = useToast();
+
   const [removablePills, setRemovablePills] = useState([
     { id: 1, label: 'React', variant: 'primary' as const },
     { id: 2, label: 'TypeScript', variant: 'success' as const },
     { id: 3, label: 'TailwindCSS', variant: 'warning' as const },
-    { id: 4, label: 'Next.js', variant: 'danger' as const }
+    { id: 4, label: 'Next.js', variant: 'danger' as const },
   ]);
 
   const handleRemovePill = (id: number) => {
@@ -65,10 +69,10 @@ export default function FeedbackDemoPage() {
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Componentes de Feedback
+            Feedback Components
           </h1>
           <p className="text-lg text-gray-600">
-            Demostración de StatusBadge y Pill con todas las variantes y tamaños
+            Demo of StatusBadge, Pill, and all variants and sizes.
           </p>
         </div>
 
@@ -76,11 +80,8 @@ export default function FeedbackDemoPage() {
           <h2 className="text-2xl font-semibold text-gray-800 mb-6">
             StatusBadge
           </h2>
-
           <div className="mb-8">
-            <h3 className="text-lg font-medium text-gray-700 mb-4">
-              Variantes
-            </h3>
+            <h3 className="text-lg font-medium text-gray-700 mb-4">Variants</h3>
             <div className="flex flex-wrap gap-3">
               {variants.map((variant) => (
                 <StatusBadge
@@ -91,46 +92,29 @@ export default function FeedbackDemoPage() {
               ))}
             </div>
           </div>
-
           <div className="mb-8">
-            <h3 className="text-lg font-medium text-gray-700 mb-4">Tamaños</h3>
+            <h3 className="text-lg font-medium text-gray-700 mb-4">Sizes</h3>
             <div className="flex flex-wrap gap-3 items-center">
               <StatusBadge label="Small" variant="primary" size="sm" />
               <StatusBadge label="Medium" variant="primary" size="md" />
             </div>
           </div>
-
           <div className="mb-8">
             <h3 className="text-lg font-medium text-gray-700 mb-4">
-              Con iconos
+              With Icons
             </h3>
             <div className="flex flex-wrap gap-3">
-              <StatusBadge
-                label="Success"
-                variant="success"
-                iconStart={<CheckIcon />}
-              />
-              <StatusBadge
-                label="Warning"
-                variant="warning"
-                iconStart={<AlertIcon />}
-              />
-              <StatusBadge
-                label="Info"
-                variant="primary"
-                iconStart={<InfoIcon />}
-              />
+              <StatusBadge label="Success" variant="success" iconStart={<CheckIcon />} />
+              <StatusBadge label="Warning" variant="warning" iconStart={<AlertIcon />} />
+              <StatusBadge label="Info" variant="primary" iconStart={<InfoIcon />} />
             </div>
           </div>
         </section>
 
         <section className="mb-12">
           <h2 className="text-2xl font-semibold text-gray-800 mb-6">Badge</h2>
-
           <div className="mb-8">
-            <h3 className="text-lg font-medium text-gray-700 mb-4">
-              Variantes
-            </h3>
+            <h3 className="text-lg font-medium text-gray-700 mb-4">Variants</h3>
             <div className="flex flex-wrap gap-3">
               {variants.map((variant) => (
                 <Badge
@@ -141,42 +125,29 @@ export default function FeedbackDemoPage() {
               ))}
             </div>
           </div>
-
           <div className="mb-8">
-            <h3 className="text-lg font-medium text-gray-700 mb-4">Tamaños</h3>
+            <h3 className="text-lg font-medium text-gray-700 mb-4">Sizes</h3>
             <div className="flex flex-wrap gap-3 items-center">
               <Badge label="Small" variant="primary" size="sm" />
               <Badge label="Medium" variant="primary" size="md" />
             </div>
           </div>
-
           <div className="mb-2">
             <h3 className="text-lg font-medium text-gray-700 mb-4">
-              Con icono
+              With Icon
             </h3>
             <div className="flex flex-wrap gap-3">
               <Badge label="Info" variant="primary" iconStart={<InfoIcon />} />
-              <Badge
-                label="Success"
-                variant="success"
-                iconStart={<CheckIcon />}
-              />
-              <Badge
-                label="Warning"
-                variant="warning"
-                iconStart={<AlertIcon />}
-              />
+              <Badge label="Success" variant="success" iconStart={<CheckIcon />} />
+              <Badge label="Warning" variant="warning" iconStart={<AlertIcon />} />
             </div>
           </div>
         </section>
 
         <section className="mb-12">
           <h2 className="text-2xl font-semibold text-gray-800 mb-6">Pill</h2>
-
           <div className="mb-8">
-            <h3 className="text-lg font-medium text-gray-700 mb-4">
-              Variantes
-            </h3>
+            <h3 className="text-lg font-medium text-gray-700 mb-4">Variants</h3>
             <div className="flex flex-wrap gap-3">
               {variants.map((variant) => (
                 <Pill
@@ -187,34 +158,26 @@ export default function FeedbackDemoPage() {
               ))}
             </div>
           </div>
-
           <div className="mb-8">
-            <h3 className="text-lg font-medium text-gray-700 mb-4">Tamaños</h3>
+            <h3 className="text-lg font-medium text-gray-700 mb-4">Sizes</h3>
             <div className="flex flex-wrap gap-3 items-center">
               <Pill label="Small" variant="primary" size="sm" />
               <Pill label="Medium" variant="primary" size="md" />
             </div>
           </div>
-
           <div className="mb-8">
             <h3 className="text-lg font-medium text-gray-700 mb-4">
-              Con iconos
+              With Icons
             </h3>
             <div className="flex flex-wrap gap-3">
               <Pill label="Tag" variant="neutral" iconStart={<TagIcon />} />
               <Pill label="Success" variant="success" iconEnd={<CheckIcon />} />
-              <Pill
-                label="Warning"
-                variant="warning"
-                iconStart={<AlertIcon />}
-                iconEnd={<InfoIcon />}
-              />
+              <Pill label="Warning" variant="warning" iconStart={<AlertIcon />} iconEnd={<InfoIcon />} />
             </div>
           </div>
-
           <div className="mb-8">
             <h3 className="text-lg font-medium text-gray-700 mb-4">
-              Con botón de eliminar ({removablePills.length} restantes)
+              With remove button ({removablePills.length} left)
             </h3>
             <div className="flex flex-wrap gap-3">
               {removablePills.map((pill) => (
@@ -227,23 +190,43 @@ export default function FeedbackDemoPage() {
               ))}
             </div>
             {removablePills.length === 0 && (
-              <p className="text-gray-500 italic">
-                Todas las pills han sido eliminadas
-              </p>
+              <p className="text-gray-500 italic">All pills have been removed</p>
             )}
+          </div>
+        </section>
+
+        {/* --- 3. AÑADE LA SECCIÓN PARA LA DEMO DE TOASTS --- */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-6">Toast Notifications</h2>
+          <div className="rounded-lg border bg-white p-6 shadow-sm">
+            <h3 className="text-lg font-medium text-gray-700 mb-4">Trigger Notifications</h3>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <Button onClick={() => showToast('Success!', { message: 'Your profile has been updated.', status: 'success' })}>
+                Show Success Toast
+              </Button>
+              <Button onClick={() => showToast('Error Occurred', { message: 'Could not save your changes.', status: 'error' })}>
+                Show Error Toast
+              </Button>
+              <Button onClick={() => showToast('Warning', { message: 'Your session is about to expire.', status: 'warning' })}>
+                Show Warning Toast
+              </Button>
+              <Button onClick={() => showToast('Information', { message: 'A new update is available for download.', status: 'info' })}>
+                Show Info Toast
+              </Button>
+            </div>
           </div>
         </section>
 
         <section className="bg-white rounded-lg p-6 shadow-sm border">
           <h2 className="text-xl font-semibold text-gray-800 mb-4">
-            Características de Accesibilidad
+            Accessibility Features
           </h2>
           <ul className="space-y-2 text-gray-600">
-            <li>• Los componentes responden a navegación por teclado (Tab)</li>
-            <li>• Estados de focus visibles con anillos de color</li>
-            <li>• Botones de eliminar con aria-label descriptivos</li>
-            <li>• Soporte para Enter y Espacio en botones de eliminar</li>
-            <li>• Transiciones suaves para mejor experiencia visual</li>
+            <li>• Components respond to keyboard navigation (Tab)</li>
+            <li>• Visible focus states with color rings</li>
+            <li>• Remove buttons with descriptive aria-labels</li>
+            <li>• Support for Enter and Space on remove buttons</li>
+            <li>• Smooth transitions for a better visual experience</li>
           </ul>
         </section>
       </div>
