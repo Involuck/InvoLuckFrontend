@@ -114,7 +114,7 @@ export default function RegisterPage() {
 
       await new Promise((resolve) => setTimeout(resolve, 800));
 
-      window.location.href = '/authenticated/dashboard';
+      window.location.href = '/dashboard';
     } catch (err) {
       setError('Error al crear la cuenta. Intenta nuevamente.');
     } finally {

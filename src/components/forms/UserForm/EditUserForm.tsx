@@ -11,7 +11,7 @@ export default function EditUserForm({ userId }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    router.push('/authenticated/users');
+    router.push('/users');
   };
 
   const handleCancel = () => {
