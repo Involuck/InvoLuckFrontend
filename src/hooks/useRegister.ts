@@ -46,14 +46,23 @@ export const useRegister = () => {
     passwordState: register.passwordState,
     confirmPasswordState: register.confirmPasswordState,
     canSubmit: register.canSubmit,
-    
+
     // Computed values
-    showNameError: (register.touchedName || register.attemptedSubmit) && !register.isValidName,
-    showEmailError: (register.touchedEmail || register.attemptedSubmit) && !register.isValidEmail,
-    showPasswordError: (register.touchedPassword || register.attemptedSubmit) && !register.isValidPassword,
-    showConfirmPasswordError: (register.touchedConfirmPassword || register.attemptedSubmit) && !register.passwordsMatch,
-    metRequirements: register.passwordRequirements.filter(req => req.met).length,
-    
+    showNameError:
+      (register.touchedName || register.attemptedSubmit) &&
+      !register.isValidName,
+    showEmailError:
+      (register.touchedEmail || register.attemptedSubmit) &&
+      !register.isValidEmail,
+    showPasswordError:
+      (register.touchedPassword || register.attemptedSubmit) &&
+      !register.isValidPassword,
+    showConfirmPasswordError:
+      (register.touchedConfirmPassword || register.attemptedSubmit) &&
+      !register.passwordsMatch,
+    metRequirements: register.passwordRequirements.filter((req) => req.met)
+      .length,
+
     // Actions
     setName: setRegisterName,
     setEmail: setRegisterEmail,

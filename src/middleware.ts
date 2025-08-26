@@ -13,7 +13,10 @@ export function middleware(request: NextRequest) {
   } */
 
   // If user is authenticated and tries to access auth pages, redirect to dashboard
-  if (pathname.startsWith('/auth/login') || pathname.startsWith('/auth/register')) {
+  if (
+    pathname.startsWith('/auth/login') ||
+    pathname.startsWith('/auth/register')
+  ) {
     if (isAuthenticated) {
       return NextResponse.redirect(new URL('/dashboard', request.url));
     }

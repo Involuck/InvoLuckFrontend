@@ -89,7 +89,7 @@ export interface RegisterState {
 export interface AuthContextType {
   // Auth state
   auth: AuthState;
-  
+
   // Login state and actions
   login: LoginState;
   setLoginEmail: (email: string) => void;
@@ -99,7 +99,7 @@ export interface AuthContextType {
   setTouchedLoginEmail: (touched: boolean) => void;
   setTouchedLoginPassword: (touched: boolean) => void;
   handleLogin: (e: React.FormEvent) => Promise<void>;
-  
+
   // Register state and actions
   register: RegisterState;
   setRegisterName: (name: string) => void;
@@ -115,7 +115,7 @@ export interface AuthContextType {
   setTouchedConfirmPassword: (touched: boolean) => void;
   setAttemptedSubmit: (attempted: boolean) => void;
   handleRegister: (e: React.FormEvent) => Promise<void>;
-  
+
   // General auth actions
   logout: () => void;
   clearErrors: () => void;

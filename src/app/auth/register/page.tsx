@@ -51,7 +51,7 @@ export default function RegisterPage() {
     setTouchedConfirmPassword,
     setAttemptedSubmit: _setAttemptedSubmit,
     onSubmit
-  } = useRegister()
+  } = useRegister();
 
   return (
     <main className="relative min-h-screen w-full overflow-hidden involuck-bg">

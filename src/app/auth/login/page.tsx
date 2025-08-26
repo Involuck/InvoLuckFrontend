@@ -32,7 +32,7 @@ export default function LoginPage() {
     setTouchedEmail,
     setTouchedPassword,
     onSubmit
-  } = useLogin()
+  } = useLogin();
 
   return (
     <main className="relative min-h-screen w-full overflow-hidden involuck-bg">
