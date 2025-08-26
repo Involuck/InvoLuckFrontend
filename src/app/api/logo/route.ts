@@ -50,7 +50,7 @@ export async function GET() {
     });
   } catch (error) {
     console.error('Error loading logo:', error);
-    return new Response('Error loading logo', { 
+    return new Response('Error loading logo', {
       status: 500,
       headers: {
         'Content-Type': 'text/plain'

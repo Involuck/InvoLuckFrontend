@@ -15,7 +15,9 @@ interface MotionDivProps extends React.HTMLAttributes<HTMLDivElement> {
 
 jest.mock('framer-motion', () => ({
   motion: {
-    div: ({ children, ...props }: MotionDivProps) => <div {...props}>{children}</div>
+    div: ({ children, ...props }: MotionDivProps) => (
+      <div {...props}>{children}</div>
+    )
   }
 }));
 
