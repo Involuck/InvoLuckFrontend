@@ -1,7 +1,7 @@
 // src/app/page.tsx
 
 import type { Metadata } from 'next';
-import LandingPage from '@/components/landing/LandingPage'; 
+import LandingPage from '@/components/landing/LandingPage';
 
 export const metadata: Metadata = {
   title: 'InvoLuck: Smart Invoicing Platform',

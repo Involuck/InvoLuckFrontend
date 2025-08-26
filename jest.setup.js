@@ -2,7 +2,6 @@
 
 import '@testing-library/jest-dom';
 
-
 // Mock Next.js router (for older versions, but good to have)
 jest.mock('next/router', () => ({
   useRouter() {
@@ -40,7 +39,7 @@ jest.mock('next/image', () => ({
 // This mock is necessary for libraries like react-hot-toast that use it
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
-  value: jest.fn().mockImplementation(query => ({
+  value: jest.fn().mockImplementation((query) => ({
     matches: false,
     media: query,
     onchange: null,
