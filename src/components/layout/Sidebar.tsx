@@ -110,32 +110,32 @@ const menuItems: MenuItem[] = [
     id: 'dashboard',
     label: 'Dashboard',
     icon: DashboardIcon,
-    href: '/authenticated/dashboard'
+    href: '/dashboard'
   },
   {
     id: 'invoices',
     label: 'Facturas',
     icon: InvoicesIcon,
-    href: '/authenticated/invoices',
+    href: '/invoices',
     badge: '12'
   },
   {
     id: 'clients',
     label: 'Clientes',
     icon: ClientsIcon,
-    href: '/authenticated/clients'
+    href: '/clients'
   },
   {
     id: 'reports',
     label: 'Reportes',
     icon: ReportsIcon,
-    href: '/authenticated/reports'
+    href: '/reports'
   },
   {
     id: 'settings',
     label: 'Configuración',
     icon: SettingsIcon,
-    href: '/authenticated/settings'
+    href: '/settings'
   }
 ];
 

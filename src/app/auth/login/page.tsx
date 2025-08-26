@@ -65,7 +65,7 @@ export default function LoginPage() {
 
       await new Promise((resolve) => setTimeout(resolve, 650));
 
-      window.location.href = '/authenticated/dashboard';
+      window.location.href = '/dashboard';
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error inesperado');
     } finally {

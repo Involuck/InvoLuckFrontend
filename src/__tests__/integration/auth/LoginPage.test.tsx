@@ -64,7 +64,7 @@ describe('LoginPage', () => {
 
     // wait for the redirect
     await waitFor(() =>
-      expect(pushMock).toHaveBeenCalledWith('/authenticated/dashboard')
+      expect(pushMock).toHaveBeenCalledWith('/dashboard')
     );
   });
 });

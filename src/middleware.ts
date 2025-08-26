@@ -13,12 +13,12 @@ export function middleware(request: NextRequest) {
       request.cookies.get('token')?.value === 'mock-token';
     if (isAuthenticated) {
       return NextResponse.redirect(
-        new URL('/authenticated/dashboard', request.url)
+        new URL('/dashboard', request.url)
       );
     }
   }
 
-  if (pathname.startsWith('/authenticated')) {
+  if (pathname.startsWith('/dashboard') || pathname.startsWith('/clients') || pathname.startsWith('/invoices') || pathname.startsWith('/reports') || pathname.startsWith('/settings') || pathname.startsWith('/users')) {
     const isAuthenticated =
       request.cookies.get('token')?.value === 'mock-token';
     if (!isAuthenticated) {
@@ -30,5 +30,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/auth/:path*', '/authenticated/:path*']
+  matcher: ['/', '/auth/:path*', '/dashboard', '/clients/:path*', '/invoices/:path*', '/reports/:path*', '/settings/:path*', '/users/:path*']
 };

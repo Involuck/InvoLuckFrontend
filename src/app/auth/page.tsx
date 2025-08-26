@@ -62,7 +62,7 @@ export default function LoginPage() {
       return;
     }
     setSuccess('Bienvenido. Redirigiendo al panel...');
-    setTimeout(() => router.push('/authenticated/dashboard'), 650);
+    setTimeout(() => router.push('/dashboard'), 650);
   };
 
   return (
