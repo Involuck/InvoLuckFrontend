@@ -57,18 +57,18 @@ const features = [
     title: 'Intuitive Dashboard',
     description:
       'Real-time financial analysis with key metrics, interactive charts, and custom reports.',
-    benefits: ['Real-time metrics', 'Automatic reports', 'Predictive analysis']
+    benefits: [
+      'Real-time metrics',
+      'Automatic reports',
+      'Predictive analysis'
+    ]
   },
   {
     icon: ShieldCheckIcon,
     title: 'Enterprise Security',
     description:
       'Bank-level data protection with SSL encryption, automatic backups, and GDPR compliance.',
-    benefits: [
-      '256-bit SSL encryption',
-      'Automatic backups',
-      'Regulatory compliance'
-    ]
+    benefits: ['256-bit SSL encryption', 'Automatic backups', 'Regulatory compliance']
   },
   {
     icon: GlobeAltIcon,
@@ -225,8 +225,7 @@ const processSteps = [
   {
     step: '01',
     title: 'Quick Signup',
-    description:
-      'Create your account in less than 2 minutes. No credit card required.',
+    description: 'Create your account in less than 2 minutes. No credit card required.',
     icon: UserIcon
   },
   {
@@ -313,8 +312,8 @@ export default function HomePage() {
                 <strong className="text-purple-800">SMBs</strong>, and{' '}
                 <strong className="text-purple-800">enterprises</strong>.
                 <br className="hidden sm:block" />
-                Automate your process, comply with international regulations,
-                and scale without limits.
+                Automate your process, comply with international regulations, and
+                scale without limits.
               </motion.p>
 
               <motion.div
@@ -575,8 +574,8 @@ export default function HomePage() {
                 Transparent Pricing for Every Stage
               </h2>
               <p className="text-2xl text-gray-600 max-w-3xl mx-auto">
-                Start for free and scale when you need to. No surprises, no
-                long-term commitments.
+                Start for free and scale when you need to. No surprises, no long-term
+                commitments.
               </p>
             </motion.div>
 
@@ -682,7 +681,7 @@ export default function HomePage() {
               </motion.div>
 
               <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-gray-900 leading-tight">
-                We're here to
+                We&apos;re here to
                 <span className="bg-gradient-to-r from-purple-800 to-purple-950 bg-clip-text text-transparent">
                   {' '}
                   help
@@ -711,7 +710,9 @@ export default function HomePage() {
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
                   Email
                 </h3>
-                <p className="text-gray-600 mb-4">Response in under 2 hours</p>
+                <p className="text-gray-600 mb-4">
+                  Response in under 2 hours
+                </p>
                 <p className="text-purple-800 font-medium">
                   support@involuck.com
                 </p>
