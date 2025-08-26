@@ -797,11 +797,11 @@ export default function HomePage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12">
                 <div className="sm:col-span-2 lg:col-span-1">
                   <div className="flex items-center space-x-3 mb-4 sm:mb-6">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-purple-800 rounded-lg flex items-center justify-center">
-                      <span className="text-white font-bold text-base sm:text-lg">
-                        IL
-                      </span>
-                    </div>
+                    <img
+                      src="/api/logo"
+                      alt="InvoLuck logo"
+                      className="h-16 sm:h-20 lg:h-24 w-auto object-contain"
+                    />
                     <span className="text-xl sm:text-2xl font-bold text-white">
                       InvoLuck
                     </span>
