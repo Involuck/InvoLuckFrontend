@@ -332,7 +332,6 @@ jobs:
 
       - name: Run Lighthouse CI
         run: |
-          npm install -g @lhci/cli
           npm run start &
           sleep 30
-          lhci autorun --config=.lighthouserc.json || echo "Lighthouse analysis completed"
+          npx lhci autorun --config=.lighthouserc.json || echo "Lighthouse analysis completed"

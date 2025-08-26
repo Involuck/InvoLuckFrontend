@@ -1,126 +1,58 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import Spinner from '@/components/pure/feedback/loading/Spinner';
 import ErrorMessage from '@/components/pure/feedback/loading/ErrorMessage';
 import SuccessMessage from '@/components/pure/feedback/loading/SuccessMessage';
 import PrimaryButton from '@/components/pure/button/PrimaryButton';
 import TextInput from '@/components/pure/form/TextInput';
+import { useRegister } from '@/hooks/useRegister';
 
 export default function RegisterPage() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [acceptTerms, setAcceptTerms] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [attemptedSubmit, setAttemptedSubmit] = useState(false);
-
-  const [touchedName, setTouchedName] = useState(false);
-  const [touchedEmail, setTouchedEmail] = useState(false);
-  const [touchedPassword, setTouchedPassword] = useState(false);
-  const [touchedConfirmPassword, setTouchedConfirmPassword] = useState(false);
-
-  const isValidName = useMemo(() => name.trim().length >= 2, [name]);
-  const isValidEmail = useMemo(() => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-  }, [email]);
-
-  const hasMinLength = password.length >= 8;
-  const hasUpperCase = /[A-Z]/.test(password);
-  const hasLowerCase = /[a-z]/.test(password);
-  const hasNumber = /\d/.test(password);
-  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-
-  const isValidPassword =
-    hasMinLength && hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar;
-  const passwordsMatch =
-    password === confirmPassword && confirmPassword.length > 0;
-
-  const showNameError = (touchedName || attemptedSubmit) && !isValidName;
-  const showEmailError = (touchedEmail || attemptedSubmit) && !isValidEmail;
-  const showPasswordError =
-    (touchedPassword || attemptedSubmit) && !isValidPassword;
-  const showConfirmPasswordError =
-    (touchedConfirmPassword || attemptedSubmit) && !passwordsMatch;
-
-  const nameState: 'default' | 'error' | 'success' = showNameError
-    ? 'error'
-    : isValidName && (touchedName || attemptedSubmit)
-      ? 'success'
-      : 'default';
-  const emailState: 'default' | 'error' | 'success' = showEmailError
-    ? 'error'
-    : isValidEmail && (touchedEmail || attemptedSubmit)
-      ? 'success'
-      : 'default';
-  const passwordState: 'default' | 'error' | 'success' = showPasswordError
-    ? 'error'
-    : isValidPassword && (touchedPassword || attemptedSubmit)
-      ? 'success'
-      : 'default';
-  const confirmPasswordState: 'default' | 'error' | 'success' =
-    showConfirmPasswordError
-      ? 'error'
-      : passwordsMatch && (touchedConfirmPassword || attemptedSubmit)
-        ? 'success'
-        : 'default';
-
-  const passwordRequirements = [
-    { label: '8+ caracteres', met: hasMinLength },
-    { label: 'Mayúscula', met: hasUpperCase },
-    { label: 'Minúscula', met: hasLowerCase },
-    { label: 'Número', met: hasNumber },
-    { label: 'Carácter especial', met: hasSpecialChar }
-  ];
-
-  const metRequirements = passwordRequirements.filter((req) => req.met).length;
-  const passwordStrength = (metRequirements / 5) * 100;
-
-  const canSubmit =
-    isValidName &&
-    isValidEmail &&
-    isValidPassword &&
-    passwordsMatch &&
-    acceptTerms &&
-    !submitting;
-
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    setAttemptedSubmit(true);
-
-    setTouchedName(true);
-    setTouchedEmail(true);
-    setTouchedPassword(true);
-    setTouchedConfirmPassword(true);
-
-    if (!canSubmit) return;
-
-    setError(null);
-    setSubmitting(true);
-
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      setSuccess('¡Cuenta creada exitosamente! Redirigiendo...');
-
-      await new Promise((resolve) => setTimeout(resolve, 800));
-
-      window.location.href = '/dashboard';
-    } catch (err) {
-      setError('Error al crear la cuenta. Intenta nuevamente.');
-    } finally {
-      setSubmitting(false);
-    }
-  };
+  const {
+    name,
+    email,
+    password,
+    confirmPassword,
+    acceptTerms,
+    showPassword,
+    showConfirmPassword,
+    submitting,
+    error,
+    success: _success,
+    attemptedSubmit,
+    touchedName,
+    touchedEmail,
+    touchedPassword,
+    touchedConfirmPassword,
+    passwordRequirements,
+    passwordStrength,
+    nameState,
+    emailState,
+    passwordState,
+    confirmPasswordState,
+    canSubmit,
+    showNameError,
+    showEmailError,
+    showPasswordError,
+    showConfirmPasswordError,
+    setName,
+    setEmail,
+    setPassword,
+    setConfirmPassword,
+    setAcceptTerms,
+    setShowPassword,
+    setShowConfirmPassword,
+    setTouchedName,
+    setTouchedEmail,
+    setTouchedPassword,
+    setTouchedConfirmPassword,
+    setAttemptedSubmit: _setAttemptedSubmit,
+    onSubmit
+  } = useRegister();
 
   return (
     <main className="relative min-h-screen w-full overflow-hidden involuck-bg">
@@ -311,11 +243,16 @@ export default function RegisterPage() {
                 className="lg:hidden text-center mb-6"
               >
                 <div className="flex items-center justify-center gap-3 mb-3">
-                  <img
-                    src="/api/logo"
-                    alt="InvoLuck logo"
-                    className="h-16 sm:h-20 w-auto object-contain"
-                  />
+                  <div className="relative h-16 sm:h-20 w-auto">
+                    <Image
+                      src="/api/logo"
+                      alt="InvoLuck logo"
+                      width={80}
+                      height={80}
+                      className="h-full w-auto object-contain"
+                      priority
+                    />
+                  </div>
                   <h1 className="text-2xl font-black text-white tracking-tight">
                     InvoLuck
                   </h1>
@@ -351,14 +288,14 @@ export default function RegisterPage() {
                       <ErrorMessage message={error} />
                     </motion.div>
                   )}
-                  {success && (
+                  {_success && (
                     <motion.div
                       initial={{ y: -10, opacity: 0, scale: 0.9 }}
                       animate={{ y: 0, opacity: 1, scale: 1 }}
                       exit={{ y: -10, opacity: 0, scale: 0.9 }}
                       className="mb-5"
                     >
-                      <SuccessMessage message={success} />
+                      <SuccessMessage message={_success} />
                     </motion.div>
                   )}
                 </AnimatePresence>
