@@ -24,7 +24,7 @@ import {
   EnvelopeIcon,
   ChatBubbleBottomCenterTextIcon,
   PhoneIcon,
-  CalendarDaysIcon,
+  CalendarDaysIcon
 } from '@heroicons/react/24/outline';
 import { HeartIcon } from '@heroicons/react/24/solid';
 import Navbar from '@/components/pure/navbar/NavBar';
@@ -38,8 +38,8 @@ const features = [
     benefits: [
       'Customizable templates',
       'Automatic calculations',
-      'Instant export',
-    ],
+      'Instant export'
+    ]
   },
   {
     icon: UsersIcon,
@@ -49,41 +49,41 @@ const features = [
     benefits: [
       'Centralized database',
       'Complete history',
-      'Automated communication',
-    ],
+      'Automated communication'
+    ]
   },
   {
     icon: ChartBarIcon,
     title: 'Intuitive Dashboard',
     description:
       'Real-time financial analysis with key metrics, interactive charts, and custom reports.',
-    benefits: [
-      'Real-time metrics',
-      'Automatic reports',
-      'Predictive analysis',
-    ],
+    benefits: ['Real-time metrics', 'Automatic reports', 'Predictive analysis']
   },
   {
     icon: ShieldCheckIcon,
     title: 'Enterprise Security',
     description:
       'Bank-level data protection with SSL encryption, automatic backups, and GDPR compliance.',
-    benefits: ['256-bit SSL encryption', 'Automatic backups', 'Regulatory compliance'],
+    benefits: [
+      '256-bit SSL encryption',
+      'Automatic backups',
+      'Regulatory compliance'
+    ]
   },
   {
     icon: GlobeAltIcon,
     title: 'Multi-location',
     description:
       'Support for multiple countries, currencies, and languages. Automatic international tax compliance.',
-    benefits: ['50+ currencies', 'Multiple languages', 'Tax compliance'],
+    benefits: ['50+ currencies', 'Multiple languages', 'Tax compliance']
   },
   {
     icon: BoltIcon,
     title: 'Advanced Automation',
     description:
       'Intelligent workflows, automatic reminders, and integration with your existing tech stack.',
-    benefits: ['Custom workflows', 'Smart notifications', 'API integrations'],
-  },
+    benefits: ['Custom workflows', 'Smart notifications', 'API integrations']
+  }
 ];
 
 const stats = [
@@ -91,38 +91,38 @@ const stats = [
     label: 'Invoices Processed',
     value: '2.5M+',
     icon: DocumentTextIcon,
-    color: 'text-blue-600',
+    color: 'text-blue-600'
   },
   {
     label: 'Active Companies',
     value: '15,000+',
     icon: BuildingOfficeIcon,
-    color: 'text-green-600',
+    color: 'text-green-600'
   },
   {
     label: 'Countries Supported',
     value: '120+',
     icon: GlobeAltIcon,
-    color: 'text-purple-800',
+    color: 'text-purple-800'
   },
   {
     label: 'Time Saved',
     value: '85%',
     icon: ClockIcon,
-    color: 'text-orange-600',
+    color: 'text-orange-600'
   },
   {
     label: 'Fiscal Accuracy',
     value: '99.9%',
     icon: CheckCircleIcon,
-    color: 'text-emerald-600',
+    color: 'text-emerald-600'
   },
   {
     label: 'Uptime SLA',
     value: '99.99%',
     icon: CloudIcon,
-    color: 'text-indigo-600',
-  },
+    color: 'text-indigo-600'
+  }
 ];
 
 const testimonials = [
@@ -133,7 +133,7 @@ const testimonials = [
     content:
       'InvoLuck completely transformed my invoicing process. What used to take hours, I now do in minutes.',
     avatar: 'EC',
-    rating: 5,
+    rating: 5
   },
   {
     name: 'Michael Chen',
@@ -142,7 +142,7 @@ const testimonials = [
     content:
       'The automation and reports have helped us optimize our cash flow and reduce errors by 90%.',
     avatar: 'MC',
-    rating: 5,
+    rating: 5
   },
   {
     name: 'Sophia Rodriguez',
@@ -151,8 +151,8 @@ const testimonials = [
     content:
       'The multi-currency support and international compliance allowed us to expand to 12 countries without complications.',
     avatar: 'SR',
-    rating: 5,
-  },
+    rating: 5
+  }
 ];
 
 const plans = [
@@ -171,9 +171,9 @@ const plans = [
       'Email support',
       '1 user included',
       'Basic templates',
-      'Standard reports',
+      'Standard reports'
     ],
-    cta: 'Start for free',
+    cta: 'Start for free'
   },
   {
     name: 'Professional',
@@ -192,9 +192,9 @@ const plans = [
       'Workflow automation',
       'Basic custom branding',
       'Third-party API',
-      'Recurring invoicing',
+      'Recurring invoicing'
     ],
-    cta: '14-day free trial',
+    cta: '14-day free trial'
   },
   {
     name: 'Business',
@@ -215,40 +215,41 @@ const plans = [
       'Automatic tax compliance',
       'White-label available',
       'Guaranteed SLA',
-      'Consulting included',
+      'Consulting included'
     ],
-    cta: 'Contact sales',
-  },
+    cta: 'Contact sales'
+  }
 ];
 
 const processSteps = [
   {
     step: '01',
     title: 'Quick Signup',
-    description: 'Create your account in less than 2 minutes. No credit card required.',
-    icon: UserIcon,
+    description:
+      'Create your account in less than 2 minutes. No credit card required.',
+    icon: UserIcon
   },
   {
     step: '02',
     title: 'Set Up Your Company',
     description:
       'Import your data or complete your business profile with our smart assistant.',
-    icon: CogIcon,
+    icon: CogIcon
   },
   {
     step: '03',
     title: 'Create Your First Invoice',
     description:
       'Use our professional templates or design your own. Automatic email delivery.',
-    icon: DocumentCheckIcon,
+    icon: DocumentCheckIcon
   },
   {
     step: '04',
     title: 'Analyze and Optimize',
     description:
       'Visualize your metrics, automate processes, and scale your business with smart insights.',
-    icon: PresentationChartLineIcon,
-  },
+    icon: PresentationChartLineIcon
+  }
 ];
 
 export default function HomePage() {
@@ -266,7 +267,7 @@ export default function HomePage() {
           <div
             className="absolute inset-0 opacity-40"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a855f7' fill-opacity='0.03'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a855f7' fill-opacity='0.03'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
             }}
           />
           <div className="max-w-7xl mx-auto relative z-10">
@@ -312,8 +313,8 @@ export default function HomePage() {
                 <strong className="text-purple-800">SMBs</strong>, and{' '}
                 <strong className="text-purple-800">enterprises</strong>.
                 <br className="hidden sm:block" />
-                Automate your process, comply with international regulations, and
-                scale without limits.
+                Automate your process, comply with international regulations,
+                and scale without limits.
               </motion.p>
 
               <motion.div
@@ -574,8 +575,8 @@ export default function HomePage() {
                 Transparent Pricing for Every Stage
               </h2>
               <p className="text-2xl text-gray-600 max-w-3xl mx-auto">
-                Start for free and scale when you need to. No surprises, no long-term
-                commitments.
+                Start for free and scale when you need to. No surprises, no
+                long-term commitments.
               </p>
             </motion.div>
 
@@ -710,9 +711,7 @@ export default function HomePage() {
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
                   Email
                 </h3>
-                <p className="text-gray-600 mb-4">
-                  Response in under 2 hours
-                </p>
+                <p className="text-gray-600 mb-4">Response in under 2 hours</p>
                 <p className="text-purple-800 font-medium">
                   support@involuck.com
                 </p>

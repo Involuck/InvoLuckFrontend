@@ -1,11 +1,11 @@
 // jest.config.js
 
-// CORRECT: Use require() instead of import() for CommonJS compatibility
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const nextJest = require('next/jest');
 
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
-  dir: './',
+  dir: './'
 });
 
 // Add any custom Jest configuration you want to create here
@@ -14,7 +14,7 @@ const customJestConfig = {
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     // Handle module aliases (this is required for '@/' import paths)
-    '^@/(.*)$': '<rootDir>/src/$1',
+    '^@/(.*)$': '<rootDir>/src/$1'
   },
   collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
   testPathIgnorePatterns: ['/node_modules/', '/src/__tests__/e2e/'],
@@ -22,8 +22,8 @@ const customJestConfig = {
   // Define the test file patterns for unit and integration tests
   testMatch: [
     '<rootDir>/src/__tests__/unit/**/*.test.{ts,tsx}',
-    '<rootDir>/src/__tests__/integration/**/*.test.{ts,tsx}',
-  ],
+    '<rootDir>/src/__tests__/integration/**/*.test.{ts,tsx}'
+  ]
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

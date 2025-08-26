@@ -21,7 +21,7 @@ export default function NotFound() {
         <h1 className="mt-8 text-4xl font-extrabold tracking-tight text-white drop-shadow md:text-5xl">
           Hey, you found a blank space, baby…
         </h1>
-        
+
         <p className="mt-3 text-base text-brand-100/90 md:text-lg">
           The page you are looking for doesn’t exist or has been moved.
         </p>

@@ -23,14 +23,16 @@ describe('FeedbackDemoPage Integration', () => {
     const successButton = screen.getByRole('button', {
       name: /show success toast/i
     });
-    
+
     // Simulate a user clicking the button
     await userEvent.click(successButton);
 
     // Assert that the toast appears in the document.
     // We use `findByText` because the element appears asynchronously.
     const toastTitle = await screen.findByText('Success!');
-    const toastMessage = await screen.findByText('Your profile has been updated.');
+    const toastMessage = await screen.findByText(
+      'Your profile has been updated.'
+    );
 
     expect(toastTitle).toBeInTheDocument();
     expect(toastMessage).toBeInTheDocument();

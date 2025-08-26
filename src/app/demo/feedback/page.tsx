@@ -53,7 +53,7 @@ export default function FeedbackDemoPage() {
     { id: 1, label: 'React', variant: 'primary' as const },
     { id: 2, label: 'TypeScript', variant: 'success' as const },
     { id: 3, label: 'TailwindCSS', variant: 'warning' as const },
-    { id: 4, label: 'Next.js', variant: 'danger' as const },
+    { id: 4, label: 'Next.js', variant: 'danger' as const }
   ]);
 
   const handleRemovePill = (id: number) => {
@@ -104,9 +104,21 @@ export default function FeedbackDemoPage() {
               With Icons
             </h3>
             <div className="flex flex-wrap gap-3">
-              <StatusBadge label="Success" variant="success" iconStart={<CheckIcon />} />
-              <StatusBadge label="Warning" variant="warning" iconStart={<AlertIcon />} />
-              <StatusBadge label="Info" variant="primary" iconStart={<InfoIcon />} />
+              <StatusBadge
+                label="Success"
+                variant="success"
+                iconStart={<CheckIcon />}
+              />
+              <StatusBadge
+                label="Warning"
+                variant="warning"
+                iconStart={<AlertIcon />}
+              />
+              <StatusBadge
+                label="Info"
+                variant="primary"
+                iconStart={<InfoIcon />}
+              />
             </div>
           </div>
         </section>
@@ -138,8 +150,16 @@ export default function FeedbackDemoPage() {
             </h3>
             <div className="flex flex-wrap gap-3">
               <Badge label="Info" variant="primary" iconStart={<InfoIcon />} />
-              <Badge label="Success" variant="success" iconStart={<CheckIcon />} />
-              <Badge label="Warning" variant="warning" iconStart={<AlertIcon />} />
+              <Badge
+                label="Success"
+                variant="success"
+                iconStart={<CheckIcon />}
+              />
+              <Badge
+                label="Warning"
+                variant="warning"
+                iconStart={<AlertIcon />}
+              />
             </div>
           </div>
         </section>
@@ -172,7 +192,12 @@ export default function FeedbackDemoPage() {
             <div className="flex flex-wrap gap-3">
               <Pill label="Tag" variant="neutral" iconStart={<TagIcon />} />
               <Pill label="Success" variant="success" iconEnd={<CheckIcon />} />
-              <Pill label="Warning" variant="warning" iconStart={<AlertIcon />} iconEnd={<InfoIcon />} />
+              <Pill
+                label="Warning"
+                variant="warning"
+                iconStart={<AlertIcon />}
+                iconEnd={<InfoIcon />}
+              />
             </div>
           </div>
           <div className="mb-8">
@@ -190,27 +215,61 @@ export default function FeedbackDemoPage() {
               ))}
             </div>
             {removablePills.length === 0 && (
-              <p className="text-gray-500 italic">All pills have been removed</p>
+              <p className="text-gray-500 italic">
+                All pills have been removed
+              </p>
             )}
           </div>
         </section>
 
         {/* --- 3. AÑADE LA SECCIÓN PARA LA DEMO DE TOASTS --- */}
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6">Toast Notifications</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+            Toast Notifications
+          </h2>
           <div className="rounded-lg border bg-white p-6 shadow-sm">
-            <h3 className="text-lg font-medium text-gray-700 mb-4">Trigger Notifications</h3>
+            <h3 className="text-lg font-medium text-gray-700 mb-4">
+              Trigger Notifications
+            </h3>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <Button onClick={() => showToast('Success!', { message: 'Your profile has been updated.', status: 'success' })}>
+              <Button
+                onClick={() =>
+                  showToast('Success!', {
+                    message: 'Your profile has been updated.',
+                    status: 'success'
+                  })
+                }
+              >
                 Show Success Toast
               </Button>
-              <Button onClick={() => showToast('Error Occurred', { message: 'Could not save your changes.', status: 'error' })}>
+              <Button
+                onClick={() =>
+                  showToast('Error Occurred', {
+                    message: 'Could not save your changes.',
+                    status: 'error'
+                  })
+                }
+              >
                 Show Error Toast
               </Button>
-              <Button onClick={() => showToast('Warning', { message: 'Your session is about to expire.', status: 'warning' })}>
+              <Button
+                onClick={() =>
+                  showToast('Warning', {
+                    message: 'Your session is about to expire.',
+                    status: 'warning'
+                  })
+                }
+              >
                 Show Warning Toast
               </Button>
-              <Button onClick={() => showToast('Information', { message: 'A new update is available for download.', status: 'info' })}>
+              <Button
+                onClick={() =>
+                  showToast('Information', {
+                    message: 'A new update is available for download.',
+                    status: 'info'
+                  })
+                }
+              >
                 Show Info Toast
               </Button>
             </div>

@@ -43,7 +43,9 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
       {/* The Toaster component from react-hot-toast manages the toast queue */}
       <Toaster position="bottom-right" gutter={8}>
         {/* We can also style the default toast bar if needed, but we use custom */}
-        {(t) => <ToastBar toast={t}>{({ icon, message }) => <>{message}</>}</ToastBar>}
+        {(t) => (
+          <ToastBar toast={t}>{({ icon, message }) => <>{message}</>}</ToastBar>
+        )}
       </Toaster>
     </ToastContext.Provider>
   );

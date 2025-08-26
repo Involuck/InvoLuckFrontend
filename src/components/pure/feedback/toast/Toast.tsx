@@ -1,6 +1,11 @@
 'use client';
 
-import { CheckCircleIcon, ExclamationTriangleIcon, InformationCircleIcon, XCircleIcon } from '@heroicons/react/24/outline';
+import {
+  CheckCircleIcon,
+  ExclamationTriangleIcon,
+  InformationCircleIcon,
+  XCircleIcon
+} from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { toast, type Toast as ToastType } from 'react-hot-toast';
@@ -59,9 +64,13 @@ export const Toast = ({ t, status = 'info', title, message }: ToastProps) => {
 
       {/* Content */}
       <div className="flex-1">
-        <p className="text-sm font-medium text-slate-900 dark:text-slate-50">{title}</p>
+        <p className="text-sm font-medium text-slate-900 dark:text-slate-50">
+          {title}
+        </p>
         {message && (
-          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{message}</p>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+            {message}
+          </p>
         )}
       </div>
 
