@@ -6,19 +6,9 @@ export async function GET() {
     // Candidate files in priority order
     const candidates = [
       // Primary requested logo
-      path.join(
-        process.cwd(),
-        'src',
-        'logo',
-        '1_20250824_200606_0000.svg'
-      ),
+      path.join(process.cwd(), 'src', 'logo', '1_20250824_200606_0000.svg'),
       // Previous primary as fallback
-      path.join(
-        process.cwd(),
-        'src',
-        'logo',
-        '2_20250824_200606_0001.svg'
-      ),
+      path.join(process.cwd(), 'src', 'logo', '2_20250824_200606_0001.svg'),
       // Additional fallbacks in case new versions appear later
       path.join(
         process.cwd(),
@@ -27,7 +17,12 @@ export async function GET() {
         'Diseño sin título_20250824_191816_0000.svg'
       ),
       path.join(process.cwd(), 'src', 'logo', '2_20250824_154250_0001.svg'),
-      path.join(process.cwd(), 'src', 'logo', 'InvoLuck_20250824_004044_0000.svg')
+      path.join(
+        process.cwd(),
+        'src',
+        'logo',
+        'InvoLuck_20250824_004044_0000.svg'
+      )
     ];
 
     let svgRaw: string | null = null;
