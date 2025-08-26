@@ -58,7 +58,9 @@ jest.mock('@/components/dashboard/RevenueChart', () => {
 
 jest.mock('@/components/dashboard/InvoiceStatusChart', () => {
   return {
-    InvoiceStatusChart: () => <div data-testid="invoice-status-chart">Invoice Status Chart</div>
+    InvoiceStatusChart: () => (
+      <div data-testid="invoice-status-chart">Invoice Status Chart</div>
+    )
   };
 });
 
