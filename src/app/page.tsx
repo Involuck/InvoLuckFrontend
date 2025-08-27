@@ -299,7 +299,7 @@ export default function HomePage() {
               </motion.div>
 
               <motion.h1
-                className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1 }}
@@ -312,7 +312,7 @@ export default function HomePage() {
               </motion.h1>
 
               <motion.p
-                className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed px-4"
+                className="text-base sm:text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed px-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -327,13 +327,13 @@ export default function HomePage() {
               </motion.p>
 
               <motion.div
-                className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 px-4"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 px-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
                 <motion.button
-                  className="group flex items-center justify-center space-x-3 bg-purple-800 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-xl hover:bg-purple-900 transition-all duration-300 font-semibold text-lg sm:text-xl shadow-xl hover:shadow-2xl w-full sm:w-auto"
+                  className="group flex items-center justify-center space-x-2 bg-purple-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-purple-900 transition-all duration-300 font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl w-full sm:w-auto"
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -342,7 +342,7 @@ export default function HomePage() {
                 </motion.button>
 
                 <motion.button
-                  className="group flex items-center justify-center space-x-3 text-purple-800 px-8 sm:px-10 py-4 sm:py-5 rounded-xl hover:bg-purple-50 transition-all duration-300 font-semibold text-lg sm:text-xl border-2 border-purple-200 hover:border-purple-300 w-full sm:w-auto"
+                  className="group flex items-center justify-center space-x-2 text-purple-800 px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:bg-purple-50 transition-all duration-300 font-semibold text-base sm:text-lg border border-purple-200 hover:border-purple-300 w-full sm:w-auto"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -353,7 +353,7 @@ export default function HomePage() {
             </motion.div>
 
             <motion.div
-              className="mt-16 sm:mt-24 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8"
+              className="mt-10 sm:mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
@@ -376,10 +376,10 @@ export default function HomePage() {
                         />
                       </div>
                     </div>
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-1 sm:mb-2">
+                    <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-1">
                       {stat.value}
                     </div>
-                    <div className="text-xs sm:text-sm text-gray-600 font-medium px-1">
+                    <div className="text-xs text-gray-600 font-medium px-1">
                       {stat.label}
                     </div>
                   </motion.div>
@@ -398,10 +398,10 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-5xl font-bold mb-6 text-gray-900">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900">
                 Funcionalidades que Marcan la Diferencia
               </h2>
-              <p className="text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
                 Herramientas profesionales diseñadas para optimizar cada aspecto
                 de tu proceso de facturación y crecimiento empresarial.
               </p>
@@ -420,15 +420,15 @@ export default function HomePage() {
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     whileHover={{ y: -8, scale: 1.02 }}
                   >
-                    <div className="flex items-center justify-center w-16 h-16 bg-purple-800 rounded-xl mb-6 group-hover:scale-110 transition-transform">
-                      <IconComponent className="w-8 h-8 text-white" />
+                    <div className="flex items-center justify-center w-12 h-12 bg-purple-800 rounded-lg mb-4 group-hover:scale-110 transition-transform">
+                      <IconComponent className="w-6 h-6 text-white" />
                     </div>
 
-                    <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-purple-800 transition-colors">
+                    <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-purple-800 transition-colors">
                       {feature.title}
                     </h3>
 
-                    <p className="text-gray-600 leading-relaxed mb-6 text-lg">
+                    <p className="text-gray-600 leading-relaxed mb-4 text-sm sm:text-base">
                       {feature.description}
                     </p>
 
@@ -462,10 +462,10 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-5xl font-bold mb-6 text-gray-900">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900">
                 Comienza en 4 Pasos Simples
               </h2>
-              <p className="text-2xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
                 De cero a facturación profesional en menos de 10 minutos
               </p>
             </motion.div>
@@ -482,19 +482,19 @@ export default function HomePage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <div className="relative mb-8">
-                      <div className="w-20 h-20 bg-white rounded-full shadow-lg flex items-center justify-center mx-auto group-hover:scale-110 transition-transform border-4 border-purple-100">
-                        <IconComponent className="w-8 h-8 text-purple-800" />
+                    <div className="relative mb-6">
+                      <div className="w-16 h-16 bg-white rounded-full shadow-md flex items-center justify-center mx-auto group-hover:scale-110 transition-transform border-2 border-purple-100">
+                        <IconComponent className="w-6 h-6 text-purple-800" />
                       </div>
-                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-purple-800 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                      <div className="absolute -top-1 -right-1 w-6 h-6 bg-purple-800 text-white rounded-full flex items-center justify-center text-xs font-bold">
                         {step.step}
                       </div>
                     </div>
 
-                    <h3 className="text-xl font-bold mb-4 text-gray-900">
+                    <h3 className="text-lg font-bold mb-2 text-gray-900">
                       {step.title}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-gray-600 leading-relaxed text-sm">
                       {step.description}
                     </p>
                   </motion.div>
@@ -513,10 +513,10 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-5xl font-bold mb-6 text-gray-900">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900">
                 Lo que Dicen Nuestros Clientes
               </h2>
-              <p className="text-2xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
                 Miles de empresas ya confían en InvoLuck para su facturación
               </p>
             </motion.div>
@@ -532,28 +532,28 @@ export default function HomePage() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ y: -5 }}
                 >
-                  <div className="flex items-center mb-6">
+                  <div className="flex items-center mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <StarIcon
                         key={i}
-                        className="w-5 h-5 text-yellow-400 fill-current"
+                        className="w-4 h-4 text-yellow-400 fill-current"
                       />
                     ))}
                   </div>
 
-                  <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                  <p className="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed">
                     {testimonial.content}
                   </p>
 
                   <div className="flex items-center">
-                    <div className="w-12 h-12 bg-purple-800 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                    <div className="w-10 h-10 bg-purple-800 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
                       {testimonial.avatar}
                     </div>
                     <div>
-                      <div className="font-bold text-gray-900">
+                      <div className="font-bold text-gray-900 text-sm">
                         {testimonial.name}
                       </div>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-xs text-gray-600">
                         {testimonial.role}
                       </div>
                       <div className="text-xs text-purple-800 font-medium">
@@ -569,82 +569,82 @@ export default function HomePage() {
 
         <section
           id="precios"
-          className="py-24 px-4 bg-gradient-to-br from-gray-50 to-purple-50"
+          className="py-16 px-4 bg-gradient-to-br from-gray-50 to-purple-50"
         >
           <div className="max-w-7xl mx-auto">
             <motion.div
-              className="text-center mb-20"
+              className="text-center mb-12"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-5xl font-bold mb-6 text-gray-900">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-3 text-gray-900">
                 Precios Transparentes para Cada Etapa
               </h2>
-              <p className="text-2xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
                 Comienza gratis y escala cuando lo necesites. Sin sorpresas, sin
                 compromisos largos.
               </p>
             </motion.div>
 
-            <div className="grid lg:grid-cols-3 gap-10">
+            <div className="grid lg:grid-cols-3 gap-6">
               {plans.map((plan, index) => (
                 <motion.div
                   key={plan.name}
-                  className={`bg-white rounded-3xl p-10 relative border-2 transition-all duration-500 hover:shadow-2xl ${
+                  className={`bg-white rounded-xl p-6 relative border transition-all duration-500 hover:shadow-lg ${
                     plan.popular
-                      ? 'border-purple-800 shadow-xl transform scale-105'
+                      ? 'border-purple-800 shadow-md transform scale-102'
                       : 'border-gray-200 hover:border-purple-300'
                   }`}
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ y: plan.popular ? 0 : -8 }}
+                  whileHover={{ y: plan.popular ? 0 : -5 }}
                 >
                   {plan.popular && (
-                    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-purple-800 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg flex items-center space-x-2">
+                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                      <span className="bg-purple-800 text-white px-3 py-1 rounded-full text-sm font-bold shadow-md flex items-center space-x-1">
                         <StarIcon className="w-4 h-4" />
                         <span>Más Popular</span>
                       </span>
                     </div>
                   )}
 
-                  <div className="text-center mb-10">
-                    <h3 className="text-3xl font-bold text-gray-900 mb-3">
+                  <div className="text-center mb-4">
+                    <h3 className="text-xl font-bold text-gray-900 mb-1">
                       {plan.name}
                     </h3>
-                    <p className="text-gray-600 mb-6 text-lg">
+                    <p className="text-gray-600 mb-3 text-sm">
                       {plan.description}
                     </p>
-                    <div className="flex items-baseline justify-center mb-2">
-                      <span className="text-6xl font-bold text-gray-900">
+                    <div className="flex items-baseline justify-center mb-0.5">
+                      <span className="text-3xl font-bold text-gray-900">
                         {plan.price}
                       </span>
-                      <span className="text-gray-600 ml-2 text-xl">
+                      <span className="text-gray-600 ml-1 text-sm">
                         {plan.currency}
                       </span>
                     </div>
-                    <span className="text-gray-500 text-lg">
+                    <span className="text-gray-500 text-sm">
                       por {plan.period}
                     </span>
                   </div>
 
-                  <ul className="space-y-4 mb-8">
+                  <ul className="space-y-2 mb-5 text-sm">
                     {plan.features.map((feature, index) => (
-                      <li key={index} className="flex items-center space-x-3">
+                      <li key={index} className="flex items-center space-x-2">
                         <CheckCircleIcon className="w-5 h-5 text-purple-800 flex-shrink-0" />
-                        <span className="text-gray-600">{feature}</span>
+                        <span className="text-gray-600 text-sm">{feature}</span>
                       </li>
                     ))}
                   </ul>
 
                   <motion.button
-                    className={`w-full py-4 px-6 rounded-2xl font-semibold text-lg transition-all duration-300 ${
+                    className={`w-full py-2.5 px-4 rounded-lg font-medium text-sm transition-all duration-300 ${
                       plan.popular
-                        ? 'bg-purple-800 text-white hover:bg-purple-900 shadow-lg hover:shadow-xl'
+                        ? 'bg-purple-800 text-white hover:bg-purple-900 shadow-md hover:shadow-lg'
                         : 'bg-gray-100 text-gray-700 hover:bg-purple-50 hover:text-purple-800 border border-gray-200 hover:border-purple-300'
                     }`}
                     whileHover={{ scale: 1.02 }}
@@ -689,14 +689,14 @@ export default function HomePage() {
                 <span>¿Tienes preguntas?</span>
               </motion.div>
 
-              <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-gray-900 leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 leading-tight">
                 Estamos aquí para
                 <span className="bg-gradient-to-r from-purple-800 to-purple-950 bg-clip-text text-transparent">
                   {' '}
                   ayudarte
                 </span>
               </h2>
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
                 Nuestro equipo de expertos está listo para resolver todas tus
                 dudas y acompañarte en tu proceso de digitalización.
               </p>
@@ -713,16 +713,16 @@ export default function HomePage() {
                 className="text-center p-8 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group"
                 whileHover={{ y: -5 }}
               >
-                <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition-colors">
-                  <EnvelopeIcon className="w-8 h-8 text-purple-800" />
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-purple-200 transition-colors">
+                  <EnvelopeIcon className="w-6 h-6 text-purple-800" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">
                   Email
                 </h3>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-2 text-sm">
                   Respuesta en menos de 2 horas
                 </p>
-                <p className="text-purple-800 font-medium">
+                <p className="text-purple-800 font-medium text-sm">
                   soporte@facturacion.com
                 </p>
               </motion.div>
@@ -731,14 +731,14 @@ export default function HomePage() {
                 className="text-center p-8 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group"
                 whileHover={{ y: -5 }}
               >
-                <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition-colors">
-                  <ChatBubbleBottomCenterTextIcon className="w-8 h-8 text-purple-800" />
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-purple-200 transition-colors">
+                  <ChatBubbleBottomCenterTextIcon className="w-6 h-6 text-purple-800" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">
                   Chat en vivo
                 </h3>
-                <p className="text-gray-600 mb-4">Disponible 24/7</p>
-                <p className="text-purple-800 font-medium">
+                <p className="text-gray-600 mb-2 text-sm">Disponible 24/7</p>
+                <p className="text-purple-800 font-medium text-sm">
                   Iniciá conversación
                 </p>
               </motion.div>
@@ -747,14 +747,18 @@ export default function HomePage() {
                 className="text-center p-8 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group"
                 whileHover={{ y: -5 }}
               >
-                <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition-colors">
-                  <PhoneIcon className="w-8 h-8 text-purple-800" />
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-purple-200 transition-colors">
+                  <PhoneIcon className="w-6 h-6 text-purple-800" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">
                   Teléfono
                 </h3>
-                <p className="text-gray-600 mb-4">Lunes a viernes 8:00-18:00</p>
-                <p className="text-purple-800 font-medium">+57 (1) 234-5678</p>
+                <p className="text-gray-600 mb-2 text-sm">
+                  Lunes a viernes 8:00-18:00
+                </p>
+                <p className="text-purple-800 font-medium text-sm">
+                  +57 (1) 234-5678
+                </p>
               </motion.div>
             </motion.div>
 
@@ -766,21 +770,21 @@ export default function HomePage() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <motion.button
-                className="group flex items-center space-x-3 bg-purple-800 text-white px-8 py-4 rounded-xl hover:bg-purple-900 transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl w-full sm:w-auto"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
+                className="group flex items-center space-x-2 bg-purple-800 text-white px-6 py-3 rounded-lg hover:bg-purple-900 transition-all duration-300 font-semibold text-base shadow-md hover:shadow-lg w-full sm:w-auto"
+                whileHover={{ scale: 1.03, y: -1 }}
+                whileTap={{ scale: 0.97 }}
               >
-                <EnvelopeIcon className="w-5 h-5" />
+                <EnvelopeIcon className="w-4 h-4" />
                 <span>Enviar Mensaje</span>
-                <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </motion.button>
 
               <motion.button
-                className="group flex items-center space-x-3 text-purple-800 px-8 py-4 rounded-xl hover:bg-purple-50 transition-all duration-300 font-semibold text-lg border-2 border-purple-200 hover:border-purple-300 w-full sm:w-auto"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="group flex items-center space-x-2 text-purple-800 px-6 py-3 rounded-lg hover:bg-purple-50 transition-all duration-300 font-semibold text-base border border-purple-200 hover:border-purple-300 w-full sm:w-auto"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
-                <CalendarDaysIcon className="w-5 h-5" />
+                <CalendarDaysIcon className="w-4 h-4" />
                 <span>Agendar Demo</span>
               </motion.button>
             </motion.div>
@@ -799,13 +803,13 @@ export default function HomePage() {
                 <div className="sm:col-span-2 lg:col-span-1">
                   <div className="flex items-center space-x-3 mb-4 sm:mb-6">
                     <Image
-                      width={100}
-                      height={100}
+                      width={80}
+                      height={80}
                       src="/api/logo"
                       alt="InvoLuck logo"
-                      className="h-16 sm:h-20 lg:h-24 w-auto object-contain"
+                      className="h-12 sm:h-16 lg:h-20 w-auto object-contain"
                     />
-                    <span className="text-xl sm:text-2xl font-bold text-white">
+                    <span className="text-lg sm:text-xl font-bold text-white">
                       InvoLuck
                     </span>
                   </div>
@@ -854,14 +858,14 @@ export default function HomePage() {
                 </div>
 
                 <div>
-                  <h3 className="text-white font-semibold text-base sm:text-lg mb-4 sm:mb-6">
+                  <h3 className="text-white font-semibold text-sm sm:text-base mb-3 sm:mb-4">
                     Producto
                   </h3>
-                  <ul className="space-y-2 sm:space-y-3">
+                  <ul className="space-y-1 sm:space-y-2">
                     <li>
                       <a
                         href="#funcionalidades"
-                        className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base"
+                        className="text-gray-300 hover:text-white transition-colors duration-200 text-xs sm:text-sm"
                       >
                         Funcionalidades
                       </a>
@@ -894,10 +898,10 @@ export default function HomePage() {
                 </div>
 
                 <div>
-                  <h3 className="text-white font-semibold text-base sm:text-lg mb-4 sm:mb-6">
+                  <h3 className="text-white font-semibold text-sm sm:text-base mb-3 sm:mb-4">
                     Soporte
                   </h3>
-                  <ul className="space-y-2 sm:space-y-3">
+                  <ul className="space-y-1 sm:space-y-2">
                     <li>
                       <a
                         href="#"
@@ -942,20 +946,20 @@ export default function HomePage() {
                 </div>
 
                 <div className="sm:col-span-2 lg:col-span-1">
-                  <h3 className="text-white font-semibold text-base sm:text-lg mb-4 sm:mb-6">
+                  <h3 className="text-white font-semibold text-sm sm:text-base mb-3 sm:mb-4">
                     Newsletter
                   </h3>
-                  <p className="text-gray-300 text-sm mb-3 sm:mb-4">
+                  <p className="text-gray-300 text-xs sm:text-sm mb-2 sm:mb-3">
                     Recibe las últimas novedades y consejos para hacer crecer tu
                     negocio.
                   </p>
-                  <div className="flex flex-col space-y-2 sm:space-y-3">
+                  <div className="flex flex-col space-y-2">
                     <input
                       type="email"
                       placeholder="tu@email.com"
-                      className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-800 focus:border-transparent text-sm sm:text-base"
+                      className="w-full px-2 py-1.5 sm:px-3 sm:py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-purple-800 focus:border-transparent text-xs sm:text-sm"
                     />
-                    <button className="w-full px-4 py-2 sm:px-6 sm:py-3 bg-purple-800 text-white rounded-lg hover:bg-purple-900 transition-all duration-300 font-medium text-sm sm:text-base">
+                    <button className="w-full px-3 py-1.5 sm:px-4 sm:py-2 bg-purple-800 text-white rounded-md hover:bg-purple-900 transition-all duration-300 font-medium text-xs sm:text-sm">
                       Suscribir
                     </button>
                   </div>
@@ -969,38 +973,38 @@ export default function HomePage() {
             <div className="border-t border-gray-700"></div>
 
             <div className="max-w-7xl mx-auto px-4 py-8">
-              <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-                <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
-                  <p className="text-sm text-gray-400">
+              <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
+                <div className="flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-4">
+                  <p className="text-xs text-gray-400">
                     &copy; 2025 InvoLuck. Todos los derechos reservados.
                   </p>
-                  <div className="flex items-center space-x-4 text-xs text-gray-500">
+                  <div className="flex items-center space-x-3 text-xs text-gray-500">
                     <a
                       href="#"
-                      className="hover:text-gray-300 transition-colors"
+                      className="hover:text-gray-300 transition-colors text-xs"
                     >
                       Términos
                     </a>
                     <span>•</span>
                     <a
                       href="#"
-                      className="hover:text-gray-300 transition-colors"
+                      className="hover:text-gray-300 transition-colors text-xs"
                     >
                       Privacidad
                     </a>
                     <span>•</span>
                     <a
                       href="#"
-                      className="hover:text-gray-300 transition-colors"
+                      className="hover:text-gray-300 transition-colors text-xs"
                     >
                       Cookies
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-2 text-sm text-gray-400">
+                <div className="flex items-center space-x-1 text-xs text-gray-400">
                   <span>Hecho con</span>
-                  <HeartIcon className="w-4 h-4 text-red-400" />
+                  <HeartIcon className="w-3 h-3 text-red-400" />
                   <span>en Colombia</span>
                 </div>
               </div>
