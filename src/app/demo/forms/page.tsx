@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import React from 'react';
 import { TextInput, Select, Switch, TagInput } from '@/components/pure/form';
 
 export default function FormsDemoPage() {

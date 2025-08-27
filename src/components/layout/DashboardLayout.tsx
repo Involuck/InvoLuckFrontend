@@ -2,7 +2,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
 import { Sidebar } from './Sidebar';
 
 const BellIcon = ({ className }: { className?: string }) => (
@@ -196,7 +195,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
       />
 
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="sticky top-0 z-50 flex items-center justify-between h-28 md:h-32 border-b border-gray-200 bg-white px-4 lg:px-8">
+        <header className="sticky top-0 z-50 flex items-center justify-between h-16 md:h-18 border-b border-gray-200 bg-white px-4 lg:px-8">
           <div className="flex items-center space-x-4">
             <motion.button
               initial={{ opacity: 0, x: -10 }}
@@ -233,18 +232,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
               transition={{ delay: 0.1, duration: 0.3 }}
               className={`flex items-center space-x-3`}
             >
-              <div className="relative h-12 md:h-16 lg:h-20 w-auto mr-2">
-                <Image
-                  src="/api/logo"
-                  alt="InvoLuck logo"
-                  width={80}
-                  height={80}
-                  className="h-full w-auto object-contain"
-                  priority
-                />
-              </div>
               <div className="flex flex-col">
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 truncate max-w-xs sm:max-w-none">
+                <h1 className="text-base md:text-xl lg:text-2xl font-extrabold text-gray-900 truncate max-w-xs sm:max-w-none">
                   {title}
                 </h1>
                 <p className="text-sm md:text-base text-gray-600 hidden sm:block">

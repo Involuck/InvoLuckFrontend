@@ -44,7 +44,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
       <Toaster position="bottom-right" gutter={8}>
         {/* We can also style the default toast bar if needed, but we use custom */}
         {(t) => (
-          <ToastBar toast={t}>{({ icon, message }) => <>{message}</>}</ToastBar>
+          <ToastBar toast={t}>{({ message }) => <>{message}</>}</ToastBar>
         )}
       </Toaster>
     </ToastContext.Provider>

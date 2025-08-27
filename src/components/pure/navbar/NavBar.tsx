@@ -100,17 +100,17 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-32 md:h-36 items-center">
+        <div className="flex justify-between h-16 md:h-18 items-center">
           <motion.div
             className="flex items-center space-x-3 z-50 cursor-pointer"
             onClick={(e) => scrollToSection('#inicio', e)}
           >
-            <div className="relative h-24 md:h-28 lg:h-32 w-auto">
+            <div className="relative h-18 w-auto">
               <Image
                 src="/api/logo"
                 alt="InvoLuck logo"
-                width={128}
-                height={128}
+                width={50}
+                height={50}
                 className="h-full w-auto object-contain"
                 priority
               />
@@ -118,7 +118,7 @@ export default function Navbar() {
             <motion.span
               whileHover={{ scale: 1.01 }}
               transition={{ type: 'spring', stiffness: 500, damping: 25 }}
-              className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-800 to-purple-950 bg-clip-text text-transparent"
+              className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-800 to-purple-950 bg-clip-text text-transparent"
             >
               InvoLuck
             </motion.span>

@@ -1,6 +1,7 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import {
   DocumentTextIcon,
   UsersIcon,
@@ -26,12 +27,238 @@ import {
 } from '@heroicons/react/24/outline';
 import { HeartIcon } from '@heroicons/react/24/solid';
 import Navbar from '@/components/pure/navbar/NavBar';
+import Image from 'next/image';
 
-export const metadata: Metadata = {
-  title: 'InvoLuck: Smart Invoicing Platform',
-  description:
-    'The most complete invoicing platform for freelancers, SMBs, and enterprises.'
-};
+const features = [
+  {
+    icon: DocumentTextIcon,
+    title: 'Facturación Inteligente',
+    description:
+      'Crea facturas profesionales en menos de 2 minutos con cálculo automático de totales, IVA y exportación a PDF de alta calidad.',
+    benefits: [
+      'Plantillas personalizables',
+      'Cálculos automáticos',
+      'Exportación instantánea'
+    ]
+  },
+  {
+    icon: UsersIcon,
+    title: 'Gestión de Clientes',
+    description:
+      'CRM integrado para gestionar toda la información de tus clientes, historial de pagos y comunicación centralizada.',
+    benefits: [
+      'Base de datos centralizada',
+      'Historial completo',
+      'Comunicación automática'
+    ]
+  },
+  {
+    icon: ChartBarIcon,
+    title: 'Dashboard Intuitivo',
+    description:
+      'Análisis financiero en tiempo real con métricas clave, gráficos interactivos y reportes personalizados.',
+    benefits: [
+      'Métricas en tiempo real',
+      'Reportes automáticos',
+      'Análisis predictivo'
+    ]
+  },
+  {
+    icon: ShieldCheckIcon,
+    title: 'Seguridad Empresarial',
+    description:
+      'Protección de datos nivel bancario con encriptación SSL, respaldos automáticos y cumplimiento GDPR.',
+    benefits: [
+      'Encriptación SSL 256-bit',
+      'Backups automáticos',
+      'Cumplimiento normativo'
+    ]
+  },
+  {
+    icon: GlobeAltIcon,
+    title: 'Multi-localización',
+    description:
+      'Soporte para múltiples países, monedas e idiomas. Cumplimiento fiscal internacional automático.',
+    benefits: ['50+ monedas', 'Múltiples idiomas', 'Cumplimiento fiscal']
+  },
+  {
+    icon: BoltIcon,
+    title: 'Automatización Avanzada',
+    description:
+      'Flujos de trabajo inteligentes, recordatorios automáticos y integración con tu stack tecnológico existente.',
+    benefits: [
+      'Workflows personalizados',
+      'Notificaciones inteligentes',
+      'Integraciones API'
+    ]
+  }
+];
+
+const stats = [
+  {
+    label: 'Facturas Procesadas',
+    value: '2.5M+',
+    icon: DocumentTextIcon,
+    color: 'text-blue-600'
+  },
+  {
+    label: 'Empresas Activas',
+    value: '15,000+',
+    icon: BuildingOfficeIcon,
+    color: 'text-green-600'
+  },
+  {
+    label: 'Países Soportados',
+    value: '120+',
+    icon: GlobeAltIcon,
+    color: 'text-purple-800'
+  },
+  {
+    label: 'Tiempo Ahorrado',
+    value: '85%',
+    icon: ClockIcon,
+    color: 'text-orange-600'
+  },
+  {
+    label: 'Precisión Fiscal',
+    value: '99.9%',
+    icon: CheckCircleIcon,
+    color: 'text-emerald-600'
+  },
+  {
+    label: 'Uptime SLA',
+    value: '99.99%',
+    icon: CloudIcon,
+    color: 'text-indigo-600'
+  }
+];
+
+const testimonials = [
+  {
+    name: 'María García',
+    role: 'CEO, Design Studio',
+    company: 'Freelancer',
+    content:
+      'InvoLuck transformó completamente mi proceso de facturación. Lo que antes me tomaba horas, ahora lo hago en minutos.',
+    avatar: 'MG',
+    rating: 5
+  },
+  {
+    name: 'Carlos Mendoza',
+    role: 'CFO, TechCorp',
+    company: 'Mediana Empresa',
+    content:
+      'La automatización y los reportes nos han ayudado a optimizar nuestro flujo de caja y reducir errores en un 90%.',
+    avatar: 'CM',
+    rating: 5
+  },
+  {
+    name: 'Ana López',
+    role: 'Controller, GlobalTrade',
+    company: 'Gran Empresa',
+    content:
+      'El soporte multi-moneda y cumplimiento internacional nos permitió expandirnos a 12 países sin complicaciones.',
+    avatar: 'AL',
+    rating: 5
+  }
+];
+
+const plans = [
+  {
+    name: 'Starter',
+    price: '$29',
+    currency: 'USD',
+    period: 'mes',
+    description: 'Perfecto para freelancers y pequeños negocios',
+    popular: false,
+    features: [
+      'Hasta 100 facturas/mes',
+      'Gestión básica de clientes',
+      'Exportación PDF profesional',
+      'Dashboard básico',
+      'Soporte por email',
+      '1 usuario incluido',
+      'Plantillas básicas',
+      'Reportes estándar'
+    ],
+    cta: 'Comenzar gratis'
+  },
+  {
+    name: 'Professional',
+    price: '$99',
+    currency: 'USD',
+    period: 'mes',
+    description: 'Ideal para medianas empresas en crecimiento',
+    popular: true,
+    features: [
+      'Hasta 1,000 facturas/mes',
+      'Multiusuario (hasta 5 usuarios)',
+      'Gestión avanzada de clientes',
+      'Reportes detallados y analytics',
+      'Soporte prioritario',
+      'Integraciones básicas',
+      'Automatización de workflows',
+      'Custom branding básico',
+      'API de terceros',
+      'Facturación recurrente'
+    ],
+    cta: 'Prueba gratuita 14 días'
+  },
+  {
+    name: 'Business',
+    price: '$299',
+    currency: 'USD',
+    period: 'mes',
+    description: 'Para empresas con necesidades avanzadas',
+    popular: false,
+    features: [
+      'Facturas ilimitadas',
+      'Usuarios ilimitados',
+      'Multi-localización completa',
+      'Integraciones avanzadas',
+      'Custom branding completo',
+      'Soporte 24/7 dedicado',
+      'API completa',
+      'Manager de cuenta',
+      'Cumplimiento fiscal automático',
+      'White-label disponible',
+      'SLA garantizado',
+      'Consultoría incluida'
+    ],
+    cta: 'Contactar ventas'
+  }
+];
+
+const processSteps = [
+  {
+    step: '01',
+    title: 'Registro Rápido',
+    description:
+      'Crea tu cuenta en menos de 2 minutos. Sin tarjeta de crédito requerida.',
+    icon: UserIcon
+  },
+  {
+    step: '02',
+    title: 'Configura tu Empresa',
+    description:
+      'Importa tus datos o completa tu perfil empresarial con nuestro asistente inteligente.',
+    icon: CogIcon
+  },
+  {
+    step: '03',
+    title: 'Crea tu Primera Factura',
+    description:
+      'Usa nuestras plantillas profesionales o diseña la tuya. Envío automático por email.',
+    icon: DocumentCheckIcon
+  },
+  {
+    step: '04',
+    title: 'Analiza y Optimiza',
+    description:
+      'Visualiza tus métricas, automatiza procesos y escala tu negocio con insights inteligentes.',
+    icon: PresentationChartLineIcon
+  }
+];
 
 export default function HomePage() {
   return (
@@ -571,16 +798,13 @@ export default function HomePage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12">
                 <div className="sm:col-span-2 lg:col-span-1">
                   <div className="flex items-center space-x-3 mb-4 sm:mb-6">
-                    <div className="relative h-16 sm:h-20 lg:h-24 w-auto">
-                      <Image
-                        src="/api/logo"
-                        alt="InvoLuck logo"
-                        width={96}
-                        height={96}
-                        className="h-full w-auto object-contain"
-                        priority
-                      />
-                    </div>
+                    <Image
+                      width={100}
+                      height={100}
+                      src="/api/logo"
+                      alt="InvoLuck logo"
+                      className="h-16 sm:h-20 lg:h-24 w-auto object-contain"
+                    />
                     <span className="text-xl sm:text-2xl font-bold text-white">
                       InvoLuck
                     </span>
