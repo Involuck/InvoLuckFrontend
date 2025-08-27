@@ -99,18 +99,18 @@ export default function Navbar() {
           : 'bg-white/90 backdrop-blur-md'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 md:h-18 items-center">
+      <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6">
+        <div className="flex justify-between h-14 md:h-16 items-center">
           <motion.div
-            className="flex items-center space-x-3 z-50 cursor-pointer"
+            className="flex items-center space-x-2 z-50 cursor-pointer"
             onClick={(e) => scrollToSection('#inicio', e)}
           >
-            <div className="relative h-18 w-auto">
+            <div className="relative h-10 w-auto">
               <Image
                 src="/api/logo"
                 alt="InvoLuck logo"
-                width={50}
-                height={50}
+                width={40}
+                height={40}
                 className="h-full w-auto object-contain"
                 priority
               />
@@ -118,19 +118,19 @@ export default function Navbar() {
             <motion.span
               whileHover={{ scale: 1.01 }}
               transition={{ type: 'spring', stiffness: 500, damping: 25 }}
-              className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-800 to-purple-950 bg-clip-text text-transparent"
+              className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-800 to-purple-950 bg-clip-text text-transparent"
             >
               InvoLuck
             </motion.span>
           </motion.div>
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-5">
             {links.map((link, index) => (
               <motion.a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => scrollToSection(link.href, e)}
-                className="relative group text-gray-700 hover:text-purple-800 transition-colors duration-200 font-medium cursor-pointer"
+                className="relative group text-gray-700 hover:text-purple-800 transition-colors duration-200 font-medium cursor-pointer text-base"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05, duration: 0.3 }}
@@ -143,7 +143,7 @@ export default function Navbar() {
                   transition={{ duration: 0.2, ease: 'easeOut' }}
                 />
                 <motion.div
-                  className="absolute inset-0 bg-purple-50 rounded-md opacity-0 -m-2"
+                  className="absolute inset-0 bg-purple-50 rounded-md opacity-0 -m-1.5"
                   whileHover={{ opacity: 1 }}
                   transition={{ duration: 0.15 }}
                 />
@@ -151,26 +151,26 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="hidden md:flex items-center space-x-3">
+          <div className="hidden md:flex items-center space-x-2">
             <Link href="/auth/login">
               <motion.button
-                className="flex items-center space-x-2 text-gray-700 hover:text-purple-800 transition-colors duration-200 font-medium px-4 py-2 rounded-md hover:bg-purple-50 cursor-pointer"
+                className="flex items-center space-x-1.5 text-gray-700 hover:text-purple-800 transition-colors duration-200 font-medium px-3 py-1.5 rounded-md hover:bg-purple-50 cursor-pointer text-sm"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 25 }}
               >
-                <UserIcon className="w-5 h-5" />
+                <UserIcon className="w-4 h-4" />
                 <span>Iniciar sesión</span>
               </motion.button>
             </Link>
 
             <motion.button
-              className="flex items-center space-x-2 bg-purple-800  text-white px-5 py-2 rounded-md hover:from-purple-900 hover:to-purple-950 transition-all duration-200 font-medium shadow-md hover:shadow-lg cursor-pointer"
+              className="flex items-center space-x-1.5 bg-purple-800 text-white px-3 py-1.5 rounded-md hover:from-purple-900 hover:to-purple-950 transition-all duration-200 font-medium shadow-sm hover:shadow-md cursor-pointer text-sm"
               whileHover={{ scale: 1.02, y: -1 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
             >
-              <CalendarDaysIcon className="w-5 h-5" />
+              <CalendarDaysIcon className="w-4 h-4" />
               <span>Agenda una demo</span>
             </motion.button>
           </div>
