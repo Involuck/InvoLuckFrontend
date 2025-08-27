@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import React from 'react';
 
 export type TextInputSize = 'sm' | 'md' | 'lg';
 export type TextInputState = 'default' | 'error' | 'success';

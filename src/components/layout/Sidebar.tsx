@@ -185,14 +185,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
         }}
         className="fixed left-0 top-0 h-screen bg-white border-r border-gray-200 shadow-lg z-30 overflow-hidden"
       >
-        <div className="h-28 flex items-center px-5 border-b border-gray-200 flex-shrink-0">
-          <div className={`flex items-center justify-start w-full`}>
-            <div className="relative h-24 lg:h-28 w-auto flex-shrink-0">
+        <div className="h-16 md:h-18 flex items-center border-b border-gray-200 flex-shrink-0">
+          <div className="flex justify-start w-full">
+            <div className="relative h-16 md:h-18 w-full flex-shrink-0">
               <Image
                 src="/api/logo"
                 alt="InvoLuck logo"
-                width={112}
-                height={112}
+                width={50}
+                height={50}
                 className="h-full w-auto object-contain"
                 priority
               />

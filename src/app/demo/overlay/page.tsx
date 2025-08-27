@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import React from 'react';
 import { Modal } from '@/components/pure/overlay/Modal';
 
 export default function OverlayDemoPage() {
