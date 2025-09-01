@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Image from 'next/image'; // ✅ Next.js optimized image
-import FileUploader from "@/components/forms/FileUploader/FileUploader";
+import FileUploader from '@/components/forms/FileUploader/FileUploader';
 
 type Props = {
   userId: string;
@@ -49,10 +49,12 @@ export default function EditUserForm({ userId }: Props) {
       <h1 className="text-2xl font-bold mb-6">Edit User {userId}</h1>
       <div className="bg-white shadow rounded-lg p-6">
         <form onSubmit={handleSubmit} className="space-y-4">
-          
           {/* Name */}
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700"
+            >
               Name
             </label>
             <input
@@ -65,7 +67,10 @@ export default function EditUserForm({ userId }: Props) {
 
           {/* Email */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
               Email
             </label>
             <input
@@ -78,7 +83,10 @@ export default function EditUserForm({ userId }: Props) {
 
           {/* Role */}
           <div>
-            <label htmlFor="role" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="role"
+              className="block text-sm font-medium text-gray-700"
+            >
               Role
             </label>
             <select

@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import React, { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 
 type Props = {
   onFileSelect?: (file: File | null) => void; // callback to parent component
@@ -11,7 +11,7 @@ type Props = {
 
 export default function FileUploader({
   onFileSelect,
-  accept = "image/*",
+  accept = 'image/*',
   showProgress = true
 }: Props) {
   const [file, setFile] = useState<File | null>(null);
@@ -24,7 +24,7 @@ export default function FileUploader({
     const selected = e.target.files?.[0] ?? null;
     setFile(selected);
 
-    if (selected && selected.type.startsWith("image/")) {
+    if (selected && selected.type.startsWith('image/')) {
       const url = URL.createObjectURL(selected);
       setPreview(url);
     } else {
@@ -79,9 +79,7 @@ export default function FileUploader({
 
         <label htmlFor="file-upload" className="cursor-pointer block">
           {!file ? (
-            <div className="py-6 text-gray-500">
-              Click to select a file
-            </div>
+            <div className="py-6 text-gray-500">Click to select a file</div>
           ) : (
             <div className="flex flex-col items-center gap-2">
               {preview ? (
