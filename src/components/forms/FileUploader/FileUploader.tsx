@@ -4,22 +4,22 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 type Props = {
-  onFileSelect?: (file: File | null) => void; // callback para el padre
-  accept?: string; // tipos MIME aceptados
-  showProgress?: boolean; // mostrar progreso simulado
+  onFileSelect?: (file: File | null) => void; // callback to parent component
+  accept?: string; // accepted MIME types
+  showProgress?: boolean; // whether to show simulated upload progress
 };
 
 export default function FileUploader({
   onFileSelect,
   accept = "image/*",
-  showProgress = true,
+  showProgress = true
 }: Props) {
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [progress, setProgress] = useState<number>(0);
   const intervalRef = useRef<number | null>(null);
 
-  // Manejo de selección de archivo
+  // Handle file selection
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0] ?? null;
     setFile(selected);
@@ -35,7 +35,7 @@ export default function FileUploader({
     onFileSelect?.(selected);
   };
 
-  // Simulación de subida con progreso
+  // Simulated upload with progress bar
   const startUpload = () => {
     if (!file || !showProgress) return;
     setProgress(0);
@@ -54,7 +54,7 @@ export default function FileUploader({
     }, 300);
   };
 
-  // Limpieza al desmontar o cambiar file
+  // Cleanup when unmounting or when file changes
   useEffect(() => {
     return () => {
       if (preview) URL.revokeObjectURL(preview);
@@ -122,7 +122,7 @@ export default function FileUploader({
           )}
         </label>
 
-        {/* Barra de progreso */}
+        {/* Progress bar */}
         {progress > 0 && (
           <div className="mt-3 w-full bg-gray-200 h-2 rounded-full overflow-hidden">
             <div

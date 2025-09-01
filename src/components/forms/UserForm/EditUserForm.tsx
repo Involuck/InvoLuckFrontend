@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import Image from 'next/image'; // ✅ Next.js optimized image
 import FileUploader from "@/components/forms/FileUploader/FileUploader";
 
 type Props = {
@@ -12,18 +13,21 @@ export default function EditUserForm({ userId }: Props) {
   const router = useRouter();
   const [preview, setPreview] = useState<string | null>(null);
 
+  // Handle form submit
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // TODO: Add API call here to update user data
 
-    router.push('/users'); // Redirect back to users page after saving
+    router.push('/users'); // Redirect to users page after saving
   };
 
+  // Handle cancel button -> go back to previous page
   const handleCancel = () => {
     router.back();
   };
 
+  // Handle file selection and preview
   const handleFileSelect = (file: File | null) => {
     if (file) {
       const objectUrl = URL.createObjectURL(file);
@@ -33,7 +37,7 @@ export default function EditUserForm({ userId }: Props) {
     }
   };
 
-  // Cleanup del preview cuando cambia o se desmonta el componente
+  // Cleanup preview when component unmounts or file changes
   useEffect(() => {
     return () => {
       if (preview) URL.revokeObjectURL(preview);
@@ -98,10 +102,12 @@ export default function EditUserForm({ userId }: Props) {
             {preview && (
               <div className="mt-4">
                 <p className="text-sm text-gray-500 mb-2">Preview:</p>
-                <img
+                <Image
                   src={preview}
                   alt="Profile Preview"
-                  className="h-32 w-32 object-cover rounded-full border"
+                  width={128} // equivalent to h-32
+                  height={128} // equivalent to w-32
+                  className="object-cover rounded-full border"
                 />
               </div>
             )}
