@@ -21,7 +21,8 @@ export default function InternalServerErrorPage() {
 
         {/* --- CORRECTION 1 IS HERE --- */}
         <p className="mt-3 text-base text-brand-100/90 md:text-lg">
-          We&apos;re experiencing some technical difficulties. Please try again later.
+          We&apos;re experiencing some technical difficulties. Please try again
+          later.
         </p>
 
         <div className="mt-8 flex items-center justify-center gap-3">
