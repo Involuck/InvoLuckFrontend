@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 type Props = {
   label?: string;
@@ -11,8 +11,8 @@ type Props = {
 };
 
 export default function CustomDatePicker({
-  label = "Select a date",
-  dateFormat = "dd/MM/yyyy",
+  label = 'Select a date',
+  dateFormat = 'dd/MM/yyyy',
   onChange
 }: Props) {
   const [startDate, setStartDate] = useState<Date | null>(null);
