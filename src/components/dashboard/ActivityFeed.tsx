@@ -99,16 +99,16 @@ export const ActivityFeed: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4 }}
-      className="bg-white rounded-2xl border-2 border-gray-100 p-6 shadow-lg"
+      className="bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-100 dark:border-gray-700 p-6 shadow-lg"
     >
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold text-gray-900">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
           Actividad Reciente
         </h3>
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="text-sm text-purple-600 hover:text-purple-700 font-medium"
+          className="text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium"
         >
           Ver todo
         </motion.button>
@@ -129,27 +129,27 @@ export const ActivityFeed: React.FC = () => {
                 whileHover={{ scale: 1.2 }}
                 className={`
                   flex h-10 w-10 items-center justify-center rounded-full
-                  ${activity.status === 'success' ? 'bg-green-100 text-green-600' : ''}
-                  ${activity.status === 'warning' ? 'bg-yellow-100 text-yellow-600' : ''}
-                  ${activity.status === 'danger' ? 'bg-red-100 text-red-600' : ''}
-                  ${activity.status === 'neutral' ? 'bg-gray-100 text-gray-600' : ''}
+                  ${activity.status === 'success' ? 'bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400' : ''}
+                  ${activity.status === 'warning' ? 'bg-yellow-100 dark:bg-yellow-900/40 text-yellow-600 dark:text-yellow-400' : ''}
+                  ${activity.status === 'danger' ? 'bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400' : ''}
+                  ${activity.status === 'neutral' ? 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400' : ''}
                 `}
               >
                 {getActivityIcon(activity.type)}
               </motion.div>
               {index < activities.length - 1 && (
-                <div className="absolute top-10 left-1/2 h-6 w-0.5 bg-gray-200 -translate-x-1/2" />
+                <div className="absolute top-10 left-1/2 h-6 w-0.5 bg-gray-200 dark:bg-gray-600 -translate-x-1/2" />
               )}
             </div>
 
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between mb-1">
-                <h4 className="text-sm font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">
+                <h4 className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                   {activity.title}
                 </h4>
                 <div className="flex items-center space-x-2">
                   {activity.amount && (
-                    <span className="text-sm font-medium text-gray-900">
+                    <span className="text-sm font-medium text-gray-900 dark:text-white">
                       {activity.amount}
                     </span>
                   )}
@@ -168,10 +168,10 @@ export const ActivityFeed: React.FC = () => {
                   />
                 </div>
               </div>
-              <p className="text-sm text-gray-600 mb-1">
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
                 {activity.description}
               </p>
-              <p className="text-xs text-gray-500">{activity.timestamp}</p>
+              <p className="text-xs text-gray-500 dark:text-gray-500">{activity.timestamp}</p>
             </div>
           </motion.div>
         ))}
@@ -181,12 +181,12 @@ export const ActivityFeed: React.FC = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6 }}
-        className="mt-6 pt-4 border-t border-gray-100"
+        className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700"
       >
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="w-full py-2 text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+          className="w-full py-2 text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium transition-colors"
         >
           Ver toda la actividad →
         </motion.button>

@@ -27,14 +27,14 @@ export const RevenueChart: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5 }}
-      className="bg-white rounded-2xl border-2 border-gray-100 p-6 shadow-lg"
+      className="bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-100 dark:border-gray-700 p-6 shadow-lg"
     >
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             Tendencia de Ingresos
           </h3>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-gray-400">
             Ingresos mensuales de los últimos 12 meses
           </p>
         </div>
@@ -42,14 +42,14 @@ export const RevenueChart: React.FC = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-3 py-1 text-xs bg-purple-100 text-purple-700 rounded-full font-medium"
+            className="px-3 py-1 text-xs bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 rounded-full font-medium"
           >
             12M
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-3 py-1 text-xs bg-gray-100 text-gray-600 rounded-full font-medium"
+            className="px-3 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full font-medium"
           >
             6M
           </motion.button>
@@ -79,7 +79,7 @@ export const RevenueChart: React.FC = () => {
                 </div>
               </div>
 
-              <div className="text-xs text-gray-500 mt-2 font-medium">
+              <div className="text-xs text-gray-500 dark:text-gray-400 mt-2 font-medium">
                 {item.month}
               </div>
             </motion.div>
@@ -91,19 +91,19 @@ export const RevenueChart: React.FC = () => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
-        className="mt-6 grid grid-cols-3 gap-4 pt-4 border-t border-gray-100"
+        className="mt-6 grid grid-cols-3 gap-4 pt-4 border-t border-gray-100 dark:border-gray-700"
       >
         <div className="text-center">
-          <p className="text-2xl font-bold text-gray-900">$72,500</p>
-          <p className="text-sm text-gray-600">Total del año</p>
+          <p className="text-2xl font-bold text-gray-900 dark:text-white">$72,500</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">Total del año</p>
         </div>
         <div className="text-center">
-          <p className="text-2xl font-bold text-green-600">+15.3%</p>
-          <p className="text-sm text-gray-600">vs año anterior</p>
+          <p className="text-2xl font-bold text-green-600 dark:text-green-400">+15.3%</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">vs año anterior</p>
         </div>
         <div className="text-center">
-          <p className="text-2xl font-bold text-purple-600">$6,042</p>
-          <p className="text-sm text-gray-600">Promedio mensual</p>
+          <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">$6,042</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">Promedio mensual</p>
         </div>
       </motion.div>
     </motion.div>

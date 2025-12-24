@@ -183,9 +183,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
           damping: 30,
           width: { duration: isMobile ? 0.3 : 0.2 }
         }}
-        className="fixed left-0 top-0 h-screen bg-white border-r border-gray-200 shadow-lg z-30 overflow-hidden"
+        className="fixed left-0 top-0 h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 shadow-lg z-30 overflow-hidden"
       >
-        <div className="h-16 md:h-18 flex items-center border-b border-gray-200 flex-shrink-0">
+        <div className="h-16 md:h-18 flex items-center border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
           <div className="flex justify-start w-full">
             <div className="relative h-16 md:h-18 w-full flex-shrink-0">
               <Image
@@ -234,10 +234,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
                         backgroundColor: 'rgba(147, 51, 234, 0.05)'
                       }}
                       whileTap={{ scale: 0.98 }}
-                      className={`relative flex items-center h-12 rounded-xl transition-all duration-200 cursor-pointer group ${isActive ? 'bg-purple-100 text-purple-700 shadow-sm' : 'text-gray-600 hover:text-purple-600'} justify-start px-3`}
+                      className={`relative flex items-center h-12 rounded-xl transition-all duration-200 cursor-pointer group ${isActive ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 shadow-sm' : 'text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400'} justify-start px-3`}
                     >
                       <Icon
-                        className={`h-5 w-5 flex-shrink-0 ${isActive ? 'text-purple-600' : 'text-gray-500 group-hover:text-purple-500'}`}
+                        className={`h-5 w-5 flex-shrink-0 ${isActive ? 'text-purple-600 dark:text-purple-400' : 'text-gray-500 dark:text-gray-400 group-hover:text-purple-500 dark:group-hover:text-purple-400'}`}
                       />
 
                       <AnimatePresence>
