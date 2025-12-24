@@ -53,7 +53,7 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="relative overflow-hidden bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 rounded-2xl p-8 text-white shadow-2xl"
+      className="relative overflow-hidden bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 text-white shadow-2xl"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
       <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-32 translate-x-32" />
@@ -82,22 +82,22 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
       ))}
 
       <div className="relative z-10">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-3">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4 sm:mb-6">
+          <div className="flex items-center space-x-2 sm:space-x-3">
             <motion.div
               initial={{ rotate: 0 }}
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              className="text-yellow-300"
+              className="text-yellow-300 flex-shrink-0"
             >
               {greeting.icon}
             </motion.div>
-            <div>
+            <div className="min-w-0">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-2xl md:text-3xl font-bold"
+                className="text-lg sm:text-2xl md:text-3xl font-bold truncate"
               >
                 {greeting.text}, {userName}
               </motion.h1>
@@ -105,7 +105,7 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-purple-100 text-sm md:text-base"
+                className="text-purple-100 text-xs sm:text-sm md:text-base"
               >
                 Listo para gestionar tu negocio hoy
               </motion.p>
@@ -115,7 +115,7 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4 }}
-            className="hidden md:flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-xl p-3"
+            className="hidden lg:flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-xl p-3"
           >
             <div className="flex items-center space-x-2">
               <SparklesIcon className="h-5 w-5 text-yellow-300" />
@@ -141,7 +141,7 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-4"
         >
           {[
             { label: 'Facturas este mes', value: '24', change: '+12%' },
@@ -154,12 +154,16 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 + index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -2 }}
-              className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
+              whileHover={{ scale: 1.02, y: -2 }}
+              className="bg-white/10 backdrop-blur-sm rounded-lg sm:rounded-xl p-2.5 sm:p-3 lg:p-4 border border-white/20"
             >
-              <p className="text-purple-100 text-xs mb-1">{stat.label}</p>
-              <p className="text-xl md:text-2xl font-bold mb-1">{stat.value}</p>
-              <p className="text-green-300 text-xs font-medium">
+              <p className="text-purple-100 text-[10px] sm:text-xs mb-0.5 sm:mb-1 truncate">
+                {stat.label}
+              </p>
+              <p className="text-base sm:text-xl md:text-2xl font-bold mb-0.5 sm:mb-1">
+                {stat.value}
+              </p>
+              <p className="text-green-300 text-[10px] sm:text-xs font-medium">
                 {stat.change}
               </p>
             </motion.div>
@@ -170,22 +174,22 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="mt-6 flex flex-col sm:flex-row gap-3"
+          className="mt-4 sm:mt-6 flex flex-col sm:flex-row gap-2 sm:gap-3"
         >
           <motion.button
             whileHover={{
-              scale: 1.05,
+              scale: 1.02,
               boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)'
             }}
             whileTap={{ scale: 0.98 }}
-            className="bg-white text-purple-700 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+            className="bg-white text-purple-700 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-semibold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-300"
           >
             Crear Nueva Factura
           </motion.button>
           <motion.button
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300"
+            className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-semibold text-sm sm:text-base hover:bg-white/20 transition-all duration-300"
           >
             Ver Reportes
           </motion.button>

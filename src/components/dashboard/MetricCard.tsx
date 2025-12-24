@@ -65,23 +65,23 @@ export const MetricCard: React.FC<MetricCardProps> = ({
       whileHover={{ y: -4, scale: 1.02 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className={`
-        relative overflow-hidden rounded-2xl border-2 ${styles.border} ${styles.bg} 
-        p-6 shadow-lg backdrop-blur-sm transition-all duration-300
+        relative overflow-hidden rounded-xl sm:rounded-2xl border-2 ${styles.border} ${styles.bg}
+        p-3 sm:p-4 lg:p-6 shadow-lg backdrop-blur-sm transition-all duration-300
         hover:shadow-xl hover:shadow-purple-500/10
       `}
     >
-      <div className="flex items-center justify-between">
-        <div className="flex-1">
-          <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">
+      <div className="flex items-start sm:items-center justify-between">
+        <div className="flex-1 min-w-0">
+          <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 mb-0.5 sm:mb-1 truncate">
             {title}
           </p>
           {loading ? (
-            <div className="h-8 w-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+            <div className="h-6 sm:h-8 w-16 sm:w-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
           ) : (
             <motion.p
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
-              className="text-3xl font-bold text-gray-900 dark:text-white"
+              className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white truncate"
             >
               {value}
             </motion.p>
@@ -92,11 +92,11 @@ export const MetricCard: React.FC<MetricCardProps> = ({
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
               className={`
-                flex items-center mt-2 text-sm font-medium
+                flex items-center mt-1 sm:mt-2 text-xs sm:text-sm font-medium
                 ${change.type === 'increase' ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}
               `}
             >
-              <span className="mr-1">
+              <span className="mr-0.5 sm:mr-1">
                 {change.type === 'increase' ? '↗' : '↘'}
               </span>
               {Math.abs(change.value)}%
@@ -106,10 +106,14 @@ export const MetricCard: React.FC<MetricCardProps> = ({
         <motion.div
           whileHover={{ rotate: 5, scale: 1.1 }}
           className={`
-            flex h-12 w-12 items-center justify-center rounded-xl ${styles.iconBg}
+            flex h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 items-center justify-center rounded-lg sm:rounded-xl ${styles.iconBg} flex-shrink-0 ml-2
           `}
         >
-          <div className={`h-6 w-6 ${styles.iconColor}`}>{icon}</div>
+          <div
+            className={`h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 ${styles.iconColor}`}
+          >
+            {icon}
+          </div>
         </motion.div>
       </div>
 
