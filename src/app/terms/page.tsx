@@ -1,3 +1,15 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Términos y Condiciones',
+  description:
+    'Lee los términos y condiciones de uso de InvoLuck. Conoce tus derechos y obligaciones al usar nuestra plataforma de facturación.',
+  openGraph: {
+    title: 'Términos y Condiciones | InvoLuck',
+    description: 'Lee los términos y condiciones de uso de InvoLuck.'
+  }
+};
+
 export default function TermsPage() {
   return (
     <main className="relative min-h-screen w-full overflow-hidden involuck-bg">

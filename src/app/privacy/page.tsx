@@ -1,3 +1,16 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Política de Privacidad',
+  description:
+    'Conoce cómo InvoLuck protege tu información personal y datos de facturación. Nuestra política de privacidad detalla el tratamiento de tus datos.',
+  openGraph: {
+    title: 'Política de Privacidad | InvoLuck',
+    description:
+      'Conoce cómo InvoLuck protege tu información personal y datos de facturación.'
+  }
+};
+
 export default function PrivacyPage() {
   return (
     <main className="relative min-h-screen w-full overflow-hidden involuck-bg">
