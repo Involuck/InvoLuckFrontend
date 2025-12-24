@@ -154,14 +154,41 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   title = 'Dashboard'
 }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const notificationsRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
   useOutsideClick(notificationsRef, () => setNotificationsOpen(false));
   useOutsideClick(userMenuRef, () => setUserMenuOpen(false));
+
+  // Detect mobile viewport
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+      if (window.innerWidth >= 768) {
+        setMobileMenuOpen(false);
+      }
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
   const notifications = [
     {
@@ -187,121 +214,100 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     }
   ];
 
+  const toggleMenu = () => {
+    if (isMobile) {
+      setMobileMenuOpen(!mobileMenuOpen);
+    } else {
+      setSidebarCollapsed(!sidebarCollapsed);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
+      {/* Mobile overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && isMobile && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
       <Sidebar
         isCollapsed={sidebarCollapsed}
-        onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
+        isMobileOpen={mobileMenuOpen}
+        onToggle={toggleMenu}
+        onClose={() => setMobileMenuOpen(false)}
       />
 
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="sticky top-0 z-50 flex items-center justify-between h-16 md:h-18 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 lg:px-8">
-          <div className="flex items-center space-x-4">
+        <header className="sticky top-0 z-20 flex items-center justify-between h-14 sm:h-16 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 sm:px-4 lg:px-8">
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            {/* Menu button */}
             <motion.button
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3 }}
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: 'rgba(147, 51, 234, 0.05)'
-              }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className="hidden md:flex p-2 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors rounded-lg relative group"
-              title={sidebarCollapsed ? 'Expandir menú' : 'Colapsar menú'}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={toggleMenu}
+              className="p-2 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors rounded-lg"
+              aria-label="Toggle menu"
             >
-              <MenuIcon className="h-5 w-5" />
+              <MenuIcon className="h-5 w-5 sm:h-6 sm:w-6" />
             </motion.button>
 
-            <motion.button
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: 'rgba(147, 51, 234, 0.05)'
-              }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors rounded-lg relative group"
-              title={sidebarCollapsed ? 'Expandir menú' : 'Colapsar menú'}
-            >
-              <MenuIcon className="h-5 w-5" />
-            </motion.button>
-
-            <motion.div
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1, duration: 0.3 }}
-              className={`flex items-center space-x-3`}
-            >
-              <div className="flex flex-col">
-                <h1 className="text-base md:text-xl lg:text-2xl font-extrabold text-gray-900 dark:text-white truncate max-w-xs sm:max-w-none">
-                  {title}
-                </h1>
-                <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 hidden sm:block">
-                  {new Date().toLocaleDateString('es-ES', {
-                    weekday: 'long',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </p>
-              </div>
-            </motion.div>
+            {/* Title */}
+            <div className="flex flex-col min-w-0">
+              <h1 className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white truncate">
+                {title}
+              </h1>
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 hidden sm:block">
+                {new Date().toLocaleDateString('es-ES', {
+                  weekday: 'long',
+                  day: 'numeric',
+                  month: 'short'
+                })}
+              </p>
+            </div>
           </div>
 
-          <div className="flex items-center space-x-2 md:space-x-4">
-            <motion.div
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.3 }}
-              className="hidden md:block relative"
-            >
+          <div className="flex items-center space-x-1 sm:space-x-2 md:space-x-3">
+            {/* Search - hidden on mobile, shown on md+ */}
+            <div className="hidden md:block relative">
               <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <input
                 type="text"
                 placeholder="Buscar..."
-                className="pl-10 pr-4 py-2 w-64 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400"
+                className="pl-10 pr-4 py-2 w-48 lg:w-64 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400"
               />
-            </motion.div>
+            </div>
 
+            {/* Search button - visible on mobile only */}
             <motion.button
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: 'rgba(147, 51, 234, 0.05)'
-              }}
-              whileTap={{ scale: 0.98 }}
-              className="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors rounded-lg relative group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors rounded-lg"
+              aria-label="Buscar"
             >
               <SearchIcon className="h-5 w-5" />
             </motion.button>
 
+            {/* Notifications */}
             <div ref={notificationsRef} className="relative">
               <motion.button
-                whileHover={{
-                  scale: 1.05,
-                  backgroundColor: 'rgba(147, 51, 234, 0.05)'
-                }}
-                whileTap={{ scale: 0.98 }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.3, duration: 0.3 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setNotificationsOpen(!notificationsOpen)}
-                className="relative p-2 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors rounded-lg group"
-                title="Notificaciones"
+                className="relative p-2 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors rounded-lg"
+                aria-label="Notificaciones"
               >
-                <BellIcon className="h-5 w-5 md:h-6 md:w-6" />
-                <motion.span
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{
-                    delay: 0.4,
-                    type: 'spring',
-                    stiffness: 500,
-                    damping: 30
-                  }}
-                  className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-semibold"
-                >
+                <BellIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+                <span className="absolute top-0 right-0 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-semibold">
                   {notifications.filter((n) => n.unread).length}
-                </motion.span>
+                </span>
               </motion.button>
 
               <AnimatePresence>
@@ -311,34 +317,34 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-50"
+                    className="absolute right-0 mt-2 w-72 sm:w-80 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 z-50 max-h-[80vh] overflow-hidden"
                   >
-                    <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-gray-700">
+                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
                         Notificaciones
                       </h3>
                     </div>
-                    <div className="max-h-96 overflow-y-auto">
+                    <div className="max-h-64 sm:max-h-96 overflow-y-auto">
                       {notifications.map((notification) => (
                         <motion.div
                           key={notification.id}
                           whileHover={{ backgroundColor: 'var(--hover-bg)' }}
-                          className="p-4 border-b border-gray-100 dark:border-gray-700 last:border-b-0 cursor-pointer [--hover-bg:#f9fafb] dark:[--hover-bg:#374151]"
+                          className="p-3 sm:p-4 border-b border-gray-100 dark:border-gray-700 last:border-b-0 cursor-pointer [--hover-bg:#f9fafb] dark:[--hover-bg:#374151]"
                         >
                           <div className="flex items-start space-x-3">
                             <div
-                              className={`w-2 h-2 rounded-full mt-2 ${notification.unread ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'}`}
+                              className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${notification.unread ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'}`}
                             />
-                            <div className="flex-1">
+                            <div className="flex-1 min-w-0">
                               <h4
-                                className={`text-sm font-medium ${notification.unread ? 'text-gray-900 dark:text-white' : 'text-gray-600 dark:text-gray-400'}`}
+                                className={`text-sm font-medium truncate ${notification.unread ? 'text-gray-900 dark:text-white' : 'text-gray-600 dark:text-gray-400'}`}
                               >
                                 {notification.title}
                               </h4>
-                              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
                                 {notification.message}
                               </p>
-                              <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
+                              <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
                                 {notification.time}
                               </p>
                             </div>
@@ -346,9 +352,9 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                         </motion.div>
                       ))}
                     </div>
-                    <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+                    <div className="p-3 sm:p-4 border-t border-gray-200 dark:border-gray-700">
                       <button className="w-full text-center text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium">
-                        Ver todas las notificaciones
+                        Ver todas
                       </button>
                     </div>
                   </motion.div>
@@ -356,32 +362,22 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
               </AnimatePresence>
             </div>
 
+            {/* User menu */}
             <div ref={userMenuRef} className="relative">
               <motion.button
-                whileHover={{
-                  scale: 1.05,
-                  backgroundColor: 'rgba(147, 51, 234, 0.05)'
-                }}
-                whileTap={{ scale: 0.98 }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4, duration: 0.3 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
-                className="flex items-center space-x-2 focus:outline-none p-2 rounded-lg transition-colors group"
+                className="flex items-center space-x-1 sm:space-x-2 p-1 sm:p-2 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
+                aria-label="Menú de usuario"
               >
                 <div className="relative">
-                  <div className="h-9 w-9 md:h-10 md:w-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold cursor-pointer shadow-sm hover:shadow-md transition-shadow duration-200">
-                    <span className="text-sm md:text-base">U</span>
+                  <div className="h-8 w-8 sm:h-9 sm:w-9 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold shadow-sm">
+                    <span className="text-xs sm:text-sm">U</span>
                   </div>
-                  <div className="absolute -bottom-0.5 -right-0.5 h-3 w-3 bg-green-500 border-2 border-white rounded-full"></div>
+                  <div className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 sm:h-3 sm:w-3 bg-green-500 border-2 border-white dark:border-gray-800 rounded-full"></div>
                 </div>
-                <motion.div
-                  animate={{ rotate: userMenuOpen ? 180 : 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="hidden md:block"
-                >
-                  <ChevronDownIcon className="h-4 w-4 text-gray-500" />
-                </motion.div>
+                <ChevronDownIcon className="h-4 w-4 text-gray-500 hidden sm:block" />
               </motion.button>
 
               <AnimatePresence>
@@ -391,18 +387,18 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-50"
+                    className="absolute right-0 mt-2 w-52 sm:w-56 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 z-50"
                   >
-                    <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+                    <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-gray-700">
                       <div className="flex items-center space-x-3">
-                        <div className="h-10 w-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold">
+                        <div className="h-10 w-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold flex-shrink-0">
                           <span>U</span>
                         </div>
-                        <div>
-                          <p className="text-sm font-medium text-gray-900 dark:text-white">
+                        <div className="min-w-0">
+                          <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
                             Usuario Demo
                           </p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400">
+                          <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
                             usuario@ejemplo.com
                           </p>
                         </div>
@@ -412,17 +408,17 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                     <div className="py-2">
                       <motion.button
                         whileHover={{ backgroundColor: 'var(--hover-bg)' }}
-                        className="w-full flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors [--hover-bg:#f9fafb] dark:[--hover-bg:#374151]"
+                        className="w-full flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors [--hover-bg:#f9fafb] dark:[--hover-bg:#374151]"
                       >
-                        <UserIcon className="h-4 w-4 mr-3" />
+                        <UserIcon className="h-4 w-4 mr-3 flex-shrink-0" />
                         Mi Perfil
                       </motion.button>
 
                       <motion.button
                         whileHover={{ backgroundColor: 'var(--hover-bg)' }}
-                        className="w-full flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors [--hover-bg:#f9fafb] dark:[--hover-bg:#374151]"
+                        className="w-full flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors [--hover-bg:#f9fafb] dark:[--hover-bg:#374151]"
                       >
-                        <SettingsIcon className="h-4 w-4 mr-3" />
+                        <SettingsIcon className="h-4 w-4 mr-3 flex-shrink-0" />
                         Configuración
                       </motion.button>
 
@@ -430,9 +426,9 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                         <motion.button
                           onClick={handleLogout}
                           whileHover={{ backgroundColor: 'var(--hover-bg)' }}
-                          className="w-full flex items-center px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors [--hover-bg:#fef2f2] dark:[--hover-bg:#7f1d1d33]"
+                          className="w-full flex items-center px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors [--hover-bg:#fef2f2] dark:[--hover-bg:#7f1d1d33]"
                         >
-                          <LogoutIcon className="h-4 w-4 mr-3" />
+                          <LogoutIcon className="h-4 w-4 mr-3 flex-shrink-0" />
                           Cerrar Sesión
                         </motion.button>
                       </div>
@@ -444,7 +440,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           </div>
         </header>
 
-        <main className="flex-1 p-4 lg:p-8 overflow-auto">
+        <main className="flex-1 p-3 sm:p-4 lg:p-6 xl:p-8 overflow-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

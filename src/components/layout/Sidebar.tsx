@@ -1,10 +1,26 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+
+const XMarkIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M6 18L18 6M6 6l12 12"
+    />
+  </svg>
+);
 
 const DashboardIcon = ({ className }: { className?: string }) => (
   <svg
@@ -153,58 +169,147 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onClose
 }) => {
   const pathname = usePathname();
-  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile based on window width
+  const [isMobile, setIsMobile] = React.useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
-      const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-      if (!mobile && onClose) {
-        onClose();
-      }
+      setIsMobile(window.innerWidth < 768);
     };
-
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
-  }, [onClose]);
+  }, []);
+
+  // Sidebar width logic
+  const getSidebarWidth = () => {
+    if (isMobile) return 280;
+    return isCollapsed ? 64 : 256;
+  };
 
   return (
     <>
+      {/* Mobile Sidebar */}
+      <AnimatePresence>
+        {isMobile && isMobileOpen && (
+          <motion.div
+            initial={{ x: -280 }}
+            animate={{ x: 0 }}
+            exit={{ x: -280 }}
+            transition={{
+              type: 'spring',
+              stiffness: 300,
+              damping: 30
+            }}
+            className="fixed left-0 top-0 h-screen w-[280px] bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 shadow-2xl z-50 overflow-hidden"
+          >
+            {/* Mobile Header with close button */}
+            <div className="h-14 flex items-center justify-between border-b border-gray-200 dark:border-gray-700 px-4">
+              <div className="flex items-center">
+                <div className="relative h-10 w-10 flex-shrink-0">
+                  <Image
+                    src="/api/logo"
+                    alt="InvoLuck logo"
+                    width={40}
+                    height={40}
+                    className="h-full w-auto object-contain"
+                    priority
+                  />
+                </div>
+                <span className="ml-3 text-xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
+                  InvoLuck
+                </span>
+              </div>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={onClose}
+                className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                aria-label="Cerrar menú"
+              >
+                <XMarkIcon className="h-5 w-5" />
+              </motion.button>
+            </div>
+
+            {/* Mobile Navigation */}
+            <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+              {menuItems.map((item, index) => {
+                const isActive = pathname === item.href;
+                const Icon = item.icon;
+
+                return (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                  >
+                    <Link href={item.href} onClick={onClose}>
+                      <motion.div
+                        whileTap={{ scale: 0.98 }}
+                        className={`relative flex items-center h-12 rounded-xl px-4 transition-all duration-200 ${
+                          isActive
+                            ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 shadow-sm'
+                            : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                        }`}
+                      >
+                        <Icon
+                          className={`h-5 w-5 flex-shrink-0 ${
+                            isActive
+                              ? 'text-purple-600 dark:text-purple-400'
+                              : 'text-gray-500 dark:text-gray-400'
+                          }`}
+                        />
+                        <span className="ml-3 font-medium">{item.label}</span>
+                        {item.badge && (
+                          <span className="ml-auto bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-300 text-xs font-semibold px-2 py-1 rounded-full">
+                            {item.badge}
+                          </span>
+                        )}
+                      </motion.div>
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Desktop Sidebar */}
       <motion.div
         initial={false}
         animate={{
-          x: isMobile && !isMobileOpen ? -320 : 0,
-          width: isMobile ? 320 : isCollapsed ? 64 : 256
+          width: getSidebarWidth()
         }}
         transition={{
           type: 'spring',
           stiffness: 300,
-          damping: 30,
-          width: { duration: isMobile ? 0.3 : 0.2 }
+          damping: 30
         }}
-        className="fixed left-0 top-0 h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 shadow-lg z-30 overflow-hidden"
+        className="hidden md:block fixed left-0 top-0 h-screen bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 shadow-lg z-30 overflow-hidden"
       >
-        <div className="h-16 md:h-18 flex items-center border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
-          <div className="flex justify-start w-full">
-            <div className="relative h-16 md:h-18 w-full flex-shrink-0">
+        <div className="h-16 flex items-center border-b border-gray-200 dark:border-gray-700 flex-shrink-0 px-3">
+          <div className="flex items-center w-full">
+            <div className="relative h-12 w-12 flex-shrink-0">
               <Image
                 src="/api/logo"
                 alt="InvoLuck logo"
-                width={50}
-                height={50}
+                width={48}
+                height={48}
                 className="h-full w-auto object-contain"
                 priority
               />
             </div>
             <AnimatePresence>
-              {(!isCollapsed || isMobile) && (
+              {!isCollapsed && (
                 <motion.span
-                  initial={{ opacity: 0, width: 0, marginLeft: 0 }}
-                  animate={{ opacity: 1, width: 120, marginLeft: 12 }}
-                  exit={{ opacity: 0, width: 0, marginLeft: 0 }}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent whitespace-nowrap overflow-hidden"
+                  initial={{ opacity: 0, width: 0 }}
+                  animate={{ opacity: 1, width: 'auto' }}
+                  exit={{ opacity: 0, width: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="ml-3 text-2xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent whitespace-nowrap overflow-hidden"
                 >
                   InvoLuck
                 </motion.span>
@@ -213,7 +318,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
         </div>
 
-        <div className="flex flex-col h-[calc(100vh-7rem)] overflow-hidden">
+        <div className="flex flex-col h-[calc(100vh-4rem)] overflow-hidden">
           <nav className="flex-1 px-2 py-4 space-y-1 overflow-y-auto overflow-x-hidden">
             {menuItems.map((item, index) => {
               const isActive = pathname === item.href;
@@ -227,21 +332,29 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   transition={{ delay: index * 0.1 }}
                   className="overflow-hidden"
                 >
-                  <Link href={item.href} onClick={onClose}>
+                  <Link href={item.href}>
                     <motion.div
                       whileHover={{
-                        x: isCollapsed && !isMobile ? 0 : 4,
+                        x: isCollapsed ? 0 : 4,
                         backgroundColor: 'rgba(147, 51, 234, 0.05)'
                       }}
                       whileTap={{ scale: 0.98 }}
-                      className={`relative flex items-center h-12 rounded-xl transition-all duration-200 cursor-pointer group ${isActive ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 shadow-sm' : 'text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400'} justify-start px-3`}
+                      className={`relative flex items-center h-12 rounded-xl transition-all duration-200 cursor-pointer group ${
+                        isActive
+                          ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 shadow-sm'
+                          : 'text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400'
+                      } ${isCollapsed ? 'justify-center px-2' : 'justify-start px-3'}`}
                     >
                       <Icon
-                        className={`h-5 w-5 flex-shrink-0 ${isActive ? 'text-purple-600 dark:text-purple-400' : 'text-gray-500 dark:text-gray-400 group-hover:text-purple-500 dark:group-hover:text-purple-400'}`}
+                        className={`h-5 w-5 flex-shrink-0 ${
+                          isActive
+                            ? 'text-purple-600 dark:text-purple-400'
+                            : 'text-gray-500 dark:text-gray-400 group-hover:text-purple-500 dark:group-hover:text-purple-400'
+                        }`}
                       />
 
                       <AnimatePresence>
-                        {(!isCollapsed || isMobile) && (
+                        {!isCollapsed && (
                           <motion.div
                             initial={{ opacity: 0, width: 0, marginLeft: 0 }}
                             animate={{
@@ -250,7 +363,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                               marginLeft: 12
                             }}
                             exit={{ opacity: 0, width: 0, marginLeft: 0 }}
-                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+                            transition={{ duration: 0.2, ease: 'easeInOut' }}
                             className="flex items-center justify-between min-w-0 flex-1"
                           >
                             <span className="font-medium whitespace-nowrap">
@@ -262,7 +375,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0 }}
                                 transition={{ delay: 0.1 }}
-                                className="bg-purple-100 text-purple-600 text-xs font-semibold px-2 py-1 rounded-full flex-shrink-0 ml-2"
+                                className="bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-300 text-xs font-semibold px-2 py-1 rounded-full flex-shrink-0 ml-2"
                               >
                                 {item.badge}
                               </motion.span>
@@ -271,8 +384,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
                         )}
                       </AnimatePresence>
 
-                      {isCollapsed && !isMobile && (
-                        <div className="absolute left-full ml-2 px-2 py-1 bg-gray-900 text-white text-sm rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+                      {/* Tooltip for collapsed state */}
+                      {isCollapsed && (
+                        <div className="absolute left-full ml-2 px-2 py-1 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
                           {item.label}
                           {item.badge && (
                             <span className="ml-2 bg-purple-600 text-white text-xs px-1.5 py-0.5 rounded-full">
@@ -289,9 +403,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </nav>
         </div>
       </motion.div>
+
+      {/* Spacer for desktop layout */}
       <div
-        className={`hidden md:block transition-all duration-300 ${isCollapsed ? 'w-16' : 'w-64'}`}
-        style={{ flexShrink: 0 }}
+        className={`hidden md:block transition-all duration-300 flex-shrink-0 ${
+          isCollapsed ? 'w-16' : 'w-64'
+        }`}
       />
     </>
   );
