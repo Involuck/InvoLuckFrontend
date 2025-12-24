@@ -1,11 +1,14 @@
 # SEO Optimization - InvoLuck Frontend
 
 ## Overview
-This skill covers SEO implementation including metadata, Open Graph, structured data (JSON-LD), robots.txt, and sitemap.xml.
+
+This skill covers SEO implementation including metadata, Open Graph, structured
+data (JSON-LD), robots.txt, and sitemap.xml.
 
 ## Metadata Configuration
 
 ### Root Layout Metadata
+
 Location: `src/app/layout.tsx`
 
 ```typescript
@@ -19,11 +22,12 @@ export const metadata: Metadata = {
   // Title configuration
   title: {
     default: 'InvoLuck - Gestión Inteligente de Facturación',
-    template: '%s | InvoLuck'  // For child pages: "Dashboard | InvoLuck"
+    template: '%s | InvoLuck' // For child pages: "Dashboard | InvoLuck"
   },
 
   // Description
-  description: 'Plataforma de gestión inteligente para tu negocio. Administra facturas, clientes y reportes financieros de forma sencilla y eficiente.',
+  description:
+    'Plataforma de gestión inteligente para tu negocio. Administra facturas, clientes y reportes financieros de forma sencilla y eficiente.',
 
   // Keywords
   keywords: [
@@ -116,15 +120,17 @@ export const viewport: Viewport = {
 ```
 
 ### Page-Specific Metadata
+
 ```typescript
 // src/app/auth/login/page.tsx
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Iniciar Sesión',
-  description: 'Accede a tu cuenta de InvoLuck para gestionar tus facturas y clientes.',
+  description:
+    'Accede a tu cuenta de InvoLuck para gestionar tus facturas y clientes.',
   robots: {
-    index: false,  // Don't index auth pages
+    index: false, // Don't index auth pages
     follow: false
   }
 };
@@ -133,6 +139,7 @@ export const metadata: Metadata = {
 ## JSON-LD Structured Data
 
 ### JsonLd Component
+
 Location: `src/components/seo/JsonLd.tsx`
 
 ```typescript
@@ -155,6 +162,7 @@ export const JsonLd: React.FC<JsonLdProps> = ({ data }) => {
 ```
 
 ### Organization Schema
+
 ```typescript
 // In root layout
 const organizationJsonLd = {
@@ -177,6 +185,7 @@ const organizationJsonLd = {
 ```
 
 ### Website Schema
+
 ```typescript
 // For landing page
 const websiteJsonLd = {
@@ -184,7 +193,8 @@ const websiteJsonLd = {
   '@type': 'WebSite',
   name: 'InvoLuck',
   url: BASE_URL,
-  description: 'Plataforma de gestión inteligente de facturación para tu negocio',
+  description:
+    'Plataforma de gestión inteligente de facturación para tu negocio',
   potentialAction: {
     '@type': 'SearchAction',
     target: `${BASE_URL}/search?q={search_term_string}`,
@@ -194,6 +204,7 @@ const websiteJsonLd = {
 ```
 
 ### SoftwareApplication Schema
+
 ```typescript
 const softwareJsonLd = {
   '@context': 'https://schema.org',
@@ -201,7 +212,8 @@ const softwareJsonLd = {
   name: 'InvoLuck',
   applicationCategory: 'BusinessApplication',
   operatingSystem: 'Web',
-  description: 'Plataforma de facturación inteligente para freelancers, PyMEs y empresas',
+  description:
+    'Plataforma de facturación inteligente para freelancers, PyMEs y empresas',
   offers: {
     '@type': 'Offer',
     price: '29',
@@ -313,11 +325,13 @@ Location: `public/manifest.json`
 ## Open Graph Image
 
 ### Requirements
+
 - Size: 1200x630 pixels
 - Format: PNG or JPEG
 - Location: `public/og-image.png`
 
 ### Design Guidelines
+
 - Include logo prominently
 - Use brand colors (purple)
 - Clear, readable text
@@ -404,6 +418,7 @@ export const metadata: Metadata = {
 ## Performance (Core Web Vitals)
 
 ### Best Practices
+
 1. **LCP (Largest Contentful Paint)**: Use `priority` on hero images
 2. **FID (First Input Delay)**: Minimize JavaScript, use code splitting
 3. **CLS (Cumulative Layout Shift)**: Always specify image dimensions

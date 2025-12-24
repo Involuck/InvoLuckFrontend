@@ -1,11 +1,14 @@
 # React Components - InvoLuck Frontend
 
 ## Overview
-This skill guides you on creating React components following InvoLuck's established patterns and conventions.
+
+This skill guides you on creating React components following InvoLuck's
+established patterns and conventions.
 
 ## Component Architecture
 
 ### Directory Structure
+
 ```
 src/components/
 ├── pure/           # Stateless, presentational components
@@ -25,6 +28,7 @@ src/components/
 ## Component Patterns
 
 ### 1. Pure Components (Preferred for UI elements)
+
 Location: `src/components/pure/`
 
 ```typescript
@@ -87,6 +91,7 @@ export default Button;
 ```
 
 ### 2. Layout Components
+
 Location: `src/components/layout/`
 
 ```typescript
@@ -119,6 +124,7 @@ export const PageLayout: React.FC<LayoutProps> = ({ children, title }) => {
 ```
 
 ### 3. Form Components with State
+
 Location: `src/components/forms/`
 
 ```typescript
@@ -176,6 +182,7 @@ export const FormField: React.FC<FormFieldProps> = ({
 ```
 
 ## Export Pattern
+
 Always create an `index.ts` file for component groups:
 
 ```typescript
@@ -191,12 +198,14 @@ export { default as SuccessButton } from './SuccessButton';
 ## Required Patterns
 
 ### 1. Always use 'use client' directive
+
 ```typescript
 'use client';
 // Component code...
 ```
 
 ### 2. Use Framer Motion for animations
+
 ```typescript
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -221,24 +230,23 @@ import { motion, AnimatePresence } from 'framer-motion';
 ```
 
 ### 3. Support Dark Mode
+
 ```typescript
 // Always include dark: variants
-className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+className = 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white';
 ```
 
 ### 4. Use Heroicons for icons
+
 ```typescript
-import {
-  PlusIcon,
-  UserIcon,
-  ChartBarIcon
-} from '@heroicons/react/24/outline';
+import { PlusIcon, UserIcon, ChartBarIcon } from '@heroicons/react/24/outline';
 
 // Or solid variants
 import { HeartIcon } from '@heroicons/react/24/solid';
 ```
 
 ### 5. TypeScript interfaces for all props
+
 ```typescript
 interface ComponentProps {
   // Required props

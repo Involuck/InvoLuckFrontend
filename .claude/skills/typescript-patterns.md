@@ -1,7 +1,9 @@
 # TypeScript Patterns - InvoLuck Frontend
 
 ## Overview
-This skill covers TypeScript patterns, type definitions, and best practices used in InvoLuck.
+
+This skill covers TypeScript patterns, type definitions, and best practices used
+in InvoLuck.
 
 ## TypeScript Configuration
 
@@ -22,9 +24,7 @@ Location: `tsconfig.json`
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [
-      { "name": "next" }
-    ],
+    "plugins": [{ "name": "next" }],
     "paths": {
       "@/*": ["./src/*"]
     }
@@ -35,11 +35,13 @@ Location: `tsconfig.json`
 ## Type Definitions
 
 ### Location
+
 `src/types/auth.ts` - Main types file
 
 ### Core Types
 
 #### User
+
 ```typescript
 interface User {
   id: string;
@@ -52,11 +54,13 @@ interface User {
 ```
 
 #### Input State
+
 ```typescript
 type InputState = 'default' | 'error' | 'success';
 ```
 
 #### Auth State
+
 ```typescript
 interface AuthState {
   user: User | null;
@@ -69,6 +73,7 @@ interface AuthState {
 ```
 
 #### Login State
+
 ```typescript
 interface LoginState {
   email: string;
@@ -89,6 +94,7 @@ interface LoginState {
 ```
 
 #### Register State
+
 ```typescript
 interface RegisterState {
   name: string;
@@ -125,6 +131,7 @@ interface RegisterState {
 ```
 
 #### Password Requirement
+
 ```typescript
 interface PasswordRequirement {
   label: string;
@@ -135,6 +142,7 @@ interface PasswordRequirement {
 ## Component Props Patterns
 
 ### Basic Props Interface
+
 ```typescript
 interface ButtonProps {
   children: React.ReactNode;
@@ -145,6 +153,7 @@ interface ButtonProps {
 ```
 
 ### Props with Variants
+
 ```typescript
 interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'danger' | 'outline';
@@ -153,10 +162,11 @@ interface ButtonProps {
 
 // With const assertion for type safety
 const VARIANTS = ['primary', 'secondary', 'danger', 'outline'] as const;
-type Variant = typeof VARIANTS[number];
+type Variant = (typeof VARIANTS)[number];
 ```
 
 ### Props with Children
+
 ```typescript
 interface LayoutProps {
   children: React.ReactNode;
@@ -170,6 +180,7 @@ interface WrapperProps {
 ```
 
 ### Props extending HTML attributes
+
 ```typescript
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   state?: InputState;
@@ -181,6 +192,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 ```
 
 ### Props with Event Handlers
+
 ```typescript
 interface FormFieldProps {
   value: string;
@@ -198,6 +210,7 @@ interface ClickableProps {
 ## Generic Types
 
 ### Generic Component
+
 ```typescript
 interface SelectProps<T> {
   options: T[];
@@ -227,6 +240,7 @@ function Select<T>({ options, value, onChange, getLabel, getValue }: SelectProps
 ```
 
 ### Generic Hook
+
 ```typescript
 function useFormField<T>(
   initialValue: T,
@@ -249,6 +263,7 @@ function useFormField<T>(
 ## Context Types
 
 ### Context Value Type
+
 ```typescript
 interface AuthContextType {
   auth: AuthState;
@@ -277,6 +292,7 @@ interface AuthContextType {
 ```
 
 ### Creating Typed Context
+
 ```typescript
 const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -293,6 +309,7 @@ export function useAuth(): AuthContextType {
 ## Utility Types
 
 ### Pick/Omit
+
 ```typescript
 // Pick specific properties
 type LoginCredentials = Pick<LoginState, 'email' | 'password'>;
@@ -302,6 +319,7 @@ type UserWithoutDates = Omit<User, 'createdAt' | 'updatedAt'>;
 ```
 
 ### Partial/Required
+
 ```typescript
 // Make all properties optional
 type PartialUser = Partial<User>;
@@ -311,6 +329,7 @@ type RequiredUser = Required<User>;
 ```
 
 ### Record
+
 ```typescript
 // Map of status to color
 type StatusColors = Record<InputState, string>;
@@ -323,6 +342,7 @@ const statusColors: StatusColors = {
 ```
 
 ### Union Types
+
 ```typescript
 type Status = 'pending' | 'processing' | 'completed' | 'failed';
 
@@ -334,6 +354,7 @@ type ApiResponse<T> =
 ## Type Guards
 
 ### Custom Type Guard
+
 ```typescript
 interface Invoice {
   id: string;
@@ -364,8 +385,12 @@ function processDocument(doc: Document) {
 ```
 
 ### Null Check Guard
+
 ```typescript
-function assertDefined<T>(value: T | null | undefined, message?: string): asserts value is T {
+function assertDefined<T>(
+  value: T | null | undefined,
+  message?: string
+): asserts value is T {
   if (value === null || value === undefined) {
     throw new Error(message || 'Value is not defined');
   }
@@ -407,11 +432,13 @@ async function fetchUsers(): Promise<PaginatedResponse<User>> {
 
 1. **Enable strict mode**: Always use `"strict": true` in tsconfig
 2. **Avoid `any`**: Use `unknown` instead, then narrow with type guards
-3. **Use interfaces for objects**: Prefer `interface` over `type` for object shapes
+3. **Use interfaces for objects**: Prefer `interface` over `type` for object
+   shapes
 4. **Export types**: Keep types in dedicated files and export them
 5. **Document complex types**: Use JSDoc comments for non-obvious types
 6. **Use const assertions**: For literal types `as const`
-7. **Prefer composition**: Combine smaller types instead of large monolithic ones
+7. **Prefer composition**: Combine smaller types instead of large monolithic
+   ones
 8. **Type event handlers**: Be specific about event types
 9. **Use discriminated unions**: For state machines and variants
 10. **Avoid type assertions**: Use type guards instead of `as`

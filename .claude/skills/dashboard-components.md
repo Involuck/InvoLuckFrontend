@@ -1,7 +1,9 @@
 # Dashboard Components - InvoLuck Frontend
 
 ## Overview
-This skill covers the creation and patterns of dashboard-specific components including metrics, charts, and data displays.
+
+This skill covers the creation and patterns of dashboard-specific components
+including metrics, charts, and data displays.
 
 ## Dashboard Component Structure
 
@@ -20,9 +22,12 @@ src/components/dashboard/
 ## MetricCard Component
 
 ### Purpose
-Display key performance indicators (KPIs) with value, change percentage, and icon.
+
+Display key performance indicators (KPIs) with value, change percentage, and
+icon.
 
 ### Pattern
+
 ```typescript
 'use client';
 
@@ -138,9 +143,11 @@ export const MetricCard: React.FC<MetricCardProps> = ({
 ## WelcomeHero Component
 
 ### Purpose
+
 Welcome banner with greeting, user info, and quick stats overview.
 
 ### Pattern
+
 ```typescript
 'use client';
 
@@ -247,9 +254,11 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({ userName }) => {
 ## QuickActions Component
 
 ### Purpose
+
 Grid of quick action buttons for common tasks.
 
 ### Pattern
+
 ```typescript
 'use client';
 
@@ -349,6 +358,7 @@ export const QuickActions: React.FC = () => {
 ## Chart Components
 
 ### RevenueChart (with Recharts)
+
 ```typescript
 'use client';
 
@@ -413,6 +423,7 @@ export const RevenueChart: React.FC = () => {
 ## ActivityFeed Component
 
 ### Purpose
+
 Display recent activity/events in a timeline format.
 
 ```typescript
@@ -488,6 +499,7 @@ export const ActivityFeed: React.FC = () => {
 ```
 
 ## Export Barrel
+
 Location: `src/components/dashboard/index.ts`
 
 ```typescript

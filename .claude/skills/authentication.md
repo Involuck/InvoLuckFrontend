@@ -1,20 +1,25 @@
 # Authentication - InvoLuck Frontend
 
 ## Overview
-This skill covers the authentication system, including the AuthContext, login/register hooks, and protected routes.
+
+This skill covers the authentication system, including the AuthContext,
+login/register hooks, and protected routes.
 
 ## Architecture
 
 ### AuthContext
+
 Location: `src/context/AuthContext.tsx`
 
 The AuthContext manages:
+
 - User authentication state
 - Login form state and validation
 - Register form state and validation
 - Token management (localStorage)
 
 ### Protected Routes
+
 Location: `src/app/(authenticated)/`
 
 All routes under `(authenticated)` group require authentication via middleware.
@@ -22,6 +27,7 @@ All routes under `(authenticated)` group require authentication via middleware.
 ## Using Authentication
 
 ### AuthProvider Setup
+
 The AuthProvider wraps the app in `src/app/layout.tsx`:
 
 ```typescript
@@ -33,6 +39,7 @@ The AuthProvider wraps the app in `src/app/layout.tsx`:
 ```
 
 ### useAuth Hook
+
 Access authentication state anywhere in the app:
 
 ```typescript
@@ -59,6 +66,7 @@ const MyComponent = () => {
 ## Login Implementation
 
 ### useLogin Hook
+
 Location: `src/hooks/useLogin.ts`
 
 ```typescript
@@ -132,6 +140,7 @@ const LoginPage = () => {
 ## Register Implementation
 
 ### useRegister Hook
+
 Location: `src/hooks/useRegister.ts`
 
 ```typescript
@@ -253,6 +262,7 @@ type InputState = 'default' | 'error' | 'success';
 ```
 
 ## Middleware Protection
+
 Location: `src/middleware.ts`
 
 The middleware checks authentication for protected routes:
@@ -264,7 +274,8 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
   const token = request.cookies.get('auth-token')?.value;
   const isAuthPage = request.nextUrl.pathname.startsWith('/auth');
-  const isProtectedRoute = request.nextUrl.pathname.startsWith('/dashboard') ||
+  const isProtectedRoute =
+    request.nextUrl.pathname.startsWith('/dashboard') ||
     request.nextUrl.pathname.startsWith('/invoices') ||
     request.nextUrl.pathname.startsWith('/clients');
 
@@ -281,6 +292,7 @@ export function middleware(request: NextRequest) {
 ```
 
 ## TypeScript Types
+
 Location: `src/types/auth.ts`
 
 ```typescript
@@ -341,14 +353,17 @@ interface RegisterState {
 ## Development Credentials
 
 For development/testing:
+
 - Email: `dev@involuck.com`
 - Password: `Involuck123`
 
 ## Best Practices
 
-1. **Always use hooks**: Use `useLogin()` or `useRegister()` instead of accessing AuthContext directly for forms
+1. **Always use hooks**: Use `useLogin()` or `useRegister()` instead of
+   accessing AuthContext directly for forms
 2. **Handle loading states**: Show spinners during authentication requests
-3. **Display validation feedback**: Use `emailState`, `passwordState` for visual feedback
+3. **Display validation feedback**: Use `emailState`, `passwordState` for visual
+   feedback
 4. **Touch tracking**: Only show errors after field is touched (`onBlur`)
 5. **Disable submit**: Use `canSubmit` to prevent invalid form submissions
 6. **Clear errors**: Call `clearErrors()` when navigating away from auth pages

@@ -1,7 +1,9 @@
 # Testing - InvoLuck Frontend
 
 ## Overview
-This skill covers testing strategies including unit tests with Jest, integration tests, and E2E tests with Playwright.
+
+This skill covers testing strategies including unit tests with Jest, integration
+tests, and E2E tests with Playwright.
 
 ## Test Structure
 
@@ -45,6 +47,7 @@ npm run test:unit -- --coverage
 ## Unit Tests
 
 ### Configuration
+
 Location: `jest.config.js`
 
 ```javascript
@@ -58,11 +61,16 @@ module.exports = {
     '**/__tests__/unit/**/*.test.[jt]s?(x)',
     '**/__tests__/integration/**/*.test.[jt]s?(x)'
   ],
-  testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/', '<rootDir>/src/__tests__/e2e/']
+  testPathIgnorePatterns: [
+    '<rootDir>/.next/',
+    '<rootDir>/node_modules/',
+    '<rootDir>/src/__tests__/e2e/'
+  ]
 };
 ```
 
 ### Setup File
+
 Location: `jest.setup.js`
 
 ```javascript
@@ -88,7 +96,7 @@ jest.mock('next/image', () => ({
 // Mock window.matchMedia
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
-  value: jest.fn().mockImplementation(query => ({
+  value: jest.fn().mockImplementation((query) => ({
     matches: false,
     media: query,
     onchange: null,
@@ -292,6 +300,7 @@ describe('DashboardPage', () => {
 ## E2E Tests (Playwright)
 
 ### Configuration
+
 Location: `playwright.config.ts`
 
 ```typescript
@@ -396,8 +405,10 @@ test.describe('Navigation', () => {
 
 ## Testing Best Practices
 
-1. **Test behavior, not implementation**: Focus on what the component does, not how
-2. **Use semantic queries**: Prefer `getByRole`, `getByLabelText` over `getByTestId`
+1. **Test behavior, not implementation**: Focus on what the component does, not
+   how
+2. **Use semantic queries**: Prefer `getByRole`, `getByLabelText` over
+   `getByTestId`
 3. **Mock external dependencies**: Mock API calls, navigation, localStorage
 4. **Test accessibility**: Use `toHaveAccessibleName`, `toBeVisible`
 5. **Keep tests isolated**: Each test should be independent

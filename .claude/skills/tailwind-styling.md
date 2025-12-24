@@ -1,11 +1,14 @@
 # Tailwind CSS Styling - InvoLuck Frontend
 
 ## Overview
-This skill covers Tailwind CSS v4 styling patterns, custom theme configuration, and dark mode implementation in InvoLuck.
+
+This skill covers Tailwind CSS v4 styling patterns, custom theme configuration,
+and dark mode implementation in InvoLuck.
 
 ## Tailwind v4 Configuration
 
 ### Global CSS Setup
+
 Location: `src/app/globals.css`
 
 ```css
@@ -33,57 +36,61 @@ Location: `src/app/globals.css`
 ## Color Palette
 
 ### Primary Brand Colors (Purple)
+
 ```typescript
 // Use for primary actions, highlights, and branding
-'bg-purple-600'      // Primary buttons
-'bg-purple-700'      // Hover state
-'text-purple-600'    // Links, accents
-'border-purple-500'  // Focus rings
-'bg-purple-100'      // Light backgrounds
-'bg-purple-900/30'   // Dark mode backgrounds
+'bg-purple-600'; // Primary buttons
+'bg-purple-700'; // Hover state
+'text-purple-600'; // Links, accents
+'border-purple-500'; // Focus rings
+'bg-purple-100'; // Light backgrounds
+'bg-purple-900/30'; // Dark mode backgrounds
 ```
 
 ### Status Colors
+
 ```typescript
 // Success (Green)
-'bg-green-600 text-white'           // Success buttons
-'text-green-600 dark:text-green-400' // Success text
-'bg-green-100 dark:bg-green-900/30'  // Success backgrounds
+'bg-green-600 text-white'; // Success buttons
+'text-green-600 dark:text-green-400'; // Success text
+'bg-green-100 dark:bg-green-900/30'; // Success backgrounds
 
 // Warning (Yellow/Orange)
-'bg-yellow-500 text-white'
-'text-yellow-600 dark:text-yellow-400'
+'bg-yellow-500 text-white';
+'text-yellow-600 dark:text-yellow-400';
 
 // Error (Red)
-'bg-red-600 text-white'
-'text-red-600 dark:text-red-400'
-'border-red-500'
+'bg-red-600 text-white';
+'text-red-600 dark:text-red-400';
+'border-red-500';
 
 // Info (Blue)
-'bg-blue-600 text-white'
-'text-blue-600 dark:text-blue-400'
+'bg-blue-600 text-white';
+'text-blue-600 dark:text-blue-400';
 ```
 
 ### Neutral Colors
+
 ```typescript
 // Backgrounds
-'bg-white dark:bg-gray-800'         // Cards
-'bg-gray-50 dark:bg-gray-900'       // Page backgrounds
-'bg-gray-100 dark:bg-gray-700'      // Secondary backgrounds
+'bg-white dark:bg-gray-800'; // Cards
+'bg-gray-50 dark:bg-gray-900'; // Page backgrounds
+'bg-gray-100 dark:bg-gray-700'; // Secondary backgrounds
 
 // Text
-'text-gray-900 dark:text-white'     // Primary text
-'text-gray-600 dark:text-gray-400'  // Secondary text
-'text-gray-500 dark:text-gray-500'  // Muted text
+'text-gray-900 dark:text-white'; // Primary text
+'text-gray-600 dark:text-gray-400'; // Secondary text
+'text-gray-500 dark:text-gray-500'; // Muted text
 
 // Borders
-'border-gray-200 dark:border-gray-700'
-'border-gray-100 dark:border-gray-800'
+'border-gray-200 dark:border-gray-700';
+'border-gray-100 dark:border-gray-800';
 ```
 
 ## Dark Mode Implementation
 
 ### Theme Provider Usage
+
 ```typescript
 import { useTheme } from '@/components/ui/ThemeProvider';
 
@@ -96,6 +103,7 @@ setTheme('system');
 ```
 
 ### Dark Mode Classes Pattern
+
 ```typescript
 // Always pair light and dark variants
 className={`
@@ -107,6 +115,7 @@ className={`
 ```
 
 ### Dark Mode for Cards
+
 ```typescript
 <div className="
   bg-white dark:bg-gray-800
@@ -122,6 +131,7 @@ className={`
 ## Responsive Design
 
 ### Breakpoints
+
 ```typescript
 // sm: 640px  - Small devices
 // md: 768px  - Tablets
@@ -138,29 +148,31 @@ className="
 ```
 
 ### Common Responsive Patterns
+
 ```typescript
 // Hide on mobile, show on desktop
-className="hidden md:block"
+className = 'hidden md:block';
 
 // Show on mobile, hide on desktop
-className="md:hidden"
+className = 'md:hidden';
 
 // Responsive grid
-className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6"
+className = 'grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6';
 
 // Responsive spacing
-className="space-y-4 sm:space-y-6 lg:space-y-8"
+className = 'space-y-4 sm:space-y-6 lg:space-y-8';
 
 // Responsive text
-className="text-xl sm:text-2xl lg:text-3xl"
+className = 'text-xl sm:text-2xl lg:text-3xl';
 
 // Responsive padding
-className="p-3 sm:p-4 lg:p-6 xl:p-8"
+className = 'p-3 sm:p-4 lg:p-6 xl:p-8';
 ```
 
 ## Component Styling Patterns
 
 ### Buttons
+
 ```typescript
 // Primary Button
 className="
@@ -191,6 +203,7 @@ className="
 ```
 
 ### Cards
+
 ```typescript
 // Basic Card
 className="
@@ -224,6 +237,7 @@ className="
 ```
 
 ### Form Inputs
+
 ```typescript
 // Text Input
 className="
@@ -254,6 +268,7 @@ className="
 ```
 
 ### Badges/Pills
+
 ```typescript
 // Success Badge
 className="
@@ -281,24 +296,42 @@ className="
 ## Custom Utilities
 
 ### InvoLuck Background (for auth pages)
+
 ```css
 .involuck-bg {
   background-color: var(--color-brand-950);
   background-image:
-    radial-gradient(60% 80% at 10% -10%, var(--color-brand-700) 0%, transparent 60%),
-    radial-gradient(50% 70% at 90% 0%, var(--color-brand-500) 0%, transparent 55%),
-    radial-gradient(80% 60% at 50% 110%, var(--color-brand-800) 0%, transparent 60%),
+    radial-gradient(
+      60% 80% at 10% -10%,
+      var(--color-brand-700) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      50% 70% at 90% 0%,
+      var(--color-brand-500) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      80% 60% at 50% 110%,
+      var(--color-brand-800) 0%,
+      transparent 60%
+    ),
     linear-gradient(180deg, var(--color-brand-900), var(--color-brand-950));
 }
 
 .involuck-grid {
-  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.12) 1px, transparent 0);
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.12) 1px,
+    transparent 0
+  );
   background-size: 28px 28px;
   opacity: 0.25;
 }
 ```
 
 ### Gradient Text
+
 ```typescript
 className="
   bg-gradient-to-r from-purple-600 to-purple-800
@@ -307,6 +340,7 @@ className="
 ```
 
 ### Focus States
+
 ```typescript
 // Always include visible focus states for accessibility
 className="
@@ -319,6 +353,7 @@ className="
 ## Animation Classes
 
 ### Tailwind Config Animations
+
 ```javascript
 // tailwind.config.js
 animation: {
@@ -329,6 +364,7 @@ animation: {
 ```
 
 ### Framer Motion Integration
+
 ```typescript
 // Prefer Framer Motion for complex animations
 <motion.div
@@ -340,9 +376,11 @@ animation: {
 
 ## Best Practices
 
-1. **Mobile-first**: Start with mobile styles, add breakpoint modifiers for larger screens
+1. **Mobile-first**: Start with mobile styles, add breakpoint modifiers for
+   larger screens
 2. **Dark mode always**: Include `dark:` variants for all color classes
 3. **Consistent spacing**: Use the spacing scale (2, 3, 4, 6, 8) consistently
-4. **Semantic colors**: Use status colors appropriately (green=success, red=error)
+4. **Semantic colors**: Use status colors appropriately (green=success,
+   red=error)
 5. **Focus states**: Always include visible focus indicators for accessibility
 6. **Transitions**: Add `transition-all duration-200` for smooth state changes

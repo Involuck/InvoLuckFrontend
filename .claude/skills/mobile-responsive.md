@@ -1,7 +1,9 @@
 # Mobile Responsive Design - InvoLuck Frontend
 
 ## Overview
-This skill covers mobile-first responsive design patterns, breakpoint strategies, and touch-friendly interactions.
+
+This skill covers mobile-first responsive design patterns, breakpoint
+strategies, and touch-friendly interactions.
 
 ## Breakpoint System
 
@@ -22,47 +24,47 @@ This skill covers mobile-first responsive design patterns, breakpoint strategies
 
 ```typescript
 // Headings
-className="text-xl sm:text-2xl lg:text-3xl font-bold"
+className = 'text-xl sm:text-2xl lg:text-3xl font-bold';
 
 // Body text
-className="text-sm sm:text-base lg:text-lg"
+className = 'text-sm sm:text-base lg:text-lg';
 
 // Small text
-className="text-xs sm:text-sm"
+className = 'text-xs sm:text-sm';
 
 // Very small (labels, badges)
-className="text-[10px] sm:text-xs"
+className = 'text-[10px] sm:text-xs';
 ```
 
 ### 2. Responsive Spacing
 
 ```typescript
 // Padding
-className="p-3 sm:p-4 lg:p-6 xl:p-8"
+className = 'p-3 sm:p-4 lg:p-6 xl:p-8';
 
 // Margin
-className="m-2 sm:m-3 lg:m-4"
+className = 'm-2 sm:m-3 lg:m-4';
 
 // Gap in flex/grid
-className="gap-2 sm:gap-3 lg:gap-4 xl:gap-6"
+className = 'gap-2 sm:gap-3 lg:gap-4 xl:gap-6';
 
 // Vertical spacing (sections)
-className="space-y-4 sm:space-y-6 lg:space-y-8"
+className = 'space-y-4 sm:space-y-6 lg:space-y-8';
 ```
 
 ### 3. Responsive Grid Layouts
 
 ```typescript
 // 2 columns on mobile, 4 on desktop
-className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6"
+className = 'grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6';
 
 // 1 column on mobile, 2 on tablet, 3 on desktop
-className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4';
 
 // Sidebar layout
-className="grid grid-cols-1 lg:grid-cols-3 gap-4"
+className = 'grid grid-cols-1 lg:grid-cols-3 gap-4';
 // Main content
-className="lg:col-span-2"
+className = 'lg:col-span-2';
 ```
 
 ### 4. Responsive Visibility
@@ -84,18 +86,19 @@ className="block lg:hidden"
 
 ```typescript
 // Icons
-className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6"
+className = 'w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6';
 
 // Buttons
-className="px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base"
+className = 'px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base';
 
 // Cards/containers
-className="rounded-lg sm:rounded-xl lg:rounded-2xl"
+className = 'rounded-lg sm:rounded-xl lg:rounded-2xl';
 ```
 
 ## Mobile Navigation (Sidebar)
 
 ### Desktop vs Mobile Sidebar
+
 Location: `src/components/layout/Sidebar.tsx`
 
 ```typescript
@@ -124,6 +127,7 @@ Location: `src/components/layout/Sidebar.tsx`
 ```
 
 ### Mobile Menu Overlay
+
 ```typescript
 // Overlay behind mobile menu
 <AnimatePresence>
@@ -140,6 +144,7 @@ Location: `src/components/layout/Sidebar.tsx`
 ```
 
 ### Body Scroll Lock
+
 ```typescript
 useEffect(() => {
   if (mobileMenuOpen && isMobile) {
@@ -180,6 +185,7 @@ useEffect(() => {
 ## Responsive Cards
 
 ### MetricCard Example
+
 ```typescript
 <div className="
   relative overflow-hidden
@@ -210,15 +216,17 @@ useEffect(() => {
 ## Touch-Friendly Interactions
 
 ### Tap Areas
+
 ```typescript
 // Minimum tap area: 44x44px
-className="p-2.5 sm:p-2"  // Mobile needs larger tap area
+className = 'p-2.5 sm:p-2'; // Mobile needs larger tap area
 
 // Full-width buttons on mobile
-className="w-full sm:w-auto"
+className = 'w-full sm:w-auto';
 ```
 
 ### Active States
+
 ```typescript
 <motion.button
   whileTap={{ scale: 0.98 }}  // Visual feedback for touch
@@ -227,10 +235,11 @@ className="w-full sm:w-auto"
 ```
 
 ### Removing Hover Effects on Touch
+
 ```typescript
 // Use @media (hover: hover) for hover-only effects
 // Or use Tailwind's hover: which handles this
-className="hover:bg-gray-100"  // Only applies on devices with hover
+className = 'hover:bg-gray-100'; // Only applies on devices with hover
 ```
 
 ## Responsive Form Layouts
@@ -287,7 +296,8 @@ useEffect(() => {
 
 ## Best Practices
 
-1. **Mobile-first**: Write base styles for mobile, add breakpoint modifiers for larger screens
+1. **Mobile-first**: Write base styles for mobile, add breakpoint modifiers for
+   larger screens
 2. **Touch targets**: Minimum 44x44px for interactive elements
 3. **Readable text**: Minimum 16px (1rem) for body text on mobile
 4. **No horizontal scroll**: Test on real devices to ensure no overflow

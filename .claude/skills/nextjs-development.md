@@ -1,16 +1,20 @@
 # Next.js Development - InvoLuck Frontend
 
 ## Overview
-This skill covers Next.js 15 App Router patterns, file conventions, and best practices used in InvoLuck.
+
+This skill covers Next.js 15 App Router patterns, file conventions, and best
+practices used in InvoLuck.
 
 ## Project Configuration
 
 ### Next.js Version
+
 - Next.js 15.5.0
 - React 18.2.0
 - App Router (not Pages Router)
 
 ### Next.js Config
+
 Location: `next.config.mjs`
 
 ```javascript
@@ -37,7 +41,10 @@ const nextConfig = {
           { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
-          { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains' }
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains'
+          }
         ]
       }
     ];
@@ -88,6 +95,7 @@ src/app/
 ## File Conventions
 
 ### page.tsx
+
 Each route needs a `page.tsx` file:
 
 ```typescript
@@ -104,6 +112,7 @@ export default function DashboardPage() {
 ```
 
 ### layout.tsx
+
 Shared layouts for route segments:
 
 ```typescript
@@ -118,6 +127,7 @@ export default function AuthenticatedLayout({
 ```
 
 ### loading.tsx
+
 Loading UI while page loads:
 
 ```typescript
@@ -134,6 +144,7 @@ export default function Loading() {
 ```
 
 ### not-found.tsx
+
 Custom 404 page:
 
 ```typescript
@@ -154,6 +165,7 @@ export default function NotFound() {
 ```
 
 ## Root Layout
+
 Location: `src/app/layout.tsx`
 
 ```typescript
@@ -229,6 +241,7 @@ export default function RootLayout({
 ## Client vs Server Components
 
 ### 'use client' Directive
+
 All interactive components must have `'use client'` at the top:
 
 ```typescript
@@ -243,6 +256,7 @@ export default function InteractiveComponent() {
 ```
 
 ### When to use 'use client'
+
 - Using React hooks (useState, useEffect, useContext, etc.)
 - Using browser APIs (window, document, localStorage)
 - Using event handlers (onClick, onChange, etc.)
@@ -250,7 +264,9 @@ export default function InteractiveComponent() {
 - Using third-party client libraries
 
 ### Server Components (default)
+
 Components without 'use client' are Server Components:
+
 - Can directly access databases
 - Can use async/await at component level
 - Cannot use hooks or browser APIs
@@ -258,6 +274,7 @@ Components without 'use client' are Server Components:
 ## Navigation
 
 ### Link Component
+
 ```typescript
 import Link from 'next/link';
 
@@ -266,6 +283,7 @@ import Link from 'next/link';
 ```
 
 ### useRouter Hook
+
 ```typescript
 'use client';
 
@@ -285,6 +303,7 @@ const Component = () => {
 ```
 
 ### usePathname Hook
+
 ```typescript
 'use client';
 
@@ -306,6 +325,7 @@ const NavItem = ({ href, label }) => {
 ```
 
 ## API Routes
+
 Location: `src/app/api/`
 
 ```typescript
@@ -330,6 +350,7 @@ export async function GET() {
 ## Dynamic Routes
 
 ### Route Parameters
+
 ```typescript
 // src/app/users/[id]/page.tsx
 export default function UserPage({ params }: { params: { id: string } }) {
@@ -343,6 +364,7 @@ export default function EditUserPage({ params }: { params: { id: string } }) {
 ```
 
 ## Middleware
+
 Location: `src/middleware.ts`
 
 ```typescript
@@ -378,34 +400,45 @@ export const config = {
 ## SEO
 
 ### Dynamic robots.txt
+
 ```typescript
 // src/app/robots.ts
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [
-      { userAgent: '*', allow: '/', disallow: ['/dashboard', '/api/'] }
-    ],
+    rules: [{ userAgent: '*', allow: '/', disallow: ['/dashboard', '/api/'] }],
     sitemap: 'https://involuck.com/sitemap.xml'
   };
 }
 ```
 
 ### Dynamic sitemap.xml
+
 ```typescript
 // src/app/sitemap.ts
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    { url: 'https://involuck.com', lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
-    { url: 'https://involuck.com/auth/login', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 }
+    {
+      url: 'https://involuck.com',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 1
+    },
+    {
+      url: 'https://involuck.com/auth/login',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5
+    }
   ];
 }
 ```
 
 ## Image Optimization
+
 ```typescript
 import Image from 'next/image';
 
@@ -428,6 +461,7 @@ import Image from 'next/image';
 ```
 
 ## Path Aliases
+
 Configured in `tsconfig.json`:
 
 ```json
@@ -441,6 +475,7 @@ Configured in `tsconfig.json`:
 ```
 
 Usage:
+
 ```typescript
 import { Button } from '@/components/pure/button';
 import { useAuth } from '@/context/AuthContext';

@@ -1,11 +1,14 @@
 # Form Validation - InvoLuck Frontend
 
 ## Overview
-This skill covers form validation patterns, real-time validation feedback, and form state management in InvoLuck.
+
+This skill covers form validation patterns, real-time validation feedback, and
+form state management in InvoLuck.
 
 ## Validation Architecture
 
 ### Input States
+
 ```typescript
 type InputState = 'default' | 'error' | 'success';
 
@@ -16,6 +19,7 @@ type InputState = 'default' | 'error' | 'success';
 ```
 
 ### TextInput Component
+
 Location: `src/components/pure/form/TextInput.tsx`
 
 ```typescript
@@ -35,13 +39,15 @@ interface TextInputProps {
 const stateClasses = {
   default: 'border-gray-200 dark:border-gray-700 focus:ring-purple-500',
   error: 'border-red-500 focus:ring-red-500 bg-red-50 dark:bg-red-900/20',
-  success: 'border-green-500 focus:ring-green-500 bg-green-50 dark:bg-green-900/20'
+  success:
+    'border-green-500 focus:ring-green-500 bg-green-50 dark:bg-green-900/20'
 };
 ```
 
 ## Validation Patterns
 
 ### 1. Email Validation
+
 ```typescript
 const isValidEmail = (email: string): boolean => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -61,6 +67,7 @@ useEffect(() => {
 ```
 
 ### 2. Password Validation
+
 ```typescript
 interface PasswordRequirement {
   label: string;
@@ -77,17 +84,18 @@ const getPasswordRequirements = (password: string): PasswordRequirement[] => [
 
 const getPasswordStrength = (password: string): number => {
   const requirements = getPasswordRequirements(password);
-  const metCount = requirements.filter(r => r.met).length;
+  const metCount = requirements.filter((r) => r.met).length;
   return (metCount / requirements.length) * 100;
 };
 
 const isValidPassword = (password: string): boolean => {
   const requirements = getPasswordRequirements(password);
-  return requirements.every(r => r.met);
+  return requirements.every((r) => r.met);
 };
 ```
 
 ### 3. Name Validation
+
 ```typescript
 const isValidName = (name: string): boolean => {
   return name.trim().length >= 2;
@@ -95,6 +103,7 @@ const isValidName = (name: string): boolean => {
 ```
 
 ### 4. Confirm Password Validation
+
 ```typescript
 const passwordsMatch = (password: string, confirmPassword: string): boolean => {
   return password === confirmPassword && password.length > 0;
@@ -104,6 +113,7 @@ const passwordsMatch = (password: string, confirmPassword: string): boolean => {
 ## Form State Management
 
 ### Using Context (AuthContext pattern)
+
 ```typescript
 // State structure
 interface FormState {
@@ -137,12 +147,10 @@ const canSubmit = useMemo(() => {
 ```
 
 ### Using Custom Hook
+
 ```typescript
 // src/hooks/useFormField.ts
-function useFormField<T>(
-  initialValue: T,
-  validator: (value: T) => boolean
-) {
+function useFormField<T>(initialValue: T, validator: (value: T) => boolean) {
   const [value, setValue] = useState<T>(initialValue);
   const [touched, setTouched] = useState(false);
   const [state, setState] = useState<InputState>('default');
@@ -173,6 +181,7 @@ const password = useFormField('', isValidPassword);
 ## Visual Feedback Components
 
 ### Validation Icon
+
 ```typescript
 <AnimatePresence>
   {touched && (
@@ -197,6 +206,7 @@ const password = useFormField('', isValidPassword);
 ```
 
 ### Error Message
+
 ```typescript
 {showError && (
   <motion.p
@@ -211,6 +221,7 @@ const password = useFormField('', isValidPassword);
 ```
 
 ### Password Requirements List
+
 ```typescript
 <div className="grid grid-cols-2 gap-1 text-xs">
   {passwordRequirements.map((req, index) => (
@@ -236,6 +247,7 @@ const password = useFormField('', isValidPassword);
 ```
 
 ### Password Strength Bar
+
 ```typescript
 <div className="flex gap-1">
   {[1, 2, 3, 4].map((level) => (
@@ -261,6 +273,7 @@ const password = useFormField('', isValidPassword);
 ## Form Submission
 
 ### Submit Handler Pattern
+
 ```typescript
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
@@ -297,6 +310,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 ```
 
 ### Submit Button
+
 ```typescript
 <PrimaryButton
   disabled={!canSubmit}
@@ -320,6 +334,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 ## Checkbox Validation
 
 ### Terms Acceptance
+
 ```typescript
 const [acceptTerms, setAcceptTerms] = useState(false);
 
@@ -372,7 +387,8 @@ const canSubmit = /* other validations */ && acceptTerms;
 1. **Touch-based errors**: Only show errors after field is touched (onBlur)
 2. **Real-time validation**: Validate as user types for immediate feedback
 3. **Visual states**: Use consistent colors (green=success, red=error)
-4. **Accessible errors**: Associate error messages with inputs via aria-describedby
+4. **Accessible errors**: Associate error messages with inputs via
+   aria-describedby
 5. **Submit prevention**: Disable submit button when form is invalid
 6. **Loading states**: Show spinner during submission
 7. **Error messages**: Be specific about what's wrong
