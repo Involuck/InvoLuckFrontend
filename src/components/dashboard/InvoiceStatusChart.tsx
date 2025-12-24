@@ -16,14 +16,14 @@ export const InvoiceStatusChart: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.7 }}
-      className="bg-white rounded-2xl border-2 border-gray-100 p-6 shadow-lg"
+      className="bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-100 dark:border-gray-700 p-6 shadow-lg"
     >
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             Estado de Facturas
           </h3>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-gray-400">
             Distribución actual de tus facturas
           </p>
         </div>
@@ -36,7 +36,7 @@ export const InvoiceStatusChart: React.FC = () => {
 
       <div className="h-64 flex items-center justify-center">
         <div className="relative w-48 h-48">
-          <div className="absolute inset-0 rounded-full border-8 border-gray-200"></div>
+          <div className="absolute inset-0 rounded-full border-8 border-gray-200 dark:border-gray-600"></div>
 
           {data.map((item, index) => {
             const circumference = 2 * Math.PI * 60;
@@ -82,8 +82,12 @@ export const InvoiceStatusChart: React.FC = () => {
 
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
-              <div className="text-2xl font-bold text-gray-900">78</div>
-              <div className="text-sm text-gray-600">Total</div>
+              <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                78
+              </div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">
+                Total
+              </div>
             </div>
           </div>
         </div>
@@ -96,7 +100,7 @@ export const InvoiceStatusChart: React.FC = () => {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 + index * 0.1 }}
-            className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+            className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
           >
             <div
               className="w-4 h-4 rounded-full"
@@ -104,14 +108,16 @@ export const InvoiceStatusChart: React.FC = () => {
             />
             <div className="flex-1">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-900">
+                <span className="text-sm font-medium text-gray-900 dark:text-white">
                   {item.name}
                 </span>
-                <span className="text-sm font-bold text-gray-900">
+                <span className="text-sm font-bold text-gray-900 dark:text-white">
                   {item.count}
                 </span>
               </div>
-              <div className="text-xs text-gray-500">{item.value}%</div>
+              <div className="text-xs text-gray-500 dark:text-gray-400">
+                {item.value}%
+              </div>
             </div>
           </motion.div>
         ))}
@@ -121,16 +127,24 @@ export const InvoiceStatusChart: React.FC = () => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1 }}
-        className="mt-6 pt-4 border-t border-gray-100"
+        className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700"
       >
         <div className="grid grid-cols-2 gap-4 text-center">
           <div>
-            <p className="text-2xl font-bold text-gray-900">78</p>
-            <p className="text-sm text-gray-600">Total facturas</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">
+              78
+            </p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Total facturas
+            </p>
           </div>
           <div>
-            <p className="text-2xl font-bold text-green-600">83%</p>
-            <p className="text-sm text-gray-600">Tasa de cobro</p>
+            <p className="text-2xl font-bold text-green-600 dark:text-green-400">
+              83%
+            </p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Tasa de cobro
+            </p>
           </div>
         </div>
       </motion.div>

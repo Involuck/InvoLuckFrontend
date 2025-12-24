@@ -188,14 +188,14 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
       <Sidebar
         isCollapsed={sidebarCollapsed}
         onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
       />
 
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="sticky top-0 z-50 flex items-center justify-between h-16 md:h-18 border-b border-gray-200 bg-white px-4 lg:px-8">
+        <header className="sticky top-0 z-50 flex items-center justify-between h-16 md:h-18 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 lg:px-8">
           <div className="flex items-center space-x-4">
             <motion.button
               initial={{ opacity: 0, x: -10 }}
@@ -207,7 +207,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
               }}
               whileTap={{ scale: 0.98 }}
               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className="hidden md:flex p-2 text-gray-600 hover:text-purple-600 transition-colors rounded-lg relative group"
+              className="hidden md:flex p-2 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors rounded-lg relative group"
               title={sidebarCollapsed ? 'Expandir menú' : 'Colapsar menú'}
             >
               <MenuIcon className="h-5 w-5" />
@@ -220,7 +220,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
               }}
               whileTap={{ scale: 0.98 }}
               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className="md:hidden p-2 text-gray-600 hover:text-purple-600 transition-colors rounded-lg relative group"
+              className="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors rounded-lg relative group"
               title={sidebarCollapsed ? 'Expandir menú' : 'Colapsar menú'}
             >
               <MenuIcon className="h-5 w-5" />
@@ -233,10 +233,10 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
               className={`flex items-center space-x-3`}
             >
               <div className="flex flex-col">
-                <h1 className="text-base md:text-xl lg:text-2xl font-extrabold text-gray-900 truncate max-w-xs sm:max-w-none">
+                <h1 className="text-base md:text-xl lg:text-2xl font-extrabold text-gray-900 dark:text-white truncate max-w-xs sm:max-w-none">
                   {title}
                 </h1>
-                <p className="text-sm md:text-base text-gray-600 hidden sm:block">
+                <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 hidden sm:block">
                   {new Date().toLocaleDateString('es-ES', {
                     weekday: 'long',
                     year: 'numeric',
@@ -259,7 +259,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
               <input
                 type="text"
                 placeholder="Buscar..."
-                className="pl-10 pr-4 py-2 w-64 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-sm"
+                className="pl-10 pr-4 py-2 w-64 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400"
               />
             </motion.div>
 
@@ -269,7 +269,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                 backgroundColor: 'rgba(147, 51, 234, 0.05)'
               }}
               whileTap={{ scale: 0.98 }}
-              className="md:hidden p-2 text-gray-600 hover:text-purple-600 transition-colors rounded-lg relative group"
+              className="md:hidden p-2 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors rounded-lg relative group"
             >
               <SearchIcon className="h-5 w-5" />
             </motion.button>
@@ -285,7 +285,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3, duration: 0.3 }}
                 onClick={() => setNotificationsOpen(!notificationsOpen)}
-                className="relative p-2 text-gray-600 hover:text-purple-600 transition-colors rounded-lg group"
+                className="relative p-2 text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors rounded-lg group"
                 title="Notificaciones"
               >
                 <BellIcon className="h-5 w-5 md:h-6 md:w-6" />
@@ -311,10 +311,10 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 z-50"
+                    className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-50"
                   >
-                    <div className="p-4 border-b border-gray-200">
-                      <h3 className="text-lg font-semibold text-gray-900">
+                    <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                         Notificaciones
                       </h3>
                     </div>
@@ -322,23 +322,23 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                       {notifications.map((notification) => (
                         <motion.div
                           key={notification.id}
-                          whileHover={{ backgroundColor: '#f9fafb' }}
-                          className="p-4 border-b border-gray-100 last:border-b-0 cursor-pointer"
+                          whileHover={{ backgroundColor: 'var(--hover-bg)' }}
+                          className="p-4 border-b border-gray-100 dark:border-gray-700 last:border-b-0 cursor-pointer [--hover-bg:#f9fafb] dark:[--hover-bg:#374151]"
                         >
                           <div className="flex items-start space-x-3">
                             <div
-                              className={`w-2 h-2 rounded-full mt-2 ${notification.unread ? 'bg-blue-500' : 'bg-gray-300'}`}
+                              className={`w-2 h-2 rounded-full mt-2 ${notification.unread ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'}`}
                             />
                             <div className="flex-1">
                               <h4
-                                className={`text-sm font-medium ${notification.unread ? 'text-gray-900' : 'text-gray-600'}`}
+                                className={`text-sm font-medium ${notification.unread ? 'text-gray-900 dark:text-white' : 'text-gray-600 dark:text-gray-400'}`}
                               >
                                 {notification.title}
                               </h4>
-                              <p className="text-sm text-gray-500 mt-1">
+                              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                                 {notification.message}
                               </p>
-                              <p className="text-xs text-gray-400 mt-2">
+                              <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
                                 {notification.time}
                               </p>
                             </div>
@@ -346,8 +346,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                         </motion.div>
                       ))}
                     </div>
-                    <div className="p-4 border-t border-gray-200">
-                      <button className="w-full text-center text-sm text-purple-600 hover:text-purple-700 font-medium">
+                    <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+                      <button className="w-full text-center text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium">
                         Ver todas las notificaciones
                       </button>
                     </div>
@@ -391,18 +391,18 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200 z-50"
+                    className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-50"
                   >
-                    <div className="p-4 border-b border-gray-200">
+                    <div className="p-4 border-b border-gray-200 dark:border-gray-700">
                       <div className="flex items-center space-x-3">
                         <div className="h-10 w-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold">
                           <span>U</span>
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-gray-900">
+                          <p className="text-sm font-medium text-gray-900 dark:text-white">
                             Usuario Demo
                           </p>
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs text-gray-500 dark:text-gray-400">
                             usuario@ejemplo.com
                           </p>
                         </div>
@@ -411,26 +411,26 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 
                     <div className="py-2">
                       <motion.button
-                        whileHover={{ backgroundColor: '#f9fafb' }}
-                        className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:text-purple-600 transition-colors"
+                        whileHover={{ backgroundColor: 'var(--hover-bg)' }}
+                        className="w-full flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors [--hover-bg:#f9fafb] dark:[--hover-bg:#374151]"
                       >
                         <UserIcon className="h-4 w-4 mr-3" />
                         Mi Perfil
                       </motion.button>
 
                       <motion.button
-                        whileHover={{ backgroundColor: '#f9fafb' }}
-                        className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:text-purple-600 transition-colors"
+                        whileHover={{ backgroundColor: 'var(--hover-bg)' }}
+                        className="w-full flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors [--hover-bg:#f9fafb] dark:[--hover-bg:#374151]"
                       >
                         <SettingsIcon className="h-4 w-4 mr-3" />
                         Configuración
                       </motion.button>
 
-                      <div className="border-t border-gray-200 mt-2 pt-2">
+                      <div className="border-t border-gray-200 dark:border-gray-700 mt-2 pt-2">
                         <motion.button
                           onClick={handleLogout}
-                          whileHover={{ backgroundColor: '#fef2f2' }}
-                          className="w-full flex items-center px-4 py-2 text-sm text-red-600 hover:text-red-700 transition-colors"
+                          whileHover={{ backgroundColor: 'var(--hover-bg)' }}
+                          className="w-full flex items-center px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors [--hover-bg:#fef2f2] dark:[--hover-bg:#7f1d1d33]"
                         >
                           <LogoutIcon className="h-4 w-4 mr-3" />
                           Cerrar Sesión

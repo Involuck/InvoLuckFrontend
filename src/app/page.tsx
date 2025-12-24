@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { JsonLd } from '@/components/seo/JsonLd';
 import {
   DocumentTextIcon,
   UsersIcon,
@@ -260,9 +261,37 @@ const processSteps = [
   }
 ];
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://involuck.com';
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'InvoLuck',
+  url: BASE_URL,
+  description:
+    'Plataforma de gestión inteligente de facturación para tu negocio'
+};
+
+const softwareJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'InvoLuck',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  description:
+    'Plataforma de facturación inteligente para freelancers, PyMEs y empresas',
+  offers: {
+    '@type': 'Offer',
+    price: '29',
+    priceCurrency: 'USD'
+  }
+};
+
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
+      <JsonLd data={websiteJsonLd} />
+      <JsonLd data={softwareJsonLd} />
       <header>
         <Navbar />
       </header>
