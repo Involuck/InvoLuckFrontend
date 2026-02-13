@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
   SunIcon,
@@ -34,6 +35,7 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
   userName = 'Usuario'
 }) => {
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
   const greeting = getGreeting();
 
   useEffect(() => {
@@ -182,6 +184,7 @@ export const WelcomeHero: React.FC<WelcomeHeroProps> = ({
               boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)'
             }}
             whileTap={{ scale: 0.98 }}
+            onClick={() => router.push('/invoices/create')}
             className="bg-white text-purple-700 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-semibold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-300"
           >
             Crear Nueva Factura
